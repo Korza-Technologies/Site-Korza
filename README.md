@@ -14,6 +14,8 @@ Acesse http://localhost:4173.
 
 ## Publicação
 
-Publique os arquivos desta pasta na raiz do site (por exemplo, `public_html` na Hostinger), mantendo a pasta `assets` junto de `index.html`, `styles.css` e `app.js`. Em plataformas que pedem configuração de build, use a raiz do projeto como diretório de publicação e não configure comando de build.
+O site é publicado pelo AWS Amplify (app `site-korza`, `d2pee4yt8thxba`, conta de produção, região us-east-2) em https://korza.com.br e https://www.korza.com.br. Cada push na branch `main` dispara um deploy automático pela integração do Amplify com o GitHub; não há etapa de build, e a raiz do repositório é publicada como está.
+
+Para acompanhar os deploys, abra o app no console do Amplify (us-east-2). A URL direta da branch, sem o domínio, é https://main.d2pee4yt8thxba.amplifyapp.com.
 
 Os botões de login e cadastro apontam para a plataforma da Korza. As imagens e marcas presentes foram fornecidas para o site; confirme os direitos de uso antes de redistribuí-las fora desse contexto.
