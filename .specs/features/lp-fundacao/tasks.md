@@ -133,7 +133,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(a11y): adiciona controle para pausar animações`
-**Status**: ✅ Done
+**Status**: ✅ Done (e31d21b)
 
 ### T8: Barra fixa de CTA no mobile
 **What**: `js/sticky-cta.js` + barra inferior com o CTA principal em ≤ 760px.
@@ -144,6 +144,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(mobile): adiciona barra fixa de CTA`
+**Status**: ✅ Done
 
 ### T9: Hero mobile e celular deitado
 **What**: Mostrar a cena do hero no mobile, CTA largo de 16px/48px, fita fora do título, header compacto em altura ≤ 500px.

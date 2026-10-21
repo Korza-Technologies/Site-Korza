@@ -6,6 +6,7 @@ import { initPushStack } from './push-stack.js';
 import { initGoalCounter } from './goal-counter.js';
 import { initCasesCarousel } from './cases-carousel.js';
 import { initRevenueDemo } from './revenue-demo.js';
+import { initStickyCta } from './sticky-cta.js';
 
 initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
@@ -27,3 +28,4 @@ initPushStack();
 initGoalCounter();
 initCasesCarousel();
 initRevenueDemo();
+initStickyCta(document.querySelector('.sticky-cta'), [...document.querySelectorAll('.hero, .plan-price, .footer')]);
