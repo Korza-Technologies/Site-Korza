@@ -124,7 +124,7 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .footer{padding-bottom:72px}
 
 /* Text contrast (A11Y-01): muted text uses #5b6b82, at least 4.5:1 on the page's white and ice backgrounds. */
-.hero-compatible>span,.card-number,.brand-picker button[aria-pressed=false],.metric-period,.push-sale small,.metric-source,
+.hero-compatible>span,.marquee-caption,.card-number,.brand-picker button[aria-pressed=false],.metric-period,.push-sale small,.metric-source,
 .platform-cta p,.story-bottom>span,.fine-print,.footer .footer-main p,.footer-links a,.footer-contact>span,.footer-bottom span,.footer-bottom a{color:#5b6b82}
 
 /* Pricing card (OFFER-02/03): what is free, what is paid, commitment and deadline, then the two ways forward. */
@@ -153,3 +153,20 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 
 /* FAQ (FAQ-03): the list ends with the WhatsApp link. */
 .faq-list .faq-whatsapp{margin-top:22px;font-size:13px}
+
+/* Payback calculator (CALC-01/04): how many orders pay the plan, updated while typing. */
+.payback{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px 40px;margin-top:24px;padding:32px 40px;background:#fff;border:1px solid #e2e9f3;border-radius:8px}
+.payback h3{font-size:22px;letter-spacing:-.5px;line-height:1.3;margin-bottom:6px}
+.payback-copy p{font-size:14px;line-height:1.6;color:var(--text)}
+.payback-fields{display:flex;gap:16px}
+.payback-fields label{display:block;margin-bottom:6px;font-size:14px;font-weight:600;color:var(--navy)}
+.payback-fields input{width:160px;min-height:44px;padding:8px 12px;border:1px solid #7b8ba3;border-radius:6px;background:#fff;color:var(--navy);font:inherit;font-size:16px}
+.payback-fields input:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.payback-fields input[aria-invalid="true"]{border-color:#c0262d}
+.payback-result{grid-column:1/-1;margin:0;font-size:18px;font-weight:600;line-height:1.4;color:#174db3}
+@media(max-width:760px){
+  .payback{grid-template-columns:1fr;padding:24px}
+  .payback-fields>div{flex:1;min-width:0}
+  .payback-fields input{width:100%}
+  .payback-result{font-size:16px}
+}

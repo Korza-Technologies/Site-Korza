@@ -145,17 +145,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm run test:unit` verde
 **Tests**: unit · **Gate**: quick
 **Commit**: `feat(calculadora): calcula pedidos para pagar o plano`
-**Status**: ✅ Done (`paybackOrders` devolve `{ok: false, errors: [{field, message}]}` em vez de um único `{field, message}`: com os dois campos inválidos, CALC-05 e CALC-06 exigem as duas mensagens; `PLAN_PRICE = 399` entra em `js/config.js`)
+**Status**: ✅ Done (c5aac8b; `paybackOrders` devolve `{ok: false, errors: [{field, message}]}` em vez de um único `{field, message}`: com os dois campos inválidos, CALC-05 e CALC-06 exigem as duas mensagens; `PLAN_PRICE = 399` entra em `js/config.js`)
 
 ### T10: Interface da calculadora
 **What**: Campos com `label`, resultado `aria-live`, atualização ao digitar, resultado padrão no HTML para quem está sem JS.
 **Where**: `index.html`, `js/calculator-ui.js`, `styles/components.css`
 **Depends on**: T9 · **Requirement**: CALC-01, CALC-04
 **Done when**:
-- [ ] e2e CALC-01, CALC-04, mensagens de erro na tela, sem JS mostra "8 pedidos"
-- [ ] `npm test` verde
+- [x] e2e CALC-01, CALC-04, mensagens de erro na tela, sem JS mostra "8 pedidos"
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(calculadora): adiciona calculadora ao card de preço`
+**Status**: ✅ Done (a calculadora fica na seção de preço, logo abaixo do card; `components.css` vai para `?v=20261021g`; a legenda `.marquee-caption` (#9ba9bb, 2.39:1) passou a ser apontada pelo axe com a página mais longa e ganhou a cor de texto secundário #5b6b82)
 
 ### T11: Módulo de analytics
 **What**: `initAnalytics`/`track` com PostHog condicionado à chave; delegação `cta_click`.

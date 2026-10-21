@@ -7,6 +7,7 @@ import { initGoalCounter } from './goal-counter.js';
 import { initCasesCarousel } from './cases-carousel.js';
 import { initRevenueDemo } from './revenue-demo.js';
 import { initStickyCta } from './sticky-cta.js';
+import { initCalculator } from './calculator-ui.js';
 
 initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
@@ -28,5 +29,6 @@ initPushStack();
 initGoalCounter();
 initCasesCarousel();
 initRevenueDemo();
+initCalculator();
 initStickyCta(document.querySelector('.sticky-cta'), [...document.querySelectorAll('.hero, .plan-price, .footer')]);
 initStickyCta(document.querySelector('.whatsapp-float'), [document.querySelector('.hero')]);
