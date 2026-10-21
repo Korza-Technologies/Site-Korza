@@ -167,17 +167,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(analytics): integra PostHog desligado por padrão`
-**Status**: ✅ Done (a chave de teste entra pela interceptação de `js/config.js` no teste, sem gancho no código de produção; as constantes `POSTHOG_*` entram em `js/config.js`)
+**Status**: ✅ Done (6245ab1; a chave de teste entra pela interceptação de `js/config.js` no teste, sem gancho no código de produção; as constantes `POSTHOG_*` entram em `js/config.js`)
 
 ### T12: Eventos da calculadora e do FAQ
 **What**: `calculator_used` uma vez por carregamento; `faq_open {question}`.
 **Where**: `js/calculator-ui.js`, `js/main.js`
 **Depends on**: T11 · **Requirement**: ANALYTICS-03, ANALYTICS-04
 **Done when**:
-- [ ] e2e: duas alterações na calculadora → 1 evento; abrir 2 perguntas → 2 eventos com o texto correto
-- [ ] `npm test` verde
+- [x] e2e: duas alterações na calculadora → 1 evento; abrir 2 perguntas → 2 eventos com o texto correto
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(analytics): mede uso da calculadora e do FAQ`
+**Status**: ✅ Done (testes em `tests/e2e/analytics.spec.js`; `calculator_used` vai sem propriedades, a spec não define nenhuma)
 
 ### T13: Repasse de UTM
 **What**: `appendUtm` pura + `initUtm`.

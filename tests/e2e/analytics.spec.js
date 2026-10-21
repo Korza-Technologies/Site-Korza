@@ -141,3 +141,51 @@ test('ANALYTICS-06 com o script do PostHog bloqueado os CTAs navegam e o console
   const unexpected = errors.filter(error => !(error.text.startsWith('Failed to load resource') && error.url.startsWith(POSTHOG_API_HOST)));
   expect(unexpected).toEqual([]);
 });
+
+test('ANALYTICS-03 calculator_used sai uma única vez, no primeiro N válido depois de mexer na calculadora', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+  const uses = () => captured.filter(item => item.event === 'calculator_used').length;
+  const ticket = page.locator('#precos').getByLabel('Ticket médio (R$)', { exact: true });
+  const margin = page.locator('#precos').getByLabel('Margem (%)', { exact: true });
+  const result = page.locator('#precos [aria-live="polite"]');
+
+  // The default result on load is not a use; an invalid value is not a valid N.
+  await ticket.fill('');
+  await expect(result).toHaveText('Informe um ticket médio entre R$ 1 e R$ 100.000.');
+  await page.waitForTimeout(300);
+  expect(uses()).toBe(0);
+
+  await ticket.fill('250');
+  await expect(result).toHaveText('O plano se paga com 6 pedidos por mês pelo app.');
+  await expect.poll(uses).toBe(1);
+
+  await margin.fill('10');
+  await expect(result).toHaveText('O plano se paga com 16 pedidos por mês pelo app.');
+  await page.waitForTimeout(300);
+  expect(uses()).toBe(1);
+});
+
+test('ANALYTICS-04 abrir duas perguntas do FAQ emite dois faq_open com o texto de cada pergunta', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+  const opens = () => captured.filter(item => item.event === 'faq_open');
+
+  const first = page.locator('#duvidas summary', { hasText: 'O que é grátis e o que é pago?' });
+  const last = page.locator('#duvidas summary', { hasText: 'Consigo acompanhar os resultados?' });
+  await first.click();
+  await last.click();
+  await expect.poll(opens).toEqual([
+    { event: 'faq_open', properties: { question: 'O que é grátis e o que é pago?' } },
+    { event: 'faq_open', properties: { question: 'Consigo acompanhar os resultados?' } }
+  ]);
+  // Closing a question is not an opening.
+  await first.click();
+  await expect(first.locator('..')).not.toHaveAttribute('open', '');
+  await page.waitForTimeout(300);
+  expect(opens()).toHaveLength(2);
+});

@@ -1,4 +1,4 @@
-import { initAnalytics } from './analytics.js';
+import { initAnalytics, track } from './analytics.js';
 import { initPauseButton } from './motion.js';
 import { initMenu } from './menu.js';
 import { initBrandPicker } from './brand-picker.js';
@@ -32,5 +32,9 @@ initGoalCounter();
 initCasesCarousel();
 initRevenueDemo();
 initCalculator();
+// FAQ: each opened question is reported with its text (without the decorative "+").
+document.querySelectorAll('#duvidas details').forEach(item => item.addEventListener('toggle', () => {
+  if (item.open) track('faq_open', { question: item.querySelector('summary').firstChild.textContent.trim() });
+}));
 initStickyCta(document.querySelector('.sticky-cta'), [...document.querySelectorAll('.hero, .plan-price, .footer')]);
 initStickyCta(document.querySelector('.whatsapp-float'), [document.querySelector('.hero')]);
