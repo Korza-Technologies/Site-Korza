@@ -1,0 +1,27 @@
+import { initMenu } from './menu.js';
+import { initBrandPicker } from './brand-picker.js';
+import { initDialog } from './dialog.js';
+import { initPushStack } from './push-stack.js';
+import { initGoalCounter } from './goal-counter.js';
+import { initCasesCarousel } from './cases-carousel.js';
+import { initRevenueDemo } from './revenue-demo.js';
+
+initMenu();
+initBrandPicker();
+initDialog();
+
+// Content is visible without JavaScript; movement never controls visibility.
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+    if (entry.isIntersecting && entry.target.classList.contains('reveal')) { entry.target.classList.add('arrived'); }
+  }), {threshold: 0.08});
+  document.querySelectorAll('.motion-scene, .reveal').forEach(element => observer.observe(element));
+  document.body.classList.add('motion-enabled');
+}
+document.querySelector('#year').textContent = new Date().getFullYear();
+
+initPushStack();
+initGoalCounter();
+initCasesCarousel();
+initRevenueDemo();

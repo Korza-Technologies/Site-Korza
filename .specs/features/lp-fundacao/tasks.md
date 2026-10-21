@@ -111,7 +111,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf: remove assets sem uso e adiciona orçamento de peso`
-**Status**: ✅ Done (390×844: 249.204 B sem rolar, 354.285 B rolada)
+**Status**: ✅ Done (6f8917b; 390×844: 249.204 B sem rolar, 354.285 B rolada)
 
 ### T6: Migrar app.js para módulos ES
 **What**: Dividir `app.js` em `js/main.js`, `js/config.js` e módulos por comportamento (design); `<script type="module" src="js/main.js">`; remover `app.js`.
@@ -122,6 +122,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde · Test count não diminui
 **Tests**: e2e · **Gate**: full
 **Commit**: `refactor(js): migra app.js para módulos ES nativos`
+**Status**: ✅ Done
 
 ### T7: Controlador de movimento e botão de pausa
 **What**: `js/motion.js` + botão "Pausar animações" (canto inferior esquerdo) integrado a marquee, pushs, carrossel, faturamento e contador.
