@@ -114,7 +114,7 @@ Hoje o visitante assiste a uma demonstração com marcas de outras pessoas. A de
 | -------------- | ----- | ----- | ------ |
 | PREVIEW-01..10 | P1: Teaser | Tasks | In Tasks |
 | CASES-01..05 | P1: Cases | Tasks | In Tasks |
-| DATA-01..03 | P2: Coleta | Tasks | In Tasks |
+| DATA-01..03 | P2: Coleta | Execute | Verified |
 
 **Coverage:** 18 total, all mapped to tasks.
 

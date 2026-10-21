@@ -63,6 +63,7 @@ T7 → T8 → T9
 - [ ] Usuário aprovou os números (registrado no relatório)
 **Tests**: none · **Gate**: — (gate humano)
 **Commit**: `docs(cases): relatório de métricas dos cases`
+**Status**: ✅ Done (aprovado pelo usuário em 2026-10-21)
 
 ### T2: Regras puras do teaser
 **What**: `normalizeStoreName`, `readableTextColor`, `validateLogo`.
