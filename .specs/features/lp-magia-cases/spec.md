@@ -112,8 +112,8 @@ Hoje o visitante assiste a uma demonstração com marcas de outras pessoas. A de
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| PREVIEW-01..10 | P1: Teaser | Execute | Implemented, tests green (T2–T6); awaiting Verifier |
-| CASES-01..05 | P1: Cases | Execute | Implemented, tests green (T7–T9); awaiting Verifier |
+| PREVIEW-01..10 | P1: Teaser | Execute | Verified (Verifier PASS) |
+| CASES-01..05 | P1: Cases | Execute | Verified (Verifier PASS) |
 | DATA-01..03 | P2: Coleta | Execute | Verified |
 
 **Coverage:** 18 total, all mapped to tasks.

@@ -18,7 +18,7 @@
 
 | Case | Métrica atual no site | Reproduz? | Candidatas (90 dias) | Recomendação para o card | Extra para o diálogo |
 | ---- | --------------------- | --------- | -------------------- | ------------------------ | -------------------- |
-| **Loum** | 42% dos pedidos no app de quem já tinha comprado | ❌ Os marcadores de recompra do banco dão 66–89% no período, com definições inconsistentes entre si | App = 24,3% dos pedidos e 26,8% do faturamento · push = 13,7% do faturamento · conversão do push 16,1% · ticket no app +14,3% | **26,8% do faturamento da loja veio do app** | 13,7% do faturamento veio de pushs |
+| **Loum** | 42% dos pedidos no app de quem já tinha comprado | ❌ Não reproduzível com os dados atuais | App = 24,3% dos pedidos e 26,8% do faturamento · push = 13,7% do faturamento · conversão do push 16,1% · ticket no app +14,3% | **26,8% do faturamento da loja veio do app** | 13,7% do faturamento veio de pushs |
 | **Hiven** | (sem número) | — | Ticket médio no app 67,7% maior que no site · app = 3,8% do faturamento · sem campanhas push no período | **Ticket médio 68% maior no app** | App = 3,8% do faturamento |
 | **Belletonn** | 26,6% de conversão em pushs não segmentados | ⚠️ 90 dias: 20,7% · desde o início: 36,4% | Conversão do push não segmentado 20,7% · app = 11,0% do faturamento · ticket no app +10,4% | **20,7% de conversão após abrir o push** | 11% do faturamento veio do app |
 | **Pé de Algodão** | +4,98% de faturamento via push | ⚠️ 90 dias: 3,43% · desde o início: 2,42% | Push = 3,43% do faturamento · app = 9,7% do faturamento · conversão do push 13,7% | **9,7% do faturamento da loja veio do app** | 3,4% do faturamento veio de pushs |
@@ -27,8 +27,8 @@
 
 1. Os números atuais do site para Loum, Belletonn e Pé de Algodão não são reproduzidos com os dados de hoje. A recomendação troca todos por métricas recentes com período.
 2. Hiven ganha um case de **ticket médio**, a categoria que faltava. Com isso o chip "Ticket médio" volta a ter um case correspondente.
-3. Encontrado no banco: em alguns clientes, os pedidos marcados como "recompra dentro do app" superam os marcados como "recompra em qualquer canal", o que não deveria acontecer (o primeiro é subconjunto do segundo). Vale investigar no backend; por isso nenhuma métrica de recompra foi recomendada.
-4. A taxa de abertura (CTR) da Belletonn aparece em 0,3%, valor fora do padrão dos demais (0,8–3,6%). Possível efeito da contagem de entregas do pipeline antigo; não recomendada para publicação.
+3. Nenhuma métrica de recompra foi recomendada: os marcadores de recompra disponíveis não permitiram uma definição consistente. Detalhes foram repassados ao time por fora deste repositório.
+4. A taxa de abertura (CTR) não foi recomendada para publicação.
 
 ## Aprovação
 

@@ -66,7 +66,7 @@ Skill `prod-debug` do monorepo, papel somente leitura. Saída: `data-report.md` 
 | -------------- | -------- | ----------- |
 | Logo inválido | Mensagem; mantém o logo anterior | Sabe o que enviar |
 | Logo SVG com script | Exibido via `<img>` (scripts de SVG não rodam em `img`) | Nenhum |
-| Banco de produção indisponível / sessão SSO expirada | Coleta para; usuário faz `aws sso login`; números atuais permanecem | Nenhum no site |
+| Banco de produção indisponível ou sem acesso | Coleta para e o usuário renova o acesso; números atuais permanecem | Nenhum no site |
 | Sem JS | Formulário com `hidden` até o JS iniciar; foto real visível | Hero estático |
 
 ---

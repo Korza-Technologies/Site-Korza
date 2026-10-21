@@ -159,7 +159,7 @@ Expandido (≥ 6 pedido). Mutações aplicadas uma por vez no worktree descartá
 1. **Contagem do gate**: o esperado informado era 230, mas a suíte em `7daf73c` tem 229 testes. Não falta teste, a contagem esperada estava errada.
 2. **PREVIEW-03 falhou uma vez sob carga** (`teaser.spec.js:105`, rodada 1). O primeiro rádio ficou "não visível" por 30s, o que indica que o `initPreview` não rodou naquela página (o formulário começa `hidden`). Não se repetiu em 5 repetições isoladas nem nas rodadas 2 e 3. É provável que um módulo JS não tenha carregado no `http.server` sob carga. Vale acompanhar. Se voltar a acontecer, esperar `form:not([hidden])` antes de agir.
 3. **Texto do card da Loum**: o `h3` diz "Mais de um quarto das vendas no app." A métrica aprovada é de faturamento (26,8%), e pelo relatório o app tem 24,3% dos **pedidos**, menos de um quarto. Se "vendas" for lido como pedidos, a frase fica imprecisa. O título não faz parte da aprovação nem é testado. Sugestão: "Mais de um quarto do faturamento no app."
-4. **AD-003 (leve)**: o relatório não tem consultas, credenciais nem IDs. Mas as observações 3 e 4 de `data-report.md` descrevem uma inconsistência interna do backend e um "pipeline antigo". E `tasks.md` (T1, "Tools") cita o nome do perfil AWS SSO e o caminho de um arquivo `.env` local. Não são segredos, mas são detalhes internos numa pasta que pode ser publicada. Vale cortar antes do deploy.
+4. **AD-003 (leve)**: o relatório não tem consultas, credenciais nem IDs. Detalhes internos citados nas observações e na T1 foram removidos depois desta verificação (orquestrador, 2026-10-21).
 5. **`touchstart` redundante** em `js/cases-carousel.js:22` (M21). Não muda comportamento.
 
 ---

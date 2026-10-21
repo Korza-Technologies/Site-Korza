@@ -56,7 +56,7 @@ T7 → T8 → T9
 **What**: Usar a skill `prod-debug` (monorepo) com o papel somente leitura para levantar métricas percentuais de Loum, Hiven, Belletonn e Pé de Algodão (incluindo reproduzir as atuais); escrever `data-report.md`; parar para aprovação.
 **Where**: `.specs/features/lp-magia-cases/data-report.md`
 **Depends on**: None · **Requirement**: DATA-01, DATA-02, DATA-03
-**Tools**: Skill `prod-debug` (AWS SSO perfil `korza`, `~/.korza-debug.env`)
+**Tools**: Skill `prod-debug` (acesso somente leitura)
 **Done when**:
 - [ ] Nenhuma SQL de escrita executada; só `SELECT`
 - [ ] Relatório com métrica, período e data da coleta por case, sem consultas/IDs/credenciais
