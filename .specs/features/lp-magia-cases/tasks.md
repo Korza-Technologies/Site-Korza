@@ -119,7 +119,7 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): leva o visitante do teaser ao cadastro`
-**Status**: ✅ Done (6fbd68a; `has_name` e `has_logo` refletem o momento da primeira interação: nome não vazio e logo válido já aplicado; um logo inválido não conta como interação; só o texto do CTA muda, o ícone e o `href` com UTM ficam)
+**Status**: ✅ Done (6fbd68a; `has_name` e `has_logo` refletem o momento da primeira interação: nome não vazio e logo válido já aplicado; um logo inválido não conta como interação; só o texto do CTA muda, o ícone e o `href` com UTM ficam; correção posterior em commit `fix(teaser)`: acima de 1100px a coluna de texto do hero passa a ter até 640px, para o CTA mais longo e os dois links continuarem numa linha e o formulário não pular depois da primeira interação; `components.css` vai para `?v=20261021n`)
 
 ### T7: Cases com métricas aprovadas
 **What**: `js/cases-data.js` com os dados aprovados; cards com métrica e período (Hiven ganha métrica).

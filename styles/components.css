@@ -245,11 +245,12 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .teaser-logo:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .teaser-error{grid-column:1/-1;font-size:13px;font-weight:600;color:#c0262d}
 .teaser-error:empty{display:none}
-/* Wide screens: name and colors side by side, so the hero keeps its height. */
+/* Wide screens: name and colors side by side, so the hero keeps its height; the text column fits the longer
+   "Continuar montando meu app" CTA and both links on one line, so the form does not jump after the first interaction. */
 @media(min-width:1101px){
   .brand-teaser{grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;max-width:none;margin-top:20px}
   .teaser-head{grid-column:1/-1}
-  .hero-layout{padding-bottom:40px}
+  .hero-layout{padding-bottom:40px;grid-template-columns:minmax(0,640px) minmax(0,1fr)}
 }
 @media(max-width:760px){.brand-teaser{margin-top:22px;max-width:none}}
 
