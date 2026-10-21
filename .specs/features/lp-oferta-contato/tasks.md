@@ -134,17 +134,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(faq): responde fidelidade, prazo, contas e o que é grátis`
-**Status**: ✅ Done (o link de WhatsApp do FAQ ganhou uma regra em `styles/components.css` para ficar com 13px, A11Y-02; `components.css` vai para `?v=20261021f`)
+**Status**: ✅ Done (80b4232; o link de WhatsApp do FAQ ganhou uma regra em `styles/components.css` para ficar com 13px, A11Y-02; `components.css` vai para `?v=20261021f`)
 
 ### T9: Regra da calculadora
 **What**: `parseBRNumber`, `paybackOrders`, `paybackMessage` puras.
 **Where**: `js/calculator.js`, `tests/unit/calculator.spec.js`
 **Depends on**: T8 · **Requirement**: CALC-02, CALC-03, CALC-05, CALC-06, CALC-07
 **Done when**:
-- [ ] Unit: 180/30 → 8; caso N=1 no singular; limites do ticket (0, 1, 100000, 100000.01, vazio, "abc"); limites da margem (0, 1, 100, 101, vazio); "179,90"; "1.234,5"
-- [ ] `npm run test:unit` verde
+- [x] Unit: 180/30 → 8; caso N=1 no singular; limites do ticket (0, 1, 100000, 100000.01, vazio, "abc"); limites da margem (0, 1, 100, 101, vazio); "179,90"; "1.234,5"
+- [x] `npm run test:unit` verde
 **Tests**: unit · **Gate**: quick
 **Commit**: `feat(calculadora): calcula pedidos para pagar o plano`
+**Status**: ✅ Done (`paybackOrders` devolve `{ok: false, errors: [{field, message}]}` em vez de um único `{field, message}`: com os dois campos inválidos, CALC-05 e CALC-06 exigem as duas mensagens; `PLAN_PRICE = 399` entra em `js/config.js`)
 
 ### T10: Interface da calculadora
 **What**: Campos com `label`, resultado `aria-live`, atualização ao digitar, resultado padrão no HTML para quem está sem JS.

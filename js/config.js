@@ -36,3 +36,6 @@ export const MESSAGES = {
   floating: 'Oi! Vim pelo site da Korza e tenho uma dúvida.',
   case: name => `Oi! Vi o case da ${name} no site e quero um resultado parecido.`
 };
+
+// Monthly plan price in reais (AD-006), used by the payback calculator.
+export const PLAN_PRICE = 399;
