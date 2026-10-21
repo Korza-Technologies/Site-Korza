@@ -30,7 +30,7 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 | Formato das imagens | WebP via `<picture>` com AVIF como primeira fonte quando menor | Suporte universal do WebP; AVIF reduz mais onde suportado | y |
 | Arquivos não usados em `assets/` | Removidos (continuam no histórico do git) | Não são referenciados por nenhum arquivo | y |
 | Selo "Mobile commerce" acima do título | Vira prova social "60+ marcas · Nuvemshop e Shopify" com link para `#cases` | O próprio site já afirma "Mais de 60 e-commerces" | y |
-| Chips dos cases | Viram texto simples listando apenas as categorias existentes nos cases (Recompra · Aplicativo · Conversão · Faturamento) | Não existe case de ticket médio | y |
+| Chips dos cases | Viram texto simples listando exatamente as categorias dos cards (hoje sem ticket médio; a F3 acrescenta o case de ticket médio da Hiven) | Hoje existe "Ticket médio" sem case correspondente | y |
 | Selos App Store / Google Play | Viram legenda não interativa "Publicado na App Store e no Google Play" com os ícones das lojas, sem fundo escuro de botão | Hoje parecem botões de download | y |
 | Controle de pausa | Um botão "Pausar animações" fixo no canto inferior esquerdo da tela; o estado vale até recarregar a página | WCAG 2.2.2; o código já tem `userPaused` | y |
 | CTA fixo no mobile | Barra inferior em ≤760px com o CTA principal; F2 acrescenta o WhatsApp nela | Botão visível durante a rolagem longa | y |
@@ -102,7 +102,7 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 **Acceptance Criteria** (BTN):
 
 1. WHEN o card "Aplicativo" é exibido THEN `.store-marks` SHALL conter o texto "Publicado na App Store e no Google Play", não SHALL conter `a` nem `button`, e cada marca SHALL ter fundo transparente.
-2. WHEN a seção de cases é exibida THEN a lista de categorias SHALL ter borda 0, fundo transparente e cursor `auto`, e SHALL listar exatamente as categorias dos cards (`.case-category`) sem "Ticket médio".
+2. WHEN a seção de cases é exibida THEN a lista de categorias SHALL ter borda 0, fundo transparente e cursor `auto`, e SHALL listar exatamente as categorias dos cards (`.case-category`), na mesma ordem e sem repetição.
 3. WHEN o seletor de marca é exibido THEN um rótulo visível "Veja o app de:" SHALL estar associado ao grupo (`aria-labelledby`), e cada botão SHALL ter altura ≥ 44px e fonte ≥ 14px.
 4. WHEN os controles do carrossel são exibidos THEN cada ponto e cada seta SHALL ter área clicável ≥ 44×44px.
 5. WHEN o card de preço é exibido THEN `.plan-price` SHALL NOT conter link para `/login`.
