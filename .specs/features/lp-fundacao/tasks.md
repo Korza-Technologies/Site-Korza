@@ -214,11 +214,37 @@ T9 → T10 → T11 → T12 → T13 → T14
 
 ---
 
+### T15: Hero sem corte e legendas fora dos aparelhos
+**What**: Corrigir o tamanho/posição do celular do hero (desktop e mobile) e mover/ocultar legendas que cobrem aparelhos, tomando como referência visual o hero do commit `4dd8709` (antes das mudanças).
+**Where**: `styles/components.css` (e `styles.css` só se indispensável)
+**Depends on**: T14 · **Requirement**: VIS-01, VIS-02, VIS-03
+**Done when**:
+- [ ] e2e VIS-01 (1440, 1280), VIS-02 (390, 360), VIS-03
+- [ ] Testes MOB, BTN, A11Y, PERF continuam verdes
+- [ ] Screenshots 1440 e 390 comparados lado a lado com a referência (registrar no relatório do lote)
+- [ ] `npm test` verde
+**Tests**: e2e · **Gate**: full
+**Commit**: `fix(hero): celular inteiro e legendas fora dos aparelhos`
+
+### T16: Botão de pausa compacto
+**What**: Botão de pausa vira ícone de 44×44 com nome acessível e dica visível no hover/foco; dentro da barra fixa vira só ícone e o CTA ocupa ≥ 70% da largura.
+**Where**: `styles/components.css`, `index.html`, `js/motion.js` (se o texto do rótulo mudar de lugar)
+**Depends on**: T15 · **Requirement**: VIS-04, VIS-05
+**Done when**:
+- [ ] e2e VIS-04 (1440, 390, 844×390) e VIS-05 (390)
+- [ ] Testes A11Y-03..06 continuam verdes sem alteração
+- [ ] `npm test` verde
+**Tests**: e2e · **Gate**: full
+**Commit**: `fix(a11y): compacta o botão de pausar animações`
+
+---
+
 ## Phase Execution Map
 ```
 Phase 1:  T1 ──→ T2 ──→ T3 ──→ T4 ──→ T5
 Phase 2:  T6 ──→ T7 ──→ T8
 Phase 3:  T9 ──→ T10 ──→ T11 ──→ T12 ──→ T13 ──→ T14
+Phase 4:  T15 ──→ T16   (correções de regressão visual)
 ```
 
 ## Task Granularity Check

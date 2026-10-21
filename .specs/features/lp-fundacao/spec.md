@@ -123,6 +123,22 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 
 ---
 
+### P1: Sem regressão visual ⭐ MVP
+
+**User Story**: Como visitante, quero que as melhorias não deixem o hero e as ilustrações com cara de quebrados.
+
+> Adicionado em 2026-10-21 após revisão visual do orquestrador: a T9 deixou o celular do hero grande e cortado, legendas passaram a cobrir os aparelhos e o botão de pausa ficou grande demais.
+
+**Acceptance Criteria** (VIS):
+
+1. WHEN a página abre em 1440×900 ou 1280×720 THEN a imagem do celular do hero SHALL estar inteira dentro do retângulo de `.hero` (sem corte) e ter altura entre 420px e 560px.
+2. WHEN a página abre em 390×844 ou 360×740 THEN a imagem do celular do hero SHALL estar inteira dentro do retângulo de `.hero` (sem corte) e ter altura entre 280px e 440px.
+3. WHEN qualquer legenda de ilustração (`.scene-caption`, `.art-caption`, `.marquee-caption`) está visível THEN o retângulo dela SHALL NOT interceptar o retângulo da imagem de celular mais próxima (`.hero-device img`, `.push-device`).
+4. WHEN a página é renderizada em qualquer largura THEN o botão de pausa SHALL ter no máximo 44×44px visíveis (ícone), manter o nome acessível "Pausar animações"/"Retomar animações" e SHALL NOT interceptar nenhum link ou botão do conteúdo da primeira tela.
+5. WHEN a barra fixa do mobile está visível THEN o CTA principal dentro dela SHALL ocupar ao menos 70% da largura da barra.
+
+---
+
 ## Edge Cases
 
 - WHEN JavaScript está desligado THEN todo conteúdo SHALL continuar visível e a barra fixa SHALL NOT aparecer.
@@ -152,8 +168,9 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 | A11Y-01..08 | P1: Acessibilidade (inclui TXT) | Execute | Implemented, tests green (T7, T12, T13); awaiting Verifier |
 | BTN-01..07 | P1: Botões | Execute | Implemented, tests green (T10, T11); awaiting Verifier |
 | META-01..03 | P2: Prévia | Execute | Implemented, tests green (T14); awaiting Verifier |
+| VIS-01..05 | P1: Sem regressão visual | Tasks | In Tasks (T15, T16) |
 
-**Coverage:** 32 total, all mapped to tasks.
+**Coverage:** 37 total, all mapped to tasks.
 
 ## Success Criteria
 
