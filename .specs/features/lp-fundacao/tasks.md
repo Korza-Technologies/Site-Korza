@@ -199,7 +199,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(a11y): zera violações WCAG 2.2 AA do axe`
-**Status**: ✅ Done
+**Status**: ✅ Done (43286de)
 
 ### T14: Open Graph e ícone
 **What**: Gerar `og-image.jpg` 1200×630 e `apple-touch-icon.png` 180×180; metatags OG/Twitter.
@@ -210,6 +210,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(seo): adiciona prévia Open Graph e apple-touch-icon`
+**Status**: ✅ Done
 
 ---
 

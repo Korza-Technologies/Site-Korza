@@ -151,7 +151,7 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 | MOB-01..07 | P1: Hero mobile | Execute | Implemented, tests green (T1, T8, T9); awaiting Verifier |
 | A11Y-01..08 | P1: Acessibilidade (inclui TXT) | Execute | Implemented, tests green (T7, T12, T13); awaiting Verifier |
 | BTN-01..07 | P1: Botões | Execute | Implemented, tests green (T10, T11); awaiting Verifier |
-| META-01..03 | P2: Prévia | Tasks | In Tasks |
+| META-01..03 | P2: Prévia | Execute | Implemented, tests green (T14); awaiting Verifier |
 
 **Coverage:** 32 total, all mapped to tasks.
 
