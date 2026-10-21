@@ -119,3 +119,98 @@ test('CASES-03 diálogo de recurso aberto depois de um case não mostra o bloco 
   await expect(page.locator('#dialog-case')).toBeHidden();
   await expect(page.locator('#feature-dialog a[href^="https://wa.me/"]')).toHaveCount(0);
 });
+
+const railLeft = page => page.locator('.story-carousel').evaluate(rail => rail.scrollLeft);
+async function viewCarousel(page) {
+  await page.locator('.story-carousel').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await page.waitForTimeout(150);
+}
+// Advances the fake clock past the autoplay interval and lets a smooth scroll settle.
+// The rail must be on screen (autoplay only runs while ≥ 40% of it is visible), or "it did not move" proves nothing.
+async function waitAutoplay(page, ms) {
+  const visible = await page.locator('.story-carousel').evaluate(rail => {
+    const r = rail.getBoundingClientRect();
+    return Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) / r.height;
+  });
+  expect(visible).toBeGreaterThanOrEqual(0.5);
+  await page.clock.runFor(ms);
+  await page.waitForTimeout(800);
+}
+
+test.describe('T9 carrossel de cases', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.clock.install();
+    await gotoAt(page, 1440, 900);
+    await viewCarousel(page);
+  });
+
+  test('CASES-04 sem interação o carrossel avança sozinho em ~6,5s', async ({ page }) => {
+    expect(await railLeft(page)).toBe(0);
+    await page.clock.runFor(6600);
+    await expect.poll(() => railLeft(page)).toBeGreaterThan(0);
+    await expect(page.locator('[data-story="1"]')).toHaveAttribute('aria-current', 'true');
+  });
+
+  test('CASES-04 depois de um foco na seção o carrossel não volta a avançar, mesmo com o foco fora', async ({ page }) => {
+    await page.locator('[data-case="loum"]').focus();
+    await page.evaluate(() => document.activeElement.blur());
+    await expect(page.locator('#cases :focus')).toHaveCount(0);
+    await waitAutoplay(page, 8000);
+    expect(await railLeft(page)).toBe(0);
+  });
+
+  test('CASES-04 depois de um clique na seção o carrossel não volta a avançar', async ({ page }) => {
+    // A click outside the rail (the category list), without scrolling the page.
+    const target = await page.locator('#cases .story-benefits').boundingBox();
+    await page.mouse.click(target.x + 10, target.y + target.height / 2);
+    await page.mouse.move(5, 5);
+    await waitAutoplay(page, 8000);
+    expect(await railLeft(page)).toBe(0);
+  });
+
+  test('CASES-04 depois de rolar o carrossel ele não volta a avançar', async ({ page }) => {
+    const box = await page.locator('.story-carousel').boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.wheel(1000, 0);
+    await page.waitForTimeout(800);
+    await page.mouse.move(5, 5);
+    const left = await railLeft(page);
+    expect(left).toBeGreaterThan(0);
+    await waitAutoplay(page, 8000);
+    expect(await railLeft(page)).toBe(left);
+  });
+
+  test('CASES-04 depois de usar uma tecla na seção o carrossel não volta a avançar', async ({ page }) => {
+    await page.locator('.story-carousel').focus();
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(800);
+    await page.evaluate(() => document.activeElement.blur());
+    const left = await railLeft(page);
+    expect(left).toBeGreaterThan(0);
+    await waitAutoplay(page, 8000);
+    expect(await railLeft(page)).toBe(left);
+  });
+
+  test('CASES-05 com as animações pausadas o carrossel não avança sozinho', async ({ page }) => {
+    await page.getByRole('button', { name: 'Pausar animações', exact: true }).click();
+    await viewCarousel(page);
+    await waitAutoplay(page, 8000);
+    expect(await railLeft(page)).toBe(0);
+  });
+});
+
+test('CASES-04 depois de um toque na seção o carrossel não volta a avançar', async ({ browser }) => {
+  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.clock.install();
+  await page.goto('/', { waitUntil: 'load' });
+  await viewCarousel(page);
+  // A tap on the first card's text (not a control); at 390px the category list sits under the fixed header.
+  const target = await page.locator('#cases .story-card').first().locator('h3').boundingBox();
+  expect(target.y).toBeGreaterThan(80);
+  expect(target.y + target.height).toBeLessThan(844);
+  await page.touchscreen.tap(target.x + 10, target.y + target.height / 2);
+  await waitAutoplay(page, 8000);
+  expect(await railLeft(page)).toBe(0);
+  await context.close();
+});

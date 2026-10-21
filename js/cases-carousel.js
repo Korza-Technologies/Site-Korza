@@ -1,6 +1,6 @@
 import { isPaused } from './motion.js';
 
-// Horizontal case studies: automatic progression, with manual controls and touch scrolling.
+// Horizontal case studies: automatic progression (never while paused), with manual controls and touch scrolling.
 export function initCasesCarousel() {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const storyRail = document.querySelector('.story-carousel');
@@ -17,8 +17,11 @@ export function initCasesCarousel() {
   document.querySelector('.story-prev').addEventListener('click', () => showStory(storyIndex - 1, true));
   document.querySelector('.story-next').addEventListener('click', () => showStory(storyIndex + 1, true));
   storyDots.forEach(dot => dot.addEventListener('click', () => showStory(Number(dot.dataset.story), true)));
-  storyRail.addEventListener('pointerdown', () => { storyManual = true; });
-  storyRail.addEventListener('wheel', () => { storyManual = true; }, {passive:true});
+  // Any pointer, touch, focus, key or wheel interaction inside the cases section stops autoplay until the page reloads.
+  const storySection = storyRail.closest('#cases') || storyRail;
+  for (const type of ['pointerdown', 'touchstart', 'focusin', 'keydown', 'wheel']) {
+    storySection.addEventListener(type, () => { storyManual = true; }, {passive:true});
+  }
   storyRail.addEventListener('keydown', event => {
     if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); showStory(storyIndex + (event.key === 'ArrowRight' ? 1 : -1), true); }
   });

@@ -141,17 +141,18 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(cases): diálogo com métricas extras e WhatsApp`
-**Status**: ✅ Done (textos do diálogo em `js/cases-data.js`; `details` de `js/config.js` passa a espalhar `cases`, assim `dialog.js` continua lendo um só mapa e as checagens de copy da F2 (OFFER-04/06) seguem cobrindo o texto dos cases; o extra de Loum e Pé de Algodão diz "veio de notificações push" em vez de "veio de pushs" do relatório, porque OFFER-06 proíbe "pushs"; o link "Quero um resultado assim" (`data-track="case"`) só ganha `href` quando um case é aberto; `tests/e2e/behavior.spec.js:45` passou a esperar o novo título do diálogo da Loum; `components.css` vai para `?v=20261021m`)
+**Status**: ✅ Done (576ffb9; textos do diálogo em `js/cases-data.js`; `details` de `js/config.js` passa a espalhar `cases`, assim `dialog.js` continua lendo um só mapa e as checagens de copy da F2 (OFFER-04/06) seguem cobrindo o texto dos cases; o extra de Loum e Pé de Algodão diz "veio de notificações push" em vez de "veio de pushs" do relatório, porque OFFER-06 proíbe "pushs"; o link "Quero um resultado assim" (`data-track="case"`) só ganha `href` quando um case é aberto; `tests/e2e/behavior.spec.js:45` passou a esperar o novo título do diálogo da Loum; `components.css` vai para `?v=20261021m`)
 
 ### T9: Carrossel para na primeira interação
 **What**: Autoplay para de vez após ponteiro, toque, foco, tecla ou rolagem na seção; respeita a pausa global.
 **Where**: `js/cases-carousel.js`
 **Depends on**: T8 · **Requirement**: CASES-04, CASES-05
 **Done when**:
-- [ ] e2e: sem interação avança em ~6,5s; após foco/clique/rolagem não avança em 8s; com pausa global não avança
-- [ ] `npm test` verde
+- [x] e2e: sem interação avança em ~6,5s; após foco/clique/rolagem não avança em 8s; com pausa global não avança
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(cases): carrossel para quando o visitante interage`
+**Status**: ✅ Done (os ouvintes `pointerdown`, `touchstart`, `focusin`, `keydown` e `wheel` ficam na seção `#cases` inteira; a rolagem programática do próprio autoplay não conta como interação; o hover continua só pausando enquanto o ponteiro está sobre o carrossel; testes também cobrem toque e tecla e conferem que o carrossel está na tela antes de afirmar que ele não andou)
 
 ---
 
