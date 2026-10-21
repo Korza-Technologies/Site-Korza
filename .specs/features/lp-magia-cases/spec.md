@@ -112,7 +112,7 @@ Hoje o visitante assiste a uma demonstração com marcas de outras pessoas. A de
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| PREVIEW-01..10 | P1: Teaser | Execute | In progress: PREVIEW-01..06, 09, 10 (T2–T5) tests green |
+| PREVIEW-01..10 | P1: Teaser | Execute | Implemented, tests green (T2–T6); awaiting Verifier |
 | CASES-01..05 | P1: Cases | Tasks | In Tasks |
 | DATA-01..03 | P2: Coleta | Execute | Verified |
 

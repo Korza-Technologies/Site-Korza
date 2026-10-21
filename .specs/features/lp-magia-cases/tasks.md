@@ -108,17 +108,18 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): permite enviar o logo da loja`
-**Status**: ✅ Done ("Enviar logo" é um `button` que abre o `input type=file` oculto, na linha do título do teaser; o logo vai como `background-image` do `.app-logo` no cabeçalho e no ícone do push; estilos do botão e da mensagem em `styles/components.css`, que vai para `?v=20261021k`)
+**Status**: ✅ Done (6542c66; "Enviar logo" é um `button` que abre o `input type=file` oculto, na linha do título do teaser; o logo vai como `background-image` do `.app-logo` no cabeçalho e no ícone do push; estilos do botão e da mensagem em `styles/components.css`, que vai para `?v=20261021k`)
 
 ### T6: CTA, evento e privacidade do teaser
 **What**: Na primeira interação, o CTA do hero vira "Continuar montando meu app" e `brand_preview_used` é emitido uma vez, sem o nome.
 **Where**: `js/preview-ui.js`
 **Depends on**: T5 · **Requirement**: PREVIEW-07, PREVIEW-08
 **Done when**:
-- [ ] e2e: texto e `href` do CTA após interação; 1 evento com `{has_name, has_logo}` após várias interações; nenhuma requisição contém o nome digitado, a cor ou o logo
-- [ ] `npm test` verde
+- [x] e2e: texto e `href` do CTA após interação; 1 evento com `{has_name, has_logo}` após várias interações; nenhuma requisição contém o nome digitado, a cor ou o logo
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): leva o visitante do teaser ao cadastro`
+**Status**: ✅ Done (`has_name` e `has_logo` refletem o momento da primeira interação: nome não vazio e logo válido já aplicado; um logo inválido não conta como interação; só o texto do CTA muda, o ícone e o `href` com UTM ficam)
 
 ### T7: Cases com métricas aprovadas
 **What**: `js/cases-data.js` com os dados aprovados; cards com métrica e período (Hiven ganha métrica).

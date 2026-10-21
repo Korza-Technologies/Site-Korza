@@ -1,4 +1,5 @@
 import { normalizeStoreName, readableTextColor, validateLogo } from './preview.js';
+import { track } from './analytics.js';
 
 // "See your store become an app": the hero phone switches from the real Hiven photo to the drawn app
 // with the visitor's name and color. Everything stays in the browser.
@@ -11,7 +12,20 @@ export function initPreview() {
   const custom = form.querySelector('#teaser-custom');
   const radios = [...form.querySelectorAll('input[name="teaser-color"]')];
   const live = form.querySelector('.teaser-live');
+  const cta = document.querySelector('.hero .actions .signup-cta');
   let color = radios.find(radio => radio.checked).value;
+  let logoUrl = null;
+  let used = false;
+
+  // First interaction: the hero CTA (same signup href) invites to continue, and one event is sent, without the name.
+  function firstUse() {
+    if (used) return;
+    used = true;
+    const label = [...cta.childNodes].find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    label.textContent = 'Continuar montando meu app ';
+    track('brand_preview_used', { has_name: nameInput.value.trim() !== '', has_logo: logoUrl !== null });
+  }
+
   // Rendered synchronously on every change (no debounce): the phone follows each keystroke (PREVIEW-02, ≤ 150ms).
   function update() {
     const name = normalizeStoreName(nameInput.value);
@@ -23,6 +37,7 @@ export function initPreview() {
     device.querySelectorAll('.app-initial').forEach(el => { el.textContent = [...name][0].toLocaleUpperCase('pt-BR'); });
     scene.setAttribute('aria-label', `Prévia do app da ${name}`);
     live.textContent = `Prévia atualizada: app da ${name}`;
+    firstUse();
   }
 
   nameInput.addEventListener('input', update);
@@ -40,7 +55,6 @@ export function initPreview() {
   // The logo is read only by this page, through an object URL; the previous URL is revoked when a new logo replaces it.
   const logoInput = form.querySelector('#teaser-logo');
   const error = form.querySelector('.teaser-error');
-  let logoUrl = null;
   form.querySelector('.teaser-logo').addEventListener('click', () => logoInput.click());
   logoInput.addEventListener('change', () => {
     const file = logoInput.files[0];

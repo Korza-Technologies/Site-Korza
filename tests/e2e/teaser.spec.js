@@ -290,3 +290,105 @@ test.describe('T5 envio de logo', () => {
     expect(revoked).toEqual([first.url]);
   });
 });
+
+const SIGNUP = 'https://admin.korza.app/create-account';
+const heroCta = page => page.locator('.hero .actions a[href^="https://admin.korza.app/create-account"]');
+const ctaText = page => heroCta(page).evaluate(el => el.textContent.replace(/\s+/g, ' ').trim());
+
+// Serves js/config.js with a PostHog key and stands in for the PostHog library, reporting every capture to the test.
+async function fakeAnalytics(page) {
+  const captured = [];
+  await page.route('**/js/config.js', async route => {
+    const response = await route.fetch();
+    const source = (await response.text()).replace(/export const POSTHOG_KEY = '[^']*';/, "export const POSTHOG_KEY = 'phc_test_key';");
+    await route.fulfill({ response, body: source });
+  });
+  await page.exposeFunction('__phCapture', data => { captured.push(data); });
+  await page.context().route('https://burrito.korza.com.br/**', route => route.fulfill({ contentType: 'text/javascript', body: `(function () {
+    var stub = window.posthog;
+    var lib = { __loaded: true, init: function () {}, capture: function (event, properties) { window.__phCapture({ event: event, properties: properties }); } };
+    window.posthog = lib;
+    stub.forEach(function (call) { if (call[0] === 'capture') lib.capture(call[1], call[2]); });
+  })();` }));
+  return captured;
+}
+const previewEvents = captured => captured.filter(item => item.event === 'brand_preview_used');
+
+test.describe('T6 CTA, evento e privacidade do teaser', () => {
+  test('PREVIEW-08 na primeira interação o CTA do hero vira "Continuar montando meu app" com o mesmo href (com UTM)', async ({ page }) => {
+    await gotoAt(page, 1440, 900, '/?utm_source=ig&utm_campaign=x');
+    expect(await ctaText(page)).toBe('Montar meu app grátis');
+    const href = await heroCta(page).getAttribute('href');
+    expect(href).toBe(`${SIGNUP}?utm_source=ig&utm_campaign=x`);
+    await page.locator('.brand-teaser input[value="#E11D48"]').check();
+    await expect.poll(() => ctaText(page)).toBe('Continuar montando meu app');
+    await expect(heroCta(page)).toHaveAttribute('href', href);
+    await expect(heroCta(page)).toHaveCount(1);
+    await expect(heroCta(page).locator('svg use[href="#arrow"]')).toHaveCount(1);
+    await nameField(page).fill('Loja da Ana');
+    expect(await ctaText(page)).toBe('Continuar montando meu app');
+  });
+
+  test('PREVIEW-08 brand_preview_used sai uma vez, com {has_name, has_logo} e sem o nome, depois de várias interações', async ({ page }) => {
+    const captured = await fakeAnalytics(page);
+    await gotoAt(page, 1440, 900);
+    await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+    await page.waitForTimeout(300);
+    expect(previewEvents(captured)).toEqual([]);
+    await nameField(page).fill('Loja da Ana');
+    await page.locator('.brand-teaser input[value="#16A34A"]').check();
+    await page.getByLabel('Outra cor', { exact: true }).fill('#123456');
+    await sendLogo(page, { name: 'logo.png', mimeType: 'image/png', buffer: PNG_1X1 });
+    await nameField(page).fill('Loja da Bia');
+    await expect.poll(() => previewEvents(captured).length).toBe(1);
+    await page.waitForTimeout(300);
+    expect(previewEvents(captured)).toEqual([{ event: 'brand_preview_used', properties: { has_name: true, has_logo: false } }]);
+  });
+
+  for (const [first, expected, act] of [
+    ['cor', { has_name: false, has_logo: false }, page => page.locator('.brand-teaser input[value="#7C3AED"]').check()],
+    ['logo', { has_name: false, has_logo: true }, page => sendLogo(page, { name: 'logo.png', mimeType: 'image/png', buffer: PNG_1X1 })]
+  ]) {
+    test(`PREVIEW-08 primeira interação por ${first} emite ${JSON.stringify(expected)}`, async ({ page }) => {
+      const captured = await fakeAnalytics(page);
+      await gotoAt(page, 1440, 900);
+      await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+      await act(page);
+      await expect.poll(() => previewEvents(captured)).toEqual([{ event: 'brand_preview_used', properties: expected }]);
+      await expect.poll(() => ctaText(page)).toBe('Continuar montando meu app');
+    });
+  }
+
+  test('PREVIEW-07 nenhuma requisição leva o nome, a cor ou o logo, nem ao apertar Enter nem ao seguir para o cadastro', async ({ page }) => {
+    const NAME = 'Loja Zeta Secreta';
+    const COLOR = '#a1b2c3';
+    const LOGO = Buffer.concat([PNG_1X1, Buffer.from('MARCA-DO-LOGO-ZETA')]);
+    const captured = await fakeAnalytics(page);
+    await page.context().route('https://admin.korza.app/**', route => route.fulfill({ contentType: 'text/html', body: '<title>cadastro</title>' }));
+    const requests = [];
+    page.context().on('request', request => requests.push({ url: request.url(), body: request.postDataBuffer() }));
+    await gotoAt(page, 1440, 900);
+    await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+    const start = page.url();
+
+    await nameField(page).fill(NAME);
+    await page.getByLabel('Outra cor', { exact: true }).fill(COLOR);
+    await sendLogo(page, { name: 'zeta.png', mimeType: 'image/png', buffer: LOGO });
+    await expect.poll(() => logos(page).then(([header]) => header.width)).toBe(1);
+    await nameField(page).press('Enter');
+    await page.waitForTimeout(500);
+    expect(page.url()).toBe(start);
+
+    await heroCta(page).click();
+    await page.waitForURL(`${SIGNUP}**`);
+    expect(page.url()).toBe(SIGNUP);
+
+    const needles = [NAME, encodeURIComponent(NAME), NAME.replace(/ /g, '+'), 'Zeta', COLOR.slice(1), encodeURIComponent(COLOR), 'MARCA-DO-LOGO-ZETA'];
+    expect(requests.length).toBeGreaterThan(0);
+    for (const { url, body } of requests) {
+      const text = `${decodeURIComponent(url)}\n${url}\n${body ? body.toString('latin1') : ''}`;
+      for (const needle of needles) expect(text.toLowerCase().includes(needle.toLowerCase()), `${needle} em ${url}`).toBe(false);
+    }
+    expect(JSON.stringify(captured).includes('Zeta')).toBe(false);
+  });
+});
