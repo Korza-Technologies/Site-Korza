@@ -130,17 +130,18 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(cases): atualiza cases com métricas reais e período`
-**Status**: ✅ Done (testes em `tests/e2e/cases.spec.js`, que lê a coluna "Recomendação para o card" e o rótulo do período direto de `data-report.md`; categorias: Loum e Pé de Algodão "Faturamento", Hiven "Ticket médio", Belletonn "Conversão"; a lista de categorias da seção passa a "Faturamento · Ticket médio · Conversão" (BTN-02 da F1 segue verde sem mudança); cada card ganha "Período: jul–out 2026"; Hiven passa de "App Hiven" a "Case Hiven"; títulos de Loum e Hiven reescritos para a nova métrica; a regra `.story-word` de `styles.css` ficou sem uso; `components.css` vai para `?v=20261021l`)
+**Status**: ✅ Done (1db4304; testes em `tests/e2e/cases.spec.js`, que lê a coluna "Recomendação para o card" e o rótulo do período direto de `data-report.md`; categorias: Loum e Pé de Algodão "Faturamento", Hiven "Ticket médio", Belletonn "Conversão"; a lista de categorias da seção passa a "Faturamento · Ticket médio · Conversão" (BTN-02 da F1 segue verde sem mudança); cada card ganha "Período: jul–out 2026"; Hiven passa de "App Hiven" a "Case Hiven"; títulos de Loum e Hiven reescritos para a nova métrica; a regra `.story-word` de `styles.css` ficou sem uso; `components.css` vai para `?v=20261021l`)
 
 ### T8: Diálogo do case mais rico
 **What**: Diálogo mostra métrica extra, período e "Quero um resultado assim" (WhatsApp do case).
 **Where**: `js/dialog.js`, `index.html`
 **Depends on**: T7 · **Requirement**: CASES-03
 **Done when**:
-- [ ] e2e CASES-03 para os 4 cases (href = `waLink('case', nome)`)
-- [ ] `npm test` verde
+- [x] e2e CASES-03 para os 4 cases (href = `waLink('case', nome)`)
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(cases): diálogo com métricas extras e WhatsApp`
+**Status**: ✅ Done (textos do diálogo em `js/cases-data.js`; `details` de `js/config.js` passa a espalhar `cases`, assim `dialog.js` continua lendo um só mapa e as checagens de copy da F2 (OFFER-04/06) seguem cobrindo o texto dos cases; o extra de Loum e Pé de Algodão diz "veio de notificações push" em vez de "veio de pushs" do relatório, porque OFFER-06 proíbe "pushs"; o link "Quero um resultado assim" (`data-track="case"`) só ganha `href` quando um case é aberto; `tests/e2e/behavior.spec.js:45` passou a esperar o novo título do diálogo da Loum; `components.css` vai para `?v=20261021m`)
 
 ### T9: Carrossel para na primeira interação
 **What**: Autoplay para de vez após ponteiro, toque, foco, tecla ou rolagem na seção; respeita a pausa global.

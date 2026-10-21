@@ -255,3 +255,11 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 
 /* Case period (F3 CASES-02): every card says when its number was measured. */
 .story-content>.case-period{margin-top:8px;font-size:12px;font-weight:600;color:#5b6b82}
+
+/* Case dialog (F3 CASES-03): a number that is not on the card, its period and a WhatsApp link with the case message. */
+.dialog-case{display:grid;justify-items:start;gap:6px;margin-top:20px;padding:18px 20px;border:1px solid #dfe8f6;border-radius:8px;background:#f6f9ff}
+.dialog-case[hidden]{display:none}
+.dialog-extra{font-size:18px;font-weight:650;line-height:1.35;color:#174db3}
+.dialog-period{font-size:13px;font-weight:600;color:#5b6b82}
+.dialog-case .dialog-whatsapp{margin-top:8px;min-height:44px;background:#128c7e;font-size:14px}
+.dialog-case .dialog-whatsapp:hover{background:#0e7268}

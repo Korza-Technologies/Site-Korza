@@ -42,7 +42,7 @@ test('diálogo de detalhes abre com o conteúdo do gatilho e fecha devolvendo o 
   await caseTrigger.click();
   await expect(dialog).toBeVisible();
   await expect(page.locator('#dialog-label')).toHaveText('Case Korza · Loum');
-  await expect(page.locator('#dialog-title')).toHaveText('42% dos pedidos vieram de quem já conhecia a loja.');
+  await expect(page.locator('#dialog-title')).toHaveText('26,8% do faturamento da Loum veio do app.');
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(caseTrigger).toBeFocused();
