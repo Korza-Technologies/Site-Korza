@@ -88,7 +88,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(images): serve mockups em AVIF/WebP responsivos`
-**Status**: ✅ Done
+**Status**: ✅ Done (764f10a)
 
 ### T4: Logo Shopify e sprite de clientes otimizados
 **What**: Logo Shopify ≤ 20KB; sprite de clientes em WebP reduzido mantendo proporção; atualizar referências.
@@ -99,6 +99,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(images): reduz logo Shopify e sprite de clientes`
+**Status**: ✅ Done
 
 ### T5: Limpeza de assets e orçamento de peso
 **What**: Remover arquivos não referenciados de `assets/`; testes de referência e de peso total.

@@ -37,3 +37,22 @@ for name in hiven loum belletonn pe-de-algodao; do
     fi
   done
 done
+
+# Client logo sprite: half the original size, exact same aspect ratio (2721x2397 = 3 x 907x799),
+# so the percentage offsets used in the HTML keep pointing at the same cells.
+src="$SRC/client-logos.png"
+out="$OUT/client-logos.webp"
+if stale "$src" "$out"; then
+  magick "$src" -resize 1814x1598! -strip "$TMP/client-logos.png"
+  cwebp -quiet -q 85 -m 6 "$TMP/client-logos.png" -o "$out"
+  echo "image $out"
+fi
+
+# Shopify logo: shown at most ~40px wide, 96px covers high-density screens
+src="$SRC/shopify-clean.png"
+out="$OUT/shopify-logo.webp"
+if stale "$src" "$out"; then
+  magick "$src" -resize 96x96 -strip "$TMP/shopify-logo.png"
+  cwebp -quiet -q 90 -m 6 "$TMP/shopify-logo.png" -o "$out"
+  echo "image $out"
+fi
