@@ -85,18 +85,19 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): desenha o app de exemplo no hero`
-**Status**: ✅ Done (testes em `tests/e2e/teaser.spec.js`; o logo será desenhado como `background-image` de um `span`, não como `<img>`, porque os testes VIS/MOB da F1 localizam `.hero-device img` como um único elemento; o push fica na parte de baixo da tela para não cobrir o nome no cabeçalho; `components.css` vai para `?v=20261021i`)
+**Status**: ✅ Done (3551084; testes em `tests/e2e/teaser.spec.js`; o logo será desenhado como `background-image` de um `span`, não como `<img>`, porque os testes VIS/MOB da F1 localizam `.hero-device img` como um único elemento; o push fica na parte de baixo da tela para não cobrir o nome no cabeçalho; `components.css` vai para `?v=20261021i`)
 
 ### T4: Formulário do teaser
 **What**: Campo "Nome da sua loja", 6 cores + "outra cor", ligação ao app desenhado, região `aria-live`.
 **Where**: `index.html`, `js/preview-ui.js`, `js/main.js`, `styles/components.css`
 **Depends on**: T3 · **Requirement**: PREVIEW-01, PREVIEW-02, PREVIEW-03, PREVIEW-04, PREVIEW-05, PREVIEW-09
 **Done when**:
-- [ ] e2e: teclado opera tudo; digitar "Loja da Ana" atualiza cabeçalho e push em ≤ 150ms; cor exata aplicada; vazio → "Sua Loja"; `<img onerror=alert(1)>` aparece literal e não cria `img`; 390 e 360 sem rolagem horizontal e alvos ≥ 44px; sem JS o formulário fica oculto
-- [ ] Testes MOB da F1 continuam verdes
-- [ ] `npm test` verde
+- [x] e2e: teclado opera tudo; digitar "Loja da Ana" atualiza cabeçalho e push em ≤ 150ms; cor exata aplicada; vazio → "Sua Loja"; `<img onerror=alert(1)>` aparece literal e não cria `img`; 390 e 360 sem rolagem horizontal e alvos ≥ 44px; sem JS o formulário fica oculto
+- [x] Testes MOB da F1 continuam verdes
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): visitante vê o nome e a cor da loja no app`
+**Status**: ✅ Done (o formulário fica logo abaixo dos CTAs do hero, para o CTA continuar inteiro na primeira tela em 844×390 (MOB-06); acima de 1100px nome e cores ficam lado a lado e o `padding-bottom` do hero cai para 40px, para a faixa de logos continuar visível na primeira tela em 1440×900 (A11Y-05 da F1); a atualização é síncrona a cada `input`, sem `requestAnimationFrame`, para garantir os 150ms sob carga; o `aria-label` do `.hero-scene` passa a "Prévia do app da NOME")
 
 ### T5: Envio de logo
 **What**: Link "Enviar logo", validação, exibição no cabeçalho e no ícone do push, revogação da URL anterior.

@@ -224,3 +224,27 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .app-push-meta{font-size:3.8cqw;color:#7a8799;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .app-push-name{text-transform:uppercase;letter-spacing:.04em;font-weight:600}
 .app-push-text{font-size:5cqw;font-weight:600;color:#17202e}
+
+/* Teaser form (F3 PREVIEW-01/09): store name and brand color, revealed by JavaScript; 44px targets. */
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.brand-teaser{display:grid;gap:10px;margin-top:26px;max-width:430px}
+.brand-teaser[hidden]{display:none}
+.teaser-title{font-size:15px;font-weight:650;color:var(--navy)}
+.teaser-field label,.teaser-colors legend{display:block;margin-bottom:4px;padding:0;font-size:13px;font-weight:600;color:var(--text)}
+.teaser-field input{width:100%;min-height:44px;padding:8px 12px;border:1px solid #7b8ba3;border-radius:6px;background:#fff;color:var(--navy);font:inherit;font-size:16px}
+.teaser-field input:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.teaser-colors{display:flex;flex-wrap:wrap;align-items:center;min-width:0;margin:0;padding:0;border:0}
+.swatch{position:relative;display:grid;place-items:center;width:44px;height:44px;cursor:pointer}
+.swatch input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer}
+.swatch-dot{width:28px;height:28px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px #0000001f;pointer-events:none}
+.swatch input:checked+.swatch-dot,.swatch-custom.is-selected .swatch-dot{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--navy)}
+.swatch input:focus-visible+.swatch-dot{outline:3px solid var(--blue);outline-offset:5px}
+.swatch-custom .swatch-dot{background:conic-gradient(#e11d48,#f59e0b,#16a34a,#155dfc,#7c3aed,#e11d48)}
+.teaser-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:24px}
+/* Wide screens: name and colors side by side, so the hero keeps its height. */
+@media(min-width:1101px){
+  .brand-teaser{grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;max-width:none;margin-top:20px}
+  .teaser-head{grid-column:1/-1}
+  .hero-layout{padding-bottom:40px}
+}
+@media(max-width:760px){.brand-teaser{margin-top:22px;max-width:none}}

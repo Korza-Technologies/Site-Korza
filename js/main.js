@@ -10,6 +10,7 @@ import { initRevenueDemo } from './revenue-demo.js';
 import { initStickyCta } from './sticky-cta.js';
 import { initCalculator } from './calculator-ui.js';
 import { initUtm } from './utm.js';
+import { initPreview } from './preview-ui.js';
 
 initAnalytics();
 initUtm();
@@ -17,6 +18,7 @@ initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
 initBrandPicker();
 initDialog();
+initPreview();
 
 // Content is visible without JavaScript; movement never controls visibility.
 if ('IntersectionObserver' in window) {
