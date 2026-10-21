@@ -55,3 +55,59 @@ test('CONTACT-02 todo link de WhatsApp abre a conversa da Korza em nova aba com 
     expect(new URL(link.href).searchParams.get('text'), link.location).toBe(SPEC_MESSAGES[messageFor[link.location]]);
   }
 });
+
+const WA_NAME = 'Falar com especialista no WhatsApp';
+
+async function scrollTo(page, y) {
+  await page.evaluate(top => window.scrollTo({ top, behavior: 'instant' }), y);
+  await page.waitForTimeout(250);
+}
+// Hero fully above the viewport, pricing card and footer still below it.
+const midPage = async page => scrollTo(page, await page.locator('#plataforma').evaluate(section => section.getBoundingClientRect().top + window.scrollY + 200));
+const centerHitsItself = locator => locator.evaluate(el => {
+  const r = el.getBoundingClientRect();
+  return el.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2));
+});
+
+for (const width of [390, 760]) {
+  test(`CONTACT-03 barra fixa com o CTA principal e o WhatsApp em ${width}px`, async ({ page }) => {
+    await gotoAt(page, width, 844);
+    await midPage(page);
+    const bar = page.locator('.sticky-cta');
+    await expect(bar).toBeVisible();
+    await expect(bar.locator('a[href^="https://admin.korza.app/create-account"]')).toBeVisible();
+    const whatsapp = bar.getByRole('link', { name: WA_NAME, exact: true });
+    await expect(whatsapp).toBeVisible();
+    await expect(whatsapp).toHaveAttribute('href', waLink('floating'));
+    expect(await centerHitsItself(whatsapp)).toBe(true);
+  });
+}
+
+for (const [width, height] of [[1440, 900], [844, 390]]) {
+  test(`CONTACT-04 botão flutuante de WhatsApp no canto inferior direito só depois do hero em ${width}x${height}`, async ({ page }) => {
+    await gotoAt(page, width, height);
+    const button = page.locator('.whatsapp-float');
+    await expect(button).toHaveCount(1);
+    await expect(button).toBeHidden();
+
+    // Still hidden while part of the hero is on screen.
+    const heroBottom = await page.locator('.hero').evaluate(hero => hero.getBoundingClientRect().bottom + window.scrollY);
+    await scrollTo(page, heroBottom - 60);
+    await expect(button).toBeHidden();
+
+    await scrollTo(page, heroBottom + 400);
+    await expect(button).toBeVisible();
+    await expect(button).toHaveAccessibleName(WA_NAME);
+    await expect(button).toHaveAttribute('href', waLink('floating'));
+    const box = await button.boundingBox();
+    expect(box.x).toBeGreaterThan(width / 2);
+    expect(box.x + box.width).toBeGreaterThanOrEqual(width - 40);
+    expect(box.y + box.height).toBeGreaterThanOrEqual(height - 100);
+    expect(box.y).toBeGreaterThan(height / 2);
+    // Nothing fixed (pause control) sits on top of it.
+    expect(await centerHitsItself(button)).toBe(true);
+
+    await scrollTo(page, 0);
+    await expect(button).toBeHidden();
+  });
+}

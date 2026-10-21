@@ -29,3 +29,4 @@ initGoalCounter();
 initCasesCarousel();
 initRevenueDemo();
 initStickyCta(document.querySelector('.sticky-cta'), [...document.querySelectorAll('.hero, .plan-price, .footer')]);
+initStickyCta(document.querySelector('.whatsapp-float'), [document.querySelector('.hero')]);

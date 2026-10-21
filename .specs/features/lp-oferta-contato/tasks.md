@@ -101,17 +101,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(contato): adiciona WhatsApp no hero e no fechamento`
-**Status**: ✅ Done
+**Status**: ✅ Done (d5c4ea0)
 
 ### T6: WhatsApp na barra mobile e botão flutuante desktop
 **What**: Botão de WhatsApp na barra fixa (F1) e botão flutuante no desktop, ambos pelo `sticky-cta.js`.
 **Where**: `index.html`, `js/sticky-cta.js`, `styles/components.css`
 **Depends on**: T5 · **Requirement**: CONTACT-03, CONTACT-04
 **Done when**:
-- [ ] e2e CONTACT-03 (390) e CONTACT-04 (1440: oculto no hero, visível depois)
-- [ ] `npm test` verde
+- [x] e2e CONTACT-03 (390) e CONTACT-04 (1440: oculto no hero, visível depois)
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(contato): adiciona WhatsApp fixo no mobile e flutuante no desktop`
+**Status**: ✅ Done (`js/sticky-cta.js` reaproveitado sem mudança; a ligação do botão flutuante fica em `js/main.js`)
 
 ### T7: Rodapé de contato
 **What**: Rodapé com "(51) 9455-3299" (WhatsApp) e suporte@korza.com.br (`mailto:`).
