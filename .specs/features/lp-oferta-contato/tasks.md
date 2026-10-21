@@ -112,17 +112,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(contato): adiciona WhatsApp fixo no mobile e flutuante no desktop`
-**Status**: ✅ Done (`js/sticky-cta.js` reaproveitado sem mudança; a ligação do botão flutuante fica em `js/main.js`)
+**Status**: ✅ Done (3dca42b; `js/sticky-cta.js` reaproveitado sem mudança; a ligação do botão flutuante fica em `js/main.js`)
 
 ### T7: Rodapé de contato
 **What**: Rodapé com "(51) 9455-3299" (WhatsApp) e suporte@korza.com.br (`mailto:`).
 **Where**: `index.html`
 **Depends on**: T6 · **Requirement**: CONTACT-05
 **Done when**:
-- [ ] e2e CONTACT-05
-- [ ] `npm test` verde
+- [x] e2e CONTACT-05
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(contato): adiciona WhatsApp e e-mail ao rodapé`
+**Status**: ✅ Done (o link de WhatsApp do rodapé usa a mensagem padrão, a spec não define uma própria)
 
 ### T8: FAQ com objeções
 **What**: 8 perguntas na ordem da spec, respostas com os fatos de AD-006 e link de WhatsApp no fim.

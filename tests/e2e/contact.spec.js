@@ -111,3 +111,19 @@ for (const [width, height] of [[1440, 900], [844, 390]]) {
     await expect(button).toBeHidden();
   });
 }
+
+for (const [width, height] of [[1440, 900], [390, 844]]) {
+  test(`CONTACT-05 rodapé mostra o WhatsApp (51) 9455-3299 e o e-mail suporte@korza.com.br em ${width}x${height}`, async ({ page }) => {
+    await gotoAt(page, width, height);
+    const footer = page.locator('footer.footer');
+    await footer.scrollIntoViewIfNeeded();
+    const phone = footer.locator('a', { hasText: '(51) 9455-3299' });
+    await expect(phone).toHaveCount(1);
+    await expect(phone).toBeVisible();
+    await expect(phone).toHaveAttribute('href', waLink('floating'));
+    const email = footer.locator('a', { hasText: 'suporte@korza.com.br' });
+    await expect(email).toHaveCount(1);
+    await expect(email).toBeVisible();
+    await expect(email).toHaveAttribute('href', 'mailto:suporte@korza.com.br');
+  });
+}
