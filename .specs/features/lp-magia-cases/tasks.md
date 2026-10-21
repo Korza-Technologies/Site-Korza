@@ -70,10 +70,11 @@ T7 → T8 → T9
 **Where**: `js/preview.js`, `tests/unit/preview.spec.js`
 **Depends on**: T1 · **Requirement**: PREVIEW-04, PREVIEW-05 (texto literal garantido no T4), PREVIEW-06 (validação)
 **Done when**:
-- [ ] Unit: vazio/espaços → "Sua Loja"; corta em 24; colapsa espaços; contraste ≥ 4,5 para as 6 cores e para #FFFF00/#000000; tipos aceitos/recusados; 2MB exato aceito, 2MB+1 recusado
-- [ ] `npm run test:unit` verde
+- [x] Unit: vazio/espaços → "Sua Loja"; corta em 24; colapsa espaços; contraste ≥ 4,5 para as 6 cores e para #FFFF00/#000000; tipos aceitos/recusados; 2MB exato aceito, 2MB+1 recusado
+- [x] `npm run test:unit` verde
 **Tests**: unit · **Gate**: quick
 **Commit**: `feat(teaser): regras de nome, contraste e logo`
+**Status**: ✅ Done (2MB = 2 × 1024 × 1024 bytes; `readableTextColor` cai para `#000000` quando nem branco nem `#0f1a33` chegam a 4,5:1, ex.: `#808080`, para cumprir o edge case de contraste com qualquer "outra cor")
 
 ### T3: App desenhado no hero
 **What**: Marcação `.app-render` (cabeçalho, banner, grade, abas, push) dentro de `.hero-device`, oculta por padrão, estilizada por `--brand`/`--on-brand`.
