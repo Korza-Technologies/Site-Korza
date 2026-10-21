@@ -171,12 +171,12 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| OFFER-01..06 | P1: Oferta | Execute | Implemented, tests green (T2–T4); awaiting Verifier |
-| CONTACT-01..06 | P1: Contato | Execute | Implemented, tests green (T1–T3, T5–T7); awaiting Verifier |
-| FAQ-01..03 | P1: FAQ | Execute | Implemented, tests green (T8); awaiting Verifier |
-| CALC-01..07 | P2: Calculadora | Execute | Implemented, tests green (T9–T10); awaiting Verifier |
-| ANALYTICS-01..07 | P2: Medição | Execute | Implemented, tests green (T11–T13); awaiting Verifier |
-| COMP-01..02 | P3: Comparativo | Execute | Implemented, tests green (T14); awaiting Verifier |
+| OFFER-01..06 | P1: Oferta | Execute | Verified (Verifier PASS, iteração 2) |
+| CONTACT-01..06 | P1: Contato | Execute | Verified (Verifier PASS, iteração 2) |
+| FAQ-01..03 | P1: FAQ | Execute | Verified (Verifier PASS, iteração 2) |
+| CALC-01..07 | P2: Calculadora | Execute | Verified (Verifier PASS, iteração 2) |
+| ANALYTICS-01..07 | P2: Medição | Execute | Verified (Verifier PASS, iteração 2) |
+| COMP-01..02 | P3: Comparativo | Execute | Verified (Verifier PASS, iteração 2) |
 
 **Coverage:** 31 total, all mapped to tasks.
 

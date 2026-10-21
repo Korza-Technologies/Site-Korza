@@ -68,11 +68,11 @@
 
 ## Handoff
 
-- **Feature**: F1 `lp-fundacao` concluída (T1–T16), Verifier em andamento; F2 `lp-oferta-contato` Lote 3 (T1–T7) em andamento
-- **Phase / Task**: Execute
-- **Completed**: F1 T1–T16; F3 T1 (dados aprovados)
+- **Feature**: F1 `lp-fundacao`, F2 `lp-oferta-contato`, F3 `lp-magia-cases` concluídas e aprovadas pelo Verifier
+- **Phase / Task**: Execute concluído; PR aberto para revisão
+- **Completed**: F1 T1–T16, F2 T1–T14, F3 T1–T9, correções de Verifier (F1 iteração 1, F2 iterações 1–2)
 - **In-progress** (file:line): none
-- **Next step**: Receber Verifier F1 e Lote 3; despachar Lote 4 (F2 T8–T14).
-- **Blockers**: Chave PostHog da Korza (não bloqueia)
+- **Next step**: Revisão e merge do PR; preencher `POSTHOG_KEY` em `js/config.js` com a chave do projeto da Korza.
+- **Blockers**: none
 - **Uncommitted files**: none
 - **Branch**: feat/ux-conversao
