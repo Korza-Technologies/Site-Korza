@@ -19,3 +19,21 @@ for weight in 400 600 700; do
     echo "font  $out"
   fi
 done
+
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+
+# App mockups: PNG -> AVIF + WebP at 480w and 800w
+for name in hiven loum belletonn pe-de-algodao; do
+  src="$SRC/$name-mockup.png"
+  for width in 480 800; do
+    webp="$OUT/$name-mockup-$width.webp"
+    avif="$OUT/$name-mockup-$width.avif"
+    if stale "$src" "$webp" || stale "$src" "$avif"; then
+      magick "$src" -resize "${width}x" -strip "$TMP/$name-$width.png"
+      cwebp -quiet -q 80 -alpha_q 90 -m 6 "$TMP/$name-$width.png" -o "$webp"
+      avifenc -q 60 -s 4 "$TMP/$name-$width.png" "$avif" >/dev/null
+      echo "image $webp $avif"
+    fi
+  done
+done

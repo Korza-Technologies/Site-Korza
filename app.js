@@ -14,14 +14,16 @@ document.addEventListener('keydown', event => {
 window.matchMedia('(min-width: 761px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
 
 const brands = {
-  loum: {name:'Loum', x:-550, y:-220, src: 'assets/loum-mockup.png', alt: 'Aplicativo Loum com a identidade visual da marca'},
-  hiven: {name:'Hiven', x:-440, y:-110, src: 'assets/hiven-mockup.png', alt: 'Aplicativo Hiven com a identidade visual da marca'},
-  belletonn: {name:'Belletonn', x:-110, y:-220, src: 'assets/belletonn-mockup.png', alt: 'Aplicativo Belletonn com a identidade visual da marca'}
+  loum: {name:'Loum', x:-550, y:-220, alt: 'Aplicativo Loum com a identidade visual da marca'},
+  hiven: {name:'Hiven', x:-440, y:-110, alt: 'Aplicativo Hiven com a identidade visual da marca'},
+  belletonn: {name:'Belletonn', x:-110, y:-220, alt: 'Aplicativo Belletonn com a identidade visual da marca'}
 };
 const brandImage = document.querySelector('#brand-preview');
 document.querySelectorAll('[data-brand]').forEach(button => button.addEventListener('click', () => {
   const brand = brands[button.dataset.brand];
-  brandImage.src = brand.src;
+  const mockup = ext => `assets/${button.dataset.brand}-mockup-480.${ext} 480w, assets/${button.dataset.brand}-mockup-800.${ext} 800w`;
+  brandImage.parentElement.querySelectorAll('source').forEach(source => { source.srcset = mockup(source.type.split('/')[1]); });
+  brandImage.src = `assets/${button.dataset.brand}-mockup-800.webp`;
   brandImage.alt = brand.alt;
   const brandIcon = document.querySelector('#brand-icon');
   brandIcon.style.left = brand.x + '%';

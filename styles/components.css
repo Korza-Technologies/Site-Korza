@@ -1,0 +1,4 @@
+/* Components added on top of styles.css. */
+
+/* Responsive images: <picture> does not create a box, so the <img> keeps the layout it had before. */
+picture{display:contents}

@@ -76,7 +76,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(fonts): converte Plus Jakarta Sans para WOFF2`
-**Status**: ✅ Done
+**Status**: ✅ Done (1dcdd32)
 
 ### T3: Mockups em WebP/AVIF responsivos
 **What**: Gerar mockups 480w/800w em AVIF e WebP; trocar `<img>` por `<picture>` com `srcset/sizes` no hero, card do app e cases; atualizar `brands` do seletor.
@@ -88,6 +88,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(images): serve mockups em AVIF/WebP responsivos`
+**Status**: ✅ Done
 
 ### T4: Logo Shopify e sprite de clientes otimizados
 **What**: Logo Shopify ≤ 20KB; sprite de clientes em WebP reduzido mantendo proporção; atualizar referências.
