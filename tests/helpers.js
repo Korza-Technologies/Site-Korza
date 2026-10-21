@@ -10,10 +10,10 @@ export async function scrollToEnd(page) {
   await page.evaluate(async () => {
     const step = Math.max(200, Math.floor(window.innerHeight * 0.8));
     for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
-      window.scrollTo(0, y);
-      await new Promise(resolve => setTimeout(resolve, 60));
+      window.scrollTo({ top: y, behavior: 'instant' });
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
-    window.scrollTo(0, document.documentElement.scrollHeight);
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
   });
   await page.waitForLoadState('networkidle');
 }

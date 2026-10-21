@@ -99,7 +99,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(images): reduz logo Shopify e sprite de clientes`
-**Status**: ✅ Done
+**Status**: ✅ Done (c754ede)
 
 ### T5: Limpeza de assets e orçamento de peso
 **What**: Remover arquivos não referenciados de `assets/`; testes de referência e de peso total.
@@ -111,6 +111,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf: remove assets sem uso e adiciona orçamento de peso`
+**Status**: ✅ Done (390×844: 249.204 B sem rolar, 354.285 B rolada)
 
 ### T6: Migrar app.js para módulos ES
 **What**: Dividir `app.js` em `js/main.js`, `js/config.js` e módulos por comportamento (design); `<script type="module" src="js/main.js">`; remover `app.js`.
