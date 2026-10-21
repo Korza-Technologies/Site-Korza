@@ -49,7 +49,9 @@ for (const [width, height] of [[390, 844], [360, 740]]) {
         return right > x && bottom > y ? { x, y, width: right - x, height: bottom - y } : null;
       });
       const h1 = await page.locator('.hero h1').boundingBox();
-      if (visible) expect(rectsIntersect(visible, h1)).toBe(false);
+      // The ribbon is brand art kept on mobile (T9): it must be on screen, and clear of the title.
+      expect(visible).not.toBeNull();
+      expect(rectsIntersect(visible, h1)).toBe(false);
     });
   });
 }

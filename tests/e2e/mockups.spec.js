@@ -21,10 +21,14 @@ for (const [width, height] of [[1440, 900], [390, 844]]) {
     await gotoAt(page, width, height);
     await scrollToEnd(page);
     await page.locator('#cases').scrollIntoViewIfNeeded();
-    for (let i = 0; i < 4; i++) await page.locator('.story-next').click();
-    await page.waitForLoadState('networkidle');
-    const brands = [...served.keys()].map(path => path.match(mockupName)[1]);
-    for (const brand of ['hiven', 'loum', 'belletonn', 'pe-de-algodao']) expect(brands, brand).toContain(brand);
+    // Each case card is brought into view in turn, and its lazy mockup must arrive before moving on.
+    const brands = () => [...served.keys()].map(path => path.match(mockupName)[1]);
+    const cards = { 'loum': 0, 'hiven': 1, 'belletonn': 2, 'pe-de-algodao': 3 };
+    for (const [brand, index] of Object.entries(cards)) {
+      await page.locator(`[data-story="${index}"]`).click();
+      await expect.poll(brands, { message: brand }).toContain(brand);
+    }
+    expect(brands(), 'hero').toContain('hiven');
     for (const [path, bytes] of served) expect(bytes, path).toBeLessThanOrEqual(LIMIT);
   });
 }
