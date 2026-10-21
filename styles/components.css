@@ -39,6 +39,16 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
   .hero-device{width:220px;height:370px;left:calc(50% - 110px)}
 }
 
+/* Illustration captions sit below the phones, never over them (VIS-03).
+   Between 761px and 1200px the hero scene is shorter than on desktop, so the phone shrinks to fit above the caption. */
+@media(min-width:761px) and (max-width:1200px){.hero-device{width:274px;height:460px;left:calc(50% - 137px)}}
+@media(min-width:761px) and (max-width:1000px){.hero-device{width:250px;height:420px;left:calc(50% - 125px)}}
+@media(max-width:760px){
+  .scene-caption{bottom:-12px}
+  .push-card .push-art{height:568px;min-height:568px}
+}
+@media(max-width:360px){.push-card .push-art{height:550px;min-height:550px}}
+
 /* Landscape phones: compact header and hero so the main CTA fits in the first screen. */
 @media(max-height:500px){
   .nav-bar{height:60px}

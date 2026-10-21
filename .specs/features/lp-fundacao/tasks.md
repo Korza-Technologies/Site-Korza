@@ -225,6 +225,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(hero): celular inteiro e legendas fora dos aparelhos`
+**Status**: ✅ Done
 
 ### T16: Botão de pausa compacto
 **What**: Botão de pausa vira ícone de 44×44 com nome acessível e dica visível no hover/foco; dentro da barra fixa vira só ícone e o CTA ocupa ≥ 70% da largura.
