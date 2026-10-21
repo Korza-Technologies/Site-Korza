@@ -163,12 +163,12 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| PERF-01..07 | P1: Página leve | Execute | Implemented, tests green (T2–T5); awaiting Verifier |
-| MOB-01..07 | P1: Hero mobile | Execute | Implemented, tests green (T1, T8, T9); awaiting Verifier |
-| A11Y-01..08 | P1: Acessibilidade (inclui TXT) | Execute | Implemented, tests green (T7, T12, T13); awaiting Verifier |
-| BTN-01..07 | P1: Botões | Execute | Implemented, tests green (T10, T11); awaiting Verifier |
-| META-01..03 | P2: Prévia | Execute | Implemented, tests green (T14); awaiting Verifier |
-| VIS-01..05 | P1: Sem regressão visual | Execute | Implemented, tests green (T15, T16); awaiting Verifier |
+| PERF-01..07 | P1: Página leve | Execute | Verified (Verifier PASS, iteração 1) |
+| MOB-01..07 | P1: Hero mobile | Execute | Verified (Verifier PASS, iteração 1) |
+| A11Y-01..08 | P1: Acessibilidade (inclui TXT) | Execute | Verified (Verifier PASS, iteração 1) |
+| BTN-01..07 | P1: Botões | Execute | Verified (Verifier PASS, iteração 1) |
+| META-01..03 | P2: Prévia | Execute | Verified (Verifier PASS, iteração 1) |
+| VIS-01..05 | P1: Sem regressão visual | Execute | Verified (Verifier PASS, iteração 1) |
 
 **Coverage:** 37 total, all mapped to tasks.
 
