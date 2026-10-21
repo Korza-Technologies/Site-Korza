@@ -201,7 +201,7 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(conteudo): adiciona comparativo site mobile × app`
-**Status**: ✅ Done (seção `#comparativo` logo antes de `#precos`; células "Não" (site) e "Sim" (app); `components.css` vai para `?v=20261021h`)
+**Status**: ✅ Done (8d05a77; seção `#comparativo` logo antes de `#precos`; células "Não" (site) e "Sim" (app); `components.css` vai para `?v=20261021h`)
 
 ---
 
