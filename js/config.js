@@ -39,3 +39,9 @@ export const MESSAGES = {
 
 // Monthly plan price in reais (AD-006), used by the payback calculator.
 export const PLAN_PRICE = 399;
+
+// PostHog (AD-004): with an empty key no analytics script is loaded and nothing is sent.
+// Fill in only with the Korza project key provided by the owner. Confirm the region (ui_host) along with the key.
+export const POSTHOG_KEY = '';
+export const POSTHOG_API_HOST = 'https://burrito.korza.com.br';
+export const POSTHOG_UI_HOST = 'https://us.posthog.com';

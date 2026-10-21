@@ -156,17 +156,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(calculadora): adiciona calculadora ao card de preço`
-**Status**: ✅ Done (a calculadora fica na seção de preço, logo abaixo do card; `components.css` vai para `?v=20261021g`; a legenda `.marquee-caption` (#9ba9bb, 2.39:1) passou a ser apontada pelo axe com a página mais longa e ganhou a cor de texto secundário #5b6b82)
+**Status**: ✅ Done (e8b3c4a; a calculadora fica na seção de preço, logo abaixo do card; `components.css` vai para `?v=20261021g`; a legenda `.marquee-caption` (#9ba9bb, 2.39:1) passou a ser apontada pelo axe com a página mais longa e ganhou a cor de texto secundário #5b6b82)
 
 ### T11: Módulo de analytics
 **What**: `initAnalytics`/`track` com PostHog condicionado à chave; delegação `cta_click`.
 **Where**: `js/analytics.js`, `js/main.js`, `tests/e2e/analytics.spec.js`
 **Depends on**: T10 · **Requirement**: ANALYTICS-01, ANALYTICS-02, ANALYTICS-06
 **Done when**:
-- [ ] e2e: chave vazia → zero requisições aos hosts e console limpo; chave de teste (via injeção na página) + rota interceptada → script carrega do `api_host` e `cta_click` é capturado com `{location, destination}`; script bloqueado → CTAs navegam e console sem erro não tratado
-- [ ] `npm test` verde
+- [x] e2e: chave vazia → zero requisições aos hosts e console limpo; chave de teste (via injeção na página) + rota interceptada → script carrega do `api_host` e `cta_click` é capturado com `{location, destination}`; script bloqueado → CTAs navegam e console sem erro não tratado
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(analytics): integra PostHog desligado por padrão`
+**Status**: ✅ Done (a chave de teste entra pela interceptação de `js/config.js` no teste, sem gancho no código de produção; as constantes `POSTHOG_*` entram em `js/config.js`)
 
 ### T12: Eventos da calculadora e do FAQ
 **What**: `calculator_used` uma vez por carregamento; `faq_open {question}`.

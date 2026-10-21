@@ -1,3 +1,4 @@
+import { initAnalytics } from './analytics.js';
 import { initPauseButton } from './motion.js';
 import { initMenu } from './menu.js';
 import { initBrandPicker } from './brand-picker.js';
@@ -9,6 +10,7 @@ import { initRevenueDemo } from './revenue-demo.js';
 import { initStickyCta } from './sticky-cta.js';
 import { initCalculator } from './calculator-ui.js';
 
+initAnalytics();
 initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
 initBrandPicker();
