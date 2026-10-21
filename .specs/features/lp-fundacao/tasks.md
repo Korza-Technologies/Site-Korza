@@ -237,7 +237,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(a11y): compacta o botão de pausar animações`
-**Status**: ✅ Done
+
 
 ---
 
