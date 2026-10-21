@@ -24,3 +24,15 @@ export const pushExamples = [
 ];
 
 export const demoOrders = [190, 250, 150, 320];
+
+// Human contact (AD-005). Every WhatsApp link on the page must match `waLink` (js/whatsapp.js).
+export const WHATSAPP_NUMBER = '555194553299';
+export const WHATSAPP_DISPLAY = '(51) 9455-3299';
+export const SUPPORT_EMAIL = 'suporte@korza.com.br';
+export const MESSAGES = {
+  hero: 'Oi! Vim pelo site da Korza e quero entender como ter o app da minha loja.',
+  pricing: 'Oi! Quero entender o plano de R$ 399 da Korza.',
+  closing: 'Oi! Quero colocar minha loja em um app com a Korza.',
+  floating: 'Oi! Vim pelo site da Korza e tenho uma dúvida.',
+  case: name => `Oi! Vi o case da ${name} no site e quero um resultado parecido.`
+};
