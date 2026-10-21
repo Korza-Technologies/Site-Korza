@@ -252,3 +252,6 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
   .hero-layout{padding-bottom:40px}
 }
 @media(max-width:760px){.brand-teaser{margin-top:22px;max-width:none}}
+
+/* Case period (F3 CASES-02): every card says when its number was measured. */
+.story-content>.case-period{margin-top:8px;font-size:12px;font-weight:600;color:#5b6b82}

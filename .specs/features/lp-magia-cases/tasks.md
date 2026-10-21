@@ -119,17 +119,18 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): leva o visitante do teaser ao cadastro`
-**Status**: ✅ Done (`has_name` e `has_logo` refletem o momento da primeira interação: nome não vazio e logo válido já aplicado; um logo inválido não conta como interação; só o texto do CTA muda, o ícone e o `href` com UTM ficam)
+**Status**: ✅ Done (6fbd68a; `has_name` e `has_logo` refletem o momento da primeira interação: nome não vazio e logo válido já aplicado; um logo inválido não conta como interação; só o texto do CTA muda, o ícone e o `href` com UTM ficam)
 
 ### T7: Cases com métricas aprovadas
 **What**: `js/cases-data.js` com os dados aprovados; cards com métrica e período (Hiven ganha métrica).
 **Where**: `js/cases-data.js`, `index.html`
 **Depends on**: T6 · **Requirement**: CASES-01, CASES-02
 **Done when**:
-- [ ] e2e CASES-01; CASES-02 comparando cada card com `cases-data.js`, que espelha `data-report.md`
-- [ ] `npm test` verde
+- [x] e2e CASES-01; CASES-02 comparando cada card com `cases-data.js`, que espelha `data-report.md`
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(cases): atualiza cases com métricas reais e período`
+**Status**: ✅ Done (testes em `tests/e2e/cases.spec.js`, que lê a coluna "Recomendação para o card" e o rótulo do período direto de `data-report.md`; categorias: Loum e Pé de Algodão "Faturamento", Hiven "Ticket médio", Belletonn "Conversão"; a lista de categorias da seção passa a "Faturamento · Ticket médio · Conversão" (BTN-02 da F1 segue verde sem mudança); cada card ganha "Período: jul–out 2026"; Hiven passa de "App Hiven" a "Case Hiven"; títulos de Loum e Hiven reescritos para a nova métrica; a regra `.story-word` de `styles.css` ficou sem uso; `components.css` vai para `?v=20261021l`)
 
 ### T8: Diálogo do case mais rico
 **What**: Diálogo mostra métrica extra, período e "Quero um resultado assim" (WhatsApp do case).
