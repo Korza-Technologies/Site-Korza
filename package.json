@@ -1,0 +1,14 @@
+{
+  "name": "korza-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:unit": "playwright test tests/unit --pass-with-no-tests",
+    "test:e2e": "playwright test tests/e2e"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1"
+  }
+}

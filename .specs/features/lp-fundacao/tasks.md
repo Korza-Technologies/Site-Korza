@@ -65,6 +65,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde · Test count: ≥ 2
 **Tests**: e2e · **Gate**: full
 **Commit**: `test: adiciona harness Playwright e smoke test`
+**Status**: ✅ Done
 
 ### T2: Fontes em WOFF2
 **What**: Converter `jakarta-{400,600,700}.ttf` para WOFF2, atualizar `@font-face` e `preload`, remover TTF.
