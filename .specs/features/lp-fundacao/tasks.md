@@ -210,7 +210,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(seo): adiciona prévia Open Graph e apple-touch-icon`
-**Status**: ✅ Done
+**Status**: ✅ Done (b48c0ab)
 
 ---
 
