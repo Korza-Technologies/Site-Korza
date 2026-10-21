@@ -188,7 +188,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(a11y): garante texto mínimo de 12px e alt únicos`
-**Status**: ✅ Done
+**Status**: ✅ Done (d744c7d)
 
 ### T13: Zero violações do axe
 **What**: Corrigir contraste e demais violações apontadas pelo axe.
@@ -199,6 +199,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(a11y): zera violações WCAG 2.2 AA do axe`
+**Status**: ✅ Done
 
 ### T14: Open Graph e ícone
 **What**: Gerar `og-image.jpg` 1200×630 e `apple-touch-icon.png` 180×180; metatags OG/Twitter.

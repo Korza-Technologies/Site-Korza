@@ -103,3 +103,7 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 }
 /* Room below the footer so the fixed pause control never covers the last line of text. */
 .footer{padding-bottom:72px}
+
+/* Text contrast (A11Y-01): muted text uses #5b6b82, at least 4.5:1 on the page's white and ice backgrounds. */
+.hero-compatible>span,.card-number,.brand-picker button[aria-pressed=false],.metric-period,.push-sale small,.metric-source,
+.platform-cta p,.story-bottom>span,.fine-print,.footer .footer-main p,.footer-links a,.footer-contact>span,.footer-bottom span,.footer-bottom a{color:#5b6b82}
