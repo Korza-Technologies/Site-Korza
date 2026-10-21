@@ -1,3 +1,5 @@
+import { isPaused } from './motion.js';
+
 // Horizontal case studies: automatic progression, with manual controls and touch scrolling.
 export function initCasesCarousel() {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -30,6 +32,6 @@ export function initCasesCarousel() {
     observer.observe(storyRail);
   }
   setInterval(() => {
-    if (storyVisible && !storyManual && !reducedMotion.matches && !document.hidden && !storyRail.matches(':hover') && !storyRail.contains(document.activeElement)) showStory(storyIndex + 1);
+    if (storyVisible && !storyManual && !isPaused() && !storyRail.matches(':hover') && !storyRail.contains(document.activeElement)) showStory(storyIndex + 1);
   }, 6500);
 }

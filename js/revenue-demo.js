@@ -1,8 +1,8 @@
 import { demoOrders } from './config.js';
+import { isPaused, onChange } from './motion.js';
 
 // Illustrative push revenue: simulated purchases, never live customer data.
 export function initRevenueDemo() {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const pushRevenueCard = document.querySelector('.push-revenue-metric');
   const pushRevenueTotal = document.querySelector('#push-revenue-total');
   const pushOrderValue = document.querySelector('#push-order-value');
@@ -36,12 +36,11 @@ export function initRevenueDemo() {
     clearInterval(revenueTimer);
     cancelAnimationFrame(revenueFrame);
     pushRevenueTotal.textContent = currencyNumber(revenueValue);
-    if (revenueVisible && !reducedMotion.matches && !document.hidden) revenueTimer = setInterval(animateRevenue, 3500);
+    if (revenueVisible && !isPaused()) revenueTimer = setInterval(animateRevenue, 3500);
   }
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {revenueVisible = entries[0].isIntersecting; syncRevenue();}, {threshold:.25});
     observer.observe(pushRevenueCard);
   }
-  reducedMotion.addEventListener('change', syncRevenue);
-  document.addEventListener('visibilitychange', syncRevenue);
+  onChange(syncRevenue);
 }

@@ -1,8 +1,7 @@
 import { pushExamples } from './config.js';
+import { isPaused, onChange } from './motion.js';
 
-// Shared motion control: all visible loops pause together.
 export function initPushStack() {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const pushScene = document.querySelector('.push-art');
   const pushStack = document.querySelector('.push-device .push-stack');
   let pushVisible = false;
@@ -33,17 +32,14 @@ export function initPushStack() {
     window.setTimeout(() => outgoing.remove(), 750);
   }
   function updateMotion() {
-    const stopped = reducedMotion.matches || document.hidden;
-    document.body.classList.toggle('animations-paused', stopped);
     clearInterval(pushTimer);
     clearTimeout(pushWelcomeTimer);
-    if (!stopped && pushVisible) {
+    if (!isPaused() && pushVisible) {
       pushWelcomeTimer = setTimeout(addPush, 1000);
       pushTimer = setInterval(addPush, 3600);
     }
   }
-  reducedMotion.addEventListener('change', updateMotion);
-  document.addEventListener('visibilitychange', updateMotion);
+  onChange(updateMotion);
   if ('IntersectionObserver' in window) {
     const mediaObserver = new IntersectionObserver(entries => {
       pushVisible = entries[0].isIntersecting;

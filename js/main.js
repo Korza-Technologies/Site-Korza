@@ -1,3 +1,4 @@
+import { initPauseButton } from './motion.js';
 import { initMenu } from './menu.js';
 import { initBrandPicker } from './brand-picker.js';
 import { initDialog } from './dialog.js';
@@ -6,6 +7,7 @@ import { initGoalCounter } from './goal-counter.js';
 import { initCasesCarousel } from './cases-carousel.js';
 import { initRevenueDemo } from './revenue-demo.js';
 
+initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
 initBrandPicker();
 initDialog();

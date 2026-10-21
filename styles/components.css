@@ -2,3 +2,13 @@
 
 /* Responsive images: <picture> does not create a box, so the <img> keeps the layout it had before. */
 picture{display:contents}
+
+/* Pause control for looping animations (WCAG 2.2.2). */
+.motion-toggle{position:fixed;left:16px;bottom:16px;z-index:60;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid #c9d3e2;border-radius:999px;background:#fff;color:var(--navy);font:600 13px/1 Jakarta,Arial,sans-serif;box-shadow:0 6px 18px #17294120;cursor:pointer}
+.motion-toggle[hidden]{display:none}
+.motion-toggle:before{content:'';width:10px;height:12px;border-inline:3px solid currentColor;box-sizing:border-box}
+.motion-toggle[aria-pressed="true"]:before{width:0;height:0;border-block:6px solid transparent;border-inline:0;border-left:10px solid currentColor}
+.motion-toggle:hover{border-color:var(--blue)}
+.motion-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+/* Reduced motion removes the animations with `animation:none`; keep the paused state explicit too. */
+body.animations-paused .logo-track{animation-play-state:paused!important}

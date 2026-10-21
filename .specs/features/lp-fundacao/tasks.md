@@ -122,7 +122,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde · Test count não diminui
 **Tests**: e2e · **Gate**: full
 **Commit**: `refactor(js): migra app.js para módulos ES nativos`
-**Status**: ✅ Done
+**Status**: ✅ Done (61ebb2e)
 
 ### T7: Controlador de movimento e botão de pausa
 **What**: `js/motion.js` + botão "Pausar animações" (canto inferior esquerdo) integrado a marquee, pushs, carrossel, faturamento e contador.
@@ -133,6 +133,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(a11y): adiciona controle para pausar animações`
+**Status**: ✅ Done
 
 ### T8: Barra fixa de CTA no mobile
 **What**: `js/sticky-cta.js` + barra inferior com o CTA principal em ≤ 760px.
