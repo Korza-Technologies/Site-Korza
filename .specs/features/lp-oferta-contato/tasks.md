@@ -79,17 +79,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(oferta): deixa claro o que é grátis e o que é pago`
-**Status**: ✅ Done
+**Status**: ✅ Done (612451b)
 
 ### T4: Copy direta
 **What**: Reescrever headlines e subtítulos em tom direto; "próximo/próxima" ≤ 3; zero "pushs"; analytics com selo "Exemplo do painel" e sem "tempo real".
 **Where**: `index.html`, `js/dialog.js` (textos), `styles/components.css`
 **Depends on**: T3 · **Requirement**: OFFER-04, OFFER-05, OFFER-06
 **Done when**:
-- [ ] e2e OFFER-04..06; nenhuma afirmação fora de AD-006
-- [ ] `npm test` verde
+- [x] e2e OFFER-04..06; nenhuma afirmação fora de AD-006
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(copy): reescreve textos em tom direto e concreto`
+**Status**: ✅ Done (textos do diálogo e dos pushs ficam em `js/config.js`, não em `js/dialog.js`; "nenhuma afirmação fora de AD-006" é revisão manual, sem teste automático)
 
 ### T5: WhatsApp no hero e no fechamento
 **What**: Links "Falar com especialista" no hero e no fechamento.

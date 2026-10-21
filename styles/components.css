@@ -127,3 +127,6 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .plan-facts li:before{content:'✓';position:absolute;left:0;top:0;font-weight:600}
 .plan-facts strong{font-weight:650}
 .plan-price .plan-whatsapp{margin-top:18px;font-size:15px;color:#fff;text-decoration:underline;text-underline-offset:4px}
+
+/* Analytics sample badge (OFFER-05): the metric cards below are an example of the dashboard, not live data. */
+.panel-sample{display:table;margin:34px 0 16px;padding:6px 14px;border:1px solid #c9d8f0;border-radius:999px;background:#f4f8ff;color:#174db3;font-size:13px;font-weight:600;line-height:1.3}

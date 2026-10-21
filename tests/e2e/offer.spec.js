@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { gotoAt } from '../helpers.js';
+import { gotoAt, scrollToEnd } from '../helpers.js';
 import { waLink } from '../../js/whatsapp.js';
+import { details, pushExamples } from '../../js/config.js';
 
 const CTA = 'Montar meu app grátis';
 const signupLinks = page => page.locator('a[href^="https://admin.korza.app/create-account"]');
@@ -54,6 +55,46 @@ for (const [width, height] of [[1440, 900], [390, 844]]) {
       await expect(link).toHaveAttribute('href', waLink('pricing'));
       await expect(link).toHaveAttribute('target', '_blank');
       await expect(link).toHaveAttribute('rel', /\bnoopener\b/);
+    });
+  });
+}
+
+// Text that JavaScript puts on screen later: dialog contents and the rotating push examples.
+const injectedText = [...Object.values(details).flatMap(Object.values), ...pushExamples.flatMap(push => [push.title, push.text])].join('\n');
+const visibleText = page => page.evaluate(() => document.body.innerText);
+
+for (const [width, height] of [[1440, 900], [390, 844]]) {
+  test.describe(`copy em ${width}x${height}`, () => {
+    test.beforeEach(async ({ page }) => {
+      await gotoAt(page, width, height);
+      await scrollToEnd(page);
+    });
+
+    test('OFFER-04 "próximo" ou "próxima" aparecem no máximo 3 vezes no texto visível', async ({ page }) => {
+      const text = `${await visibleText(page)}\n${injectedText}`;
+      const found = text.match(/próxim[oa]s?/gi) || [];
+      expect(found.length, found.join(', ')).toBeLessThanOrEqual(3);
+    });
+
+    test('OFFER-06 nenhum "pushs" no texto visível', async ({ page }) => {
+      const text = `${await visibleText(page)}\n${injectedText}`;
+      expect(text.match(/\bpushs\b/gi) || []).toEqual([]);
+    });
+
+    test('OFFER-05 analytics sem "tempo real" e com selo "Exemplo do painel" acima das métricas', async ({ page }) => {
+      const heading = page.locator('.analytics-heading h2');
+      await expect(heading).toBeVisible();
+      await expect(heading).not.toContainText(/tempo real/i);
+      const badge = page.getByText('Exemplo do painel', { exact: true });
+      await badge.scrollIntoViewIfNeeded();
+      await expect(badge).toBeVisible();
+      const { size, bottom, firstCardTop } = await badge.evaluate(el => ({
+        size: parseFloat(getComputedStyle(el).fontSize),
+        bottom: el.getBoundingClientRect().bottom,
+        firstCardTop: Math.min(...[...document.querySelectorAll('.metric-showcase .metric-card')].map(card => card.getBoundingClientRect().top))
+      }));
+      expect(size).toBeGreaterThanOrEqual(12);
+      expect(bottom).toBeLessThanOrEqual(firstCardTop);
     });
   });
 }
