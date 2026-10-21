@@ -152,7 +152,7 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 | -------------- | ----- | ----- | ------ |
 | OFFER-01..06 | P1: Oferta | Execute | Implemented, tests green (T2–T4); awaiting Verifier |
 | CONTACT-01..06 | P1: Contato | Execute | Implemented, tests green (T1–T3, T5–T7); awaiting Verifier |
-| FAQ-01..03 | P1: FAQ | Tasks | In Tasks |
+| FAQ-01..03 | P1: FAQ | Execute | Implemented, tests green (T8); awaiting Verifier |
 | CALC-01..07 | P2: Calculadora | Tasks | In Tasks |
 | ANALYTICS-01..06 | P2: Medição | Tasks | In Tasks |
 | COMP-01..02 | P3: Comparativo | Tasks | In Tasks |

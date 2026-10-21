@@ -150,3 +150,6 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 @media(max-width:760px){.whatsapp-float{display:none}}
 /* Landscape: the pause control takes the bottom-right corner, so the WhatsApp button sits right above it. */
 @media(max-height:500px) and (min-width:761px){.whatsapp-float{right:16px;bottom:72px}}
+
+/* FAQ (FAQ-03): the list ends with the WhatsApp link. */
+.faq-list .faq-whatsapp{margin-top:22px;font-size:13px}

@@ -130,10 +130,11 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 **Where**: `index.html`
 **Depends on**: T7 · **Requirement**: FAQ-01, FAQ-02, FAQ-03
 **Done when**:
-- [ ] e2e FAQ-01..03
-- [ ] `npm test` verde
+- [x] e2e FAQ-01..03
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(faq): responde fidelidade, prazo, contas e o que é grátis`
+**Status**: ✅ Done (o link de WhatsApp do FAQ ganhou uma regra em `styles/components.css` para ficar com 13px, A11Y-02; `components.css` vai para `?v=20261021f`)
 
 ### T9: Regra da calculadora
 **What**: `parseBRNumber`, `paybackOrders`, `paybackMessage` puras.
