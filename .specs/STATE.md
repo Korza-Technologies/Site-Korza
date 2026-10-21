@@ -58,13 +58,21 @@
 - **Date**: 2026-10-21
 - **Status**: active
 
+### AD-008
+- **Decision**: Os links de CSS em `index.html` levam `?v=AAAAMMDD[letra]`; toda tarefa que altera um arquivo CSS troca a versão no mesmo commit.
+- **Reason**: Visitantes recorrentes com `styles.css` antigo em cache viram o hero quebrado depois que o HTML mudou (descoberto na F1 T15).
+- **Trade-off**: Passo manual. Módulos JS ainda não são versionados (risco registrado para revisão no PR).
+- **Scope**: Todas as features.
+- **Date**: 2026-10-21
+- **Status**: active
+
 ## Handoff
 
-- **Feature**: `lp-fundacao` → `lp-oferta-contato` → `lp-magia-cases`
-- **Phase / Task**: Tasks prontas (F1: 14, F2: 14, F3: 9), aguardando aprovação e modo de execução
-- **Completed**: Specify, Design, Tasks das três features
+- **Feature**: F1 `lp-fundacao` concluída (T1–T16), Verifier em andamento; F2 `lp-oferta-contato` Lote 3 (T1–T7) em andamento
+- **Phase / Task**: Execute
+- **Completed**: F1 T1–T16; F3 T1 (dados aprovados)
 - **In-progress** (file:line): none
-- **Next step**: Usuário aprova os tasks e escolhe inline ou sub-agentes; começar por F1 T1.
-- **Blockers**: Chave PostHog da Korza (não bloqueia); aprovação dos números dos cases (bloqueia F3 T7)
+- **Next step**: Receber Verifier F1 e Lote 3; despachar Lote 4 (F2 T8–T14).
+- **Blockers**: Chave PostHog da Korza (não bloqueia)
 - **Uncommitted files**: none
 - **Branch**: feat/ux-conversao
