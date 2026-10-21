@@ -177,7 +177,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(ui): corrige alvos de toque e ordem dos CTAs`
-**Status**: ✅ Done
+**Status**: ✅ Done (ac33fea)
 
 ### T12: Texto mínimo, ilustrações e alt
 **What**: Marcar ilustrações com `data-illustration` (+ `role="img"`/`aria-label` ou `aria-hidden`); subir todo texto restante para ≥ 12px; corrigir `alt` repetidos da faixa de logos.
@@ -188,6 +188,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(a11y): garante texto mínimo de 12px e alt únicos`
+**Status**: ✅ Done
 
 ### T13: Zero violações do axe
 **What**: Corrigir contraste e demais violações apontadas pelo axe.

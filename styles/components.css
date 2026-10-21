@@ -81,3 +81,25 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 /* Goals CTA: the question leads into the button. */
 .goals-cta{flex-direction:column;align-items:flex-start;gap:14px}
 .goals-cta>span{font-size:15px}
+
+/* Minimum readable text (A11Y-02): no text below 12px outside phone-UI illustrations ([data-illustration]).
+   styles.css repeats these sizes across many media blocks, so the floor is enforced here with !important. */
+.nav-bar .nav-signup,.announcement,.announcement>span,.hero-compatible>span,.hero-compatible .platform-word,.hero-compatible .tiny-plus,
+.client-showcase .eyebrow,.marquee-caption,.product-label,.card-number,.art-caption,
+.metric-label span,.metric-period,.ring-metric div>span,.metric-source,.fine-print,.story-bottom>span,
+.plan-label,.plan-price small,.plan-contact>span,.footer-links strong,.footer-links a,.footer-contact strong,.footer-contact a,
+.footer-contact span,.footer-bottom span,.footer-bottom a{font-size:12px!important}
+.product-card .card-body .link,.story-content .link,.footer-main p{font-size:13px!important}
+.goal-card>p:not(.goal-tagline){font-size:13px!important}
+@media(max-width:1000px){
+  .nav-bar nav a,.nav-login,.hero .actions>.link,.closing-inner .actions>.link,.hero-compatible .shopify-word{font-size:12px!important}
+  .product-card .card-body p,.story-description,.plan-description li,.faq-list summary{font-size:13px!important}
+}
+@media(max-width:760px){
+  .eyebrow{font-size:12px!important}
+  .nav-bar nav a{font-size:15px!important}
+  .showcase-heading p,.showcase-heading p strong,.platform-cta p,.faq-list p,.section-intro>p{font-size:13px!important}
+  .closing-inner .signup-cta{font-size:14px!important}
+}
+/* Room below the footer so the fixed pause control never covers the last line of text. */
+.footer{padding-bottom:72px}
