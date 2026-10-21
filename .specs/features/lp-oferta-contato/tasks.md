@@ -90,17 +90,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(copy): reescreve textos em tom direto e concreto`
-**Status**: ✅ Done (textos do diálogo e dos pushs ficam em `js/config.js`, não em `js/dialog.js`; "nenhuma afirmação fora de AD-006" é revisão manual, sem teste automático)
+**Status**: ✅ Done (78a3734; textos do diálogo e dos pushs ficam em `js/config.js`, não em `js/dialog.js`; "nenhuma afirmação fora de AD-006" é revisão manual, sem teste automático)
 
 ### T5: WhatsApp no hero e no fechamento
 **What**: Links "Falar com especialista" no hero e no fechamento.
 **Where**: `index.html`
 **Depends on**: T4 · **Requirement**: CONTACT-01, CONTACT-02
 **Done when**:
-- [ ] e2e CONTACT-01; CONTACT-02 para todo `wa.me` da página (comparado com `waLink`)
-- [ ] `npm test` verde
+- [x] e2e CONTACT-01; CONTACT-02 para todo `wa.me` da página (comparado com `waLink`)
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(contato): adiciona WhatsApp no hero e no fechamento`
+**Status**: ✅ Done
 
 ### T6: WhatsApp na barra mobile e botão flutuante desktop
 **What**: Botão de WhatsApp na barra fixa (F1) e botão flutuante no desktop, ambos pelo `sticky-cta.js`.
