@@ -147,7 +147,7 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| PERF-01..07 | P1: Página leve | Tasks | In Tasks |
+| PERF-01..07 | P1: Página leve | Execute | Implementing (PERF-06 verified in T2) |
 | MOB-01..07 | P1: Hero mobile | Execute | Implementing (MOB-07 verified by test in T1) |
 | A11Y-01..08 | P1: Acessibilidade (inclui TXT) | Tasks | In Tasks |
 | BTN-01..07 | P1: Botões | Tasks | In Tasks |

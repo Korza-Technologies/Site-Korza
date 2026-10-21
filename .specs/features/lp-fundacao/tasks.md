@@ -65,7 +65,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde · Test count: ≥ 2
 **Tests**: e2e · **Gate**: full
 **Commit**: `test: adiciona harness Playwright e smoke test`
-**Status**: ✅ Done
+**Status**: ✅ Done (8a68067)
 
 ### T2: Fontes em WOFF2
 **What**: Converter `jakarta-{400,600,700}.ttf` para WOFF2, atualizar `@font-face` e `preload`, remover TTF.
@@ -76,6 +76,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `perf(fonts): converte Plus Jakarta Sans para WOFF2`
+**Status**: ✅ Done
 
 ### T3: Mockups em WebP/AVIF responsivos
 **What**: Gerar mockups 480w/800w em AVIF e WebP; trocar `<img>` por `<picture>` com `srcset/sizes` no hero, card do app e cases; atualizar `brands` do seletor.
