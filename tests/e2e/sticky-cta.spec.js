@@ -39,7 +39,7 @@ for (const width of [390, 760]) {
       await midPage(page);
       await expect(bar(page)).toBeVisible();
       await expect(barLink(page)).toBeVisible();
-      await expect(barLink(page)).toContainText('Criar conta grátis');
+      await expect(barLink(page)).toContainText('Montar meu app grátis');
       const box = await bar(page).boundingBox();
       expect(box.y + box.height).toBeCloseTo(844, 0);
       const focused = await barLink(page).evaluate(link => { link.focus(); return document.activeElement === link; });

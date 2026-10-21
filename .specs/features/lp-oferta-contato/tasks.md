@@ -53,20 +53,22 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 **Where**: `js/config.js`, `js/whatsapp.js`, `tests/unit/whatsapp.spec.js`
 **Depends on**: F1 · **Requirement**: CONTACT-02 (formato e mensagens)
 **Done when**:
-- [ ] Unit: cada localização gera `https://wa.me/555194553299?text=` + mensagem exata codificada; case usa o nome; localização desconhecida lança erro
-- [ ] `npm run test:unit` verde
+- [x] Unit: cada localização gera `https://wa.me/555194553299?text=` + mensagem exata codificada; case usa o nome; localização desconhecida lança erro
+- [x] `npm run test:unit` verde
 **Tests**: unit · **Gate**: quick
 **Commit**: `feat(contato): centraliza número e mensagens do WhatsApp`
+**Status**: ✅ Done (e6ed16e)
 
 ### T2: CTA único "Montar meu app grátis"
 **What**: Trocar o texto de todos os links de cadastro, inclusive o rodapé ("Criar app grátis" sai); `data-track` em cada CTA.
 **Where**: `index.html`
 **Depends on**: T1 · **Requirement**: OFFER-01, CONTACT-06
 **Done when**:
-- [ ] e2e OFFER-01 e CONTACT-06
-- [ ] `npm test` verde
+- [x] e2e OFFER-01 e CONTACT-06
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(oferta): unifica o CTA em "Montar meu app grátis"`
+**Status**: ✅ Done
 
 ### T3: Card de preço reescrito
 **What**: Card com R$ 399/mês, os 6 fatos de OFFER-02 e o link de WhatsApp de preço.
