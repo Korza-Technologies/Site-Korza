@@ -155,7 +155,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(mobile): mostra o app e reforça o CTA no hero mobile`
-**Status**: ✅ Done
+**Status**: ✅ Done (6e1dbf9)
 
 ### T10: Botões estranhos (selos, chips, seletor)
 **What**: Selos das lojas como legenda; chips como texto com as categorias reais; seletor com rótulo "Veja o app de:" e alvos de 44px.
@@ -166,6 +166,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(ui): remove aparência de botão de elementos estáticos`
+**Status**: ✅ Done
 
 ### T11: Botões estranhos (carrossel, preço, selo, objetivos)
 **What**: Alvos 44×44 no carrossel; remover login do card de preço; selo do hero com "60+" e `#cases`; pergunta antes do botão nos objetivos.
