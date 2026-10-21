@@ -68,3 +68,16 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .brand-picker-label{display:block;margin-top:17px;font-size:14px;font-weight:600;color:var(--navy)}
 .brand-picker{margin-top:8px;gap:8px}
 .brand-picker button,.brand-picker button[aria-pressed]{min-height:44px;padding:8px 16px;font-size:14px;cursor:pointer}
+
+/* Carousel controls: 44x44 touch targets; the dot stays an 8px mark drawn inside the target. */
+.story-controls button,.story-controls button:is(.story-prev,.story-next){position:relative;width:44px;height:44px}
+/* Round buttons hit-test as circles; a square layer keeps the whole 44x44 box clickable. */
+.story-controls button:before{content:'';position:absolute;inset:-1px}
+.story-dots{gap:0}
+.story-dots button,.story-dots button[aria-current=true]{display:grid;place-items:center;width:44px;height:44px;border-radius:0;background:transparent;transform:none}
+.story-dots button:before{content:'';width:8px;height:8px;border-radius:50%;background:#c8d6e9;transition:background .25s,transform .25s}
+.story-dots button[aria-current=true]:before{background:var(--blue);transform:scale(1.25)}
+
+/* Goals CTA: the question leads into the button. */
+.goals-cta{flex-direction:column;align-items:flex-start;gap:14px}
+.goals-cta>span{font-size:15px}

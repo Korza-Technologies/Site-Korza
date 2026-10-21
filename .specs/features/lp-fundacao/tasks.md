@@ -166,7 +166,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(ui): remove aparência de botão de elementos estáticos`
-**Status**: ✅ Done
+**Status**: ✅ Done (06abaa6)
 
 ### T11: Botões estranhos (carrossel, preço, selo, objetivos)
 **What**: Alvos 44×44 no carrossel; remover login do card de preço; selo do hero com "60+" e `#cases`; pergunta antes do botão nos objetivos.
@@ -177,6 +177,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(ui): corrige alvos de toque e ordem dos CTAs`
+**Status**: ✅ Done
 
 ### T12: Texto mínimo, ilustrações e alt
 **What**: Marcar ilustrações com `data-illustration` (+ `role="img"`/`aria-label` ou `aria-hidden`); subir todo texto restante para ≥ 12px; corrigir `alt` repetidos da faixa de logos.

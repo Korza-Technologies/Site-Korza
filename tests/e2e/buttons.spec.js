@@ -64,3 +64,63 @@ for (const [width, height] of [[1440, 900], [390, 844]]) {
     });
   });
 }
+
+// Every point of a 44x44 square centred on the control must hit the control itself.
+async function hitArea44(locator) {
+  return locator.evaluate(el => {
+    const r = el.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const misses = [];
+    for (let dx = -21.5; dx <= 21.5; dx += 4.3) {
+      for (let dy = -21.5; dy <= 21.5; dy += 4.3) {
+        const hit = document.elementFromPoint(cx + dx, cy + dy);
+        if (!el.contains(hit)) misses.push([Math.round(dx), Math.round(dy), hit?.className || hit?.tagName]);
+      }
+    }
+    return misses;
+  });
+}
+
+for (const [width, height] of [[1440, 900], [390, 844]]) {
+  test.describe(`controles e CTAs em ${width}x${height}`, () => {
+    test.beforeEach(async ({ page }) => { await gotoAt(page, width, height); });
+
+    test('BTN-04 pontos e setas do carrossel com área clicável ≥ 44x44', async ({ page }) => {
+      const controls = page.locator('#cases .story-dots button, #cases .story-prev, #cases .story-next');
+      await expect(controls).toHaveCount(6);
+      for (const control of await controls.all()) {
+        await control.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+        await page.waitForTimeout(100);
+        expect(await hitArea44(control), await control.getAttribute('aria-label')).toEqual([]);
+      }
+    });
+
+    test('BTN-05 card de preço sem link para /login', async ({ page }) => {
+      await expect(page.locator('.plan-price')).toHaveCount(1);
+      const loginLinks = await page.locator('.plan-price a').evaluateAll(links =>
+        links.filter(link => /\/login\/?$/.test(new URL(link.href, location.href).pathname)).length);
+      expect(loginLinks).toBe(0);
+    });
+
+    test('BTN-06 selo acima do título leva aos cases e cita 60+', async ({ page }) => {
+      const badge = page.locator('.hero h1').locator('xpath=preceding-sibling::*[1]');
+      await expect(badge).toBeVisible();
+      await expect(badge).toHaveAttribute('href', '#cases');
+      await expect(badge).toContainText('60+');
+      const [b, h1] = [await badge.boundingBox(), await page.locator('.hero h1').boundingBox()];
+      expect(b.y + b.height).toBeLessThanOrEqual(h1.y);
+    });
+
+    test('BTN-07 pergunta dos objetivos antes do botão no DOM e na tela', async ({ page }) => {
+      const cta = page.locator('#resultados .goals-cta');
+      const button = cta.locator('a.button');
+      const question = cta.getByText('Vamos dar o próximo passo?');
+      await expect(button).toBeVisible();
+      await expect(question).toBeVisible();
+      const before = await question.evaluate((q, btn) => Boolean(q.compareDocumentPosition(btn) & Node.DOCUMENT_POSITION_FOLLOWING), await button.elementHandle());
+      expect(before).toBe(true);
+      const [q, btn] = [await question.boundingBox(), await button.boundingBox()];
+      expect(q.y).toBeLessThan(btn.y);
+    });
+  });
+}
