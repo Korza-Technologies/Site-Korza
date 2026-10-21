@@ -74,17 +74,18 @@ T7 → T8 → T9
 - [x] `npm run test:unit` verde
 **Tests**: unit · **Gate**: quick
 **Commit**: `feat(teaser): regras de nome, contraste e logo`
-**Status**: ✅ Done (2MB = 2 × 1024 × 1024 bytes; `readableTextColor` cai para `#000000` quando nem branco nem `#0f1a33` chegam a 4,5:1, ex.: `#808080`, para cumprir o edge case de contraste com qualquer "outra cor")
+**Status**: ✅ Done (a1a5f11; 2MB = 2 × 1024 × 1024 bytes; `readableTextColor` cai para `#000000` quando nem branco nem `#0f1a33` chegam a 4,5:1, ex.: `#808080`, para cumprir o edge case de contraste com qualquer "outra cor")
 
 ### T3: App desenhado no hero
 **What**: Marcação `.app-render` (cabeçalho, banner, grade, abas, push) dentro de `.hero-device`, oculta por padrão, estilizada por `--brand`/`--on-brand`.
 **Where**: `index.html`, `styles/components.css`
 **Depends on**: T2 · **Requirement**: PREVIEW-03 (estrutura)
 **Done when**:
-- [ ] e2e: com `is-custom` forçado, a aba ativa, o botão e o banner usam exatamente `--brand`; sem `is-custom`, a foto real aparece e `.app-render` não
-- [ ] `npm test` verde
+- [x] e2e: com `is-custom` forçado, a aba ativa, o botão e o banner usam exatamente `--brand`; sem `is-custom`, a foto real aparece e `.app-render` não
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): desenha o app de exemplo no hero`
+**Status**: ✅ Done (testes em `tests/e2e/teaser.spec.js`; o logo será desenhado como `background-image` de um `span`, não como `<img>`, porque os testes VIS/MOB da F1 localizam `.hero-device img` como um único elemento; o push fica na parte de baixo da tela para não cobrir o nome no cabeçalho; `components.css` vai para `?v=20261021i`)
 
 ### T4: Formulário do teaser
 **What**: Campo "Nome da sua loja", 6 cores + "outra cor", ligação ao app desenhado, região `aria-live`.
