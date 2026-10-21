@@ -170,3 +170,17 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
   .payback-fields input{width:100%}
   .payback-result{font-size:16px}
 }
+
+/* Site × app comparison (COMP-01/02): a plain table that fits phone widths without horizontal scroll. */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #e2e9f3;border-radius:8px;overflow:hidden}
+.compare-table :is(th,td){padding:18px 24px;border-bottom:1px solid var(--line);text-align:left;font-size:15px;line-height:1.45}
+.compare-table tbody tr:last-child :is(th,td){border-bottom:0}
+.compare-table thead th{background:var(--ice);color:var(--navy);font-size:14px;font-weight:600}
+.compare-table tbody th{color:var(--navy);font-weight:600}
+.compare-table td{width:20%;color:var(--text)}
+.compare-table .compare-yes{color:#174db3;font-weight:600}
+.compare-yes .icon{width:16px;height:16px;margin-right:4px;vertical-align:-3px;stroke-width:2.4}
+@media(max-width:760px){
+  .compare-table :is(th,td){padding:12px 10px;font-size:13px}
+  .compare-table td{width:auto;white-space:nowrap}
+}

@@ -190,17 +190,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: unit + e2e · **Gate**: full
 **Commit**: `feat(analytics): repassa UTM para o cadastro`
-**Status**: ✅ Done (se o link já tiver o mesmo `utm_*`, o valor da página substitui o do link, sem repetir a chave)
+**Status**: ✅ Done (a418702; se o link já tiver o mesmo `utm_*`, o valor da página substitui o do link, sem repetir a chave)
 
 ### T14: Comparativo site × app
 **What**: Seção com `table` semântica e 4 linhas.
 **Where**: `index.html`, `styles/components.css`
 **Depends on**: T13 · **Requirement**: COMP-01, COMP-02
 **Done when**:
-- [ ] e2e COMP-01 e COMP-02 (390); axe da F1 continua com zero violações
-- [ ] `npm test` verde
+- [x] e2e COMP-01 e COMP-02 (390 e 360); axe da F1 continua com zero violações
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(conteudo): adiciona comparativo site mobile × app`
+**Status**: ✅ Done (seção `#comparativo` logo antes de `#precos`; células "Não" (site) e "Sim" (app); `components.css` vai para `?v=20261021h`)
 
 ---
 
