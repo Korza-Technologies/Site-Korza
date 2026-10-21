@@ -152,7 +152,7 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `fix(cases): carrossel para quando o visitante interage`
-**Status**: ✅ Done (os ouvintes `pointerdown`, `touchstart`, `focusin`, `keydown` e `wheel` ficam na seção `#cases` inteira; a rolagem programática do próprio autoplay não conta como interação; o hover continua só pausando enquanto o ponteiro está sobre o carrossel; testes também cobrem toque e tecla e conferem que o carrossel está na tela antes de afirmar que ele não andou)
+**Status**: ✅ Done (e83a15d; os ouvintes `pointerdown`, `touchstart`, `focusin`, `keydown` e `wheel` ficam na seção `#cases` inteira; a rolagem programática do próprio autoplay não conta como interação; o hover continua só pausando enquanto o ponteiro está sobre o carrossel; testes também cobrem toque e tecla e conferem que o carrossel está na tela antes de afirmar que ele não andou)
 
 ---
 
