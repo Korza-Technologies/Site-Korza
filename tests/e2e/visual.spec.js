@@ -58,7 +58,7 @@ for (const [width, height] of [[1440, 900], [1280, 720], [820, 1180], [390, 844]
   });
 }
 
-for (const [width, height] of [[1440, 900], [390, 844], [844, 390]]) {
+for (const [width, height] of [[1440, 900], [1280, 720], [820, 1180], [390, 844], [360, 740], [844, 390]]) {
   test(`VIS-04 botão de pausa com até 44x44px, nome acessível e sem cobrir links ou botões da primeira tela em ${width}x${height}`, async ({ page }) => {
     await gotoAt(page, width, height);
     const button = page.locator('.motion-toggle');
@@ -91,12 +91,38 @@ for (const [width, height] of [[1440, 900], [390, 844], [844, 390]]) {
   });
 }
 
-test('VIS-05 com a barra fixa visível, o CTA ocupa ao menos 70% da largura da barra em 390x844', async ({ page }) => {
+for (const [width, height] of [[390, 844], [360, 740]]) {
+  test(`VIS-05 com a barra fixa visível, o CTA ocupa ao menos 70% da barra e a pausa não cobre controles da barra em ${width}x${height}`, async ({ page }) => {
+    await gotoAt(page, width, height);
+    await page.locator('.product-grid').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    const bar = page.locator('.sticky-cta');
+    await expect(bar).toBeVisible();
+    const barBox = await rectOf(bar);
+    const ctaBox = await rectOf(bar.locator('.signup-cta'));
+    expect(ctaBox.width).toBeGreaterThanOrEqual(0.7 * barBox.width);
+
+    const toggle = await rectOf(page.locator('.motion-toggle'));
+    const barControls = await bar.evaluate(el => [...el.querySelectorAll('a[href], button')]
+      .filter(node => !node.classList.contains('motion-toggle') && node.checkVisibility())
+      .map(node => ({ text: (node.textContent || node.getAttribute('aria-label') || '').trim().slice(0, 30), rect: node.getBoundingClientRect().toJSON() })));
+    expect(barControls.length).toBeGreaterThan(0);
+    expect(barControls.filter(({ rect }) => rectsIntersect(rect, toggle)).map(({ text }) => text)).toEqual([]);
+  });
+}
+
+test('Edge case: sem JavaScript, títulos e parágrafos do conteúdo ficam visíveis', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
   await gotoAt(page, 390, 844);
-  await page.locator('.product-grid').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
-  const bar = page.locator('.sticky-cta');
-  await expect(bar).toBeVisible();
-  const barBox = await rectOf(bar);
-  const ctaBox = await rectOf(bar.locator('.signup-cta'));
-  expect(ctaBox.width).toBeGreaterThanOrEqual(0.7 * barBox.width);
+  const hidden = await page.evaluate(() => [...document.querySelectorAll('main h1, main h2, main h3, main p')]
+    .filter(el => !el.closest('dialog'))
+    .filter(el => {
+      const r = el.getBoundingClientRect();
+      let node = el, opacity = 1;
+      while (node && node !== document.body) { opacity *= Number(getComputedStyle(node).opacity); node = node.parentElement; }
+      return r.width === 0 || r.height === 0 || opacity < 1 || getComputedStyle(el).visibility === 'hidden';
+    })
+    .map(el => el.textContent.trim().slice(0, 40)));
+  expect(hidden).toEqual([]);
+  await context.close();
 });

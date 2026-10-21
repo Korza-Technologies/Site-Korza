@@ -26,6 +26,11 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
   .sticky-cta{gap:5px;padding-left:57px;padding-right:8px}
   body:has(.sticky-cta:not([hidden])) .motion-toggle{left:8px;bottom:calc(14px + env(safe-area-inset-bottom));box-shadow:none}
 }
+/* Narrow phones: tighter spacing keeps the CTA at 70% of the bar (360 - 52 - 4 - 44 - 4 = 256px). */
+@media(max-width:380px){
+  .sticky-cta{gap:4px;padding-left:52px;padding-right:4px}
+  body:has(.sticky-cta:not([hidden])) .motion-toggle{left:4px}
+}
 @media(min-width:761px){.sticky-cta{display:none}}
 
 /* Mobile hero: the app mockup stays on screen, the main CTA spans the column and the ribbon sits behind the phone, below the title. */

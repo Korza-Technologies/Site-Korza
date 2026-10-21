@@ -134,14 +134,14 @@ A landing page tem visual premium, mas no celular esconde o produto, deixa o bot
 1. WHEN a página abre em 1440×900 ou 1280×720 THEN a imagem do celular do hero SHALL estar inteira dentro do retângulo de `.hero` (sem corte) e ter altura entre 420px e 560px.
 2. WHEN a página abre em 390×844 ou 360×740 THEN a imagem do celular do hero SHALL estar inteira dentro do retângulo de `.hero` (sem corte) e ter altura entre 280px e 440px.
 3. WHEN qualquer legenda de ilustração (`.scene-caption`, `.art-caption`, `.marquee-caption`) está visível THEN o retângulo dela SHALL NOT interceptar o retângulo da imagem de celular mais próxima (`.hero-device img`, `.push-device`).
-4. WHEN a página é renderizada em qualquer largura THEN o botão de pausa SHALL ter no máximo 44×44px visíveis (ícone), manter o nome acessível "Pausar animações"/"Retomar animações" e SHALL NOT interceptar nenhum link ou botão do conteúdo da primeira tela.
-5. WHEN a barra fixa do mobile está visível THEN o CTA principal dentro dela SHALL ocupar ao menos 70% da largura da barra.
+4. WHEN a página é renderizada em 1440×900, 1280×720, 820×1180, 390×844, 360×740 ou 844×390 THEN o botão de pausa SHALL ter no máximo 44×44px visíveis (ícone), manter o nome acessível "Pausar animações"/"Retomar animações" e SHALL NOT interceptar nenhum link ou botão do conteúdo da primeira tela.
+5. WHEN a barra fixa do mobile está visível (390×844 e 360×740) THEN o CTA principal dentro dela SHALL ocupar ao menos 70% da largura da barra, e o botão de pausa SHALL NOT interceptar nenhum link ou botão da barra. *(Emenda de 2026-10-21 após o mutante M8 do Verifier.)*
 
 ---
 
 ## Edge Cases
 
-- WHEN JavaScript está desligado THEN todo conteúdo SHALL continuar visível e a barra fixa SHALL NOT aparecer.
+- WHEN JavaScript está desligado THEN todo título e parágrafo de `main` fora de `dialog` SHALL estar visível (opacidade 1, área > 0) e a barra fixa SHALL NOT aparecer.
 - WHEN o navegador não suporta AVIF THEN a imagem WebP SHALL ser usada.
 - WHEN a pausa está ativa e o usuário troca de aba e volta THEN as animações SHALL continuar pausadas.
 
