@@ -92,7 +92,7 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 
 1. WHEN a seção de preço é exibida THEN SHALL existir os campos "Ticket médio (R$)" (padrão 180) e "Margem (%)" (padrão 30), com `label` associado.
 2. WHEN os valores são válidos THEN o resultado SHALL mostrar N = ⌈399 ÷ (ticket × margem ÷ 100)⌉ na frase "O plano se paga com N pedidos por mês pelo app." (com 180 e 30 → 8).
-3. WHEN N = 1 THEN a frase SHALL usar "1 pedido".
+3. WHEN N = 1 THEN a frase SHALL usar "1 pedido"; WHEN N ≠ 1 (ex.: 2, 11, 21) THEN SHALL usar "N pedidos". *(Exemplos 11 e 21 adicionados após o mutante M33.)*
 4. WHEN qualquer campo muda THEN o resultado SHALL atualizar sem recarregar e sem clicar em botão, e a região do resultado SHALL ter `aria-live="polite"`.
 5. WHEN o ticket está vazio, não é número, é ≤ 0 ou > 100000 THEN SHALL aparecer "Informe um ticket médio entre R$ 1 e R$ 100.000." e nenhum N.
 6. WHEN a margem está vazia, não é número, é ≤ 0 ou > 100 THEN SHALL aparecer "Informe uma margem entre 1% e 100%." e nenhum N.
@@ -113,6 +113,26 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 5. WHEN a URL da página contém parâmetros `utm_*` THEN todo link para `admin.korza.app/create-account` SHALL receber os mesmos parâmetros `utm_*`, sem duplicar.
 6. WHEN o script do PostHog falha ao carregar (bloqueador) THEN os CTAs SHALL continuar navegando normalmente e nenhum erro não tratado SHALL aparecer no console.
 7. WHEN a página é renderizada (e um diálogo de case é aberto) THEN todo link para `admin.korza.app/create-account` e todo link `wa.me` SHALL ter `data-track` com um valor permitido, todos os 13 valores SHALL estar presentes, e o clique em cada um SHALL emitir `cta_click` com exatamente aquele `location` e o `destination` correto. *(Adicionado em 2026-10-21 após os mutantes M26/M27 do Verifier.)*
+
+   Mapa de localização (cada lugar tem exatamente um link de cada destino listado):
+
+   | Lugar | `location` | Destinos |
+   | ----- | ---------- | -------- |
+   | Menu mobile (`#navigation`) | `menu` | cadastro |
+   | Botão do header (`.nav-signup`) | `nav` | cadastro |
+   | Hero (`#inicio`) | `hero` | cadastro, WhatsApp |
+   | Plataforma (`#plataforma`) | `platform` | cadastro |
+   | Objetivos (`#resultados`) | `goals` | cadastro |
+   | Preço (`#precos`) | `pricing` | cadastro, WhatsApp |
+   | FAQ (`#duvidas`) | `faq` | cadastro, WhatsApp |
+   | Fechamento (`#contato`) | `closing` | cadastro, WhatsApp |
+   | Rodapé (`footer`) | `footer` | cadastro, WhatsApp |
+   | Barra fixa mobile (`.sticky-cta`) | `sticky` | cadastro, WhatsApp |
+   | Botão flutuante (`.whatsapp-float`) | `floating` | WhatsApp |
+   | Diálogo (`#feature-dialog`) | `dialog` | cadastro |
+   | Bloco do case no diálogo (`#dialog-case`) | `case` | WhatsApp |
+
+   *(Mapa adicionado em 2026-10-21 após os mutantes M30/M31 do Verifier.)*
 
 ---
 

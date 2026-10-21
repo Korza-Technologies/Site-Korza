@@ -26,6 +26,14 @@ test('CALC-03 quando N = 1 a frase usa "1 pedido"', () => {
   expect(paybackMessage(2)).toBe('O plano se paga com 2 pedidos por mês pelo app.');
 });
 
+test('CALC-03 N terminado em 1 mas diferente de 1 (11, 21) usa "pedidos"', () => {
+  // 399 ÷ (121 × 30%) = 10.99 → 11; 399 ÷ (64 × 30%) = 20.78 → 21.
+  expect(paybackOrders(121, 30)).toEqual({ ok: true, orders: 11 });
+  expect(paybackOrders(64, 30)).toEqual({ ok: true, orders: 21 });
+  expect(paybackMessage(11)).toBe('O plano se paga com 11 pedidos por mês pelo app.');
+  expect(paybackMessage(21)).toBe('O plano se paga com 21 pedidos por mês pelo app.');
+});
+
 const ticketError = { ok: false, errors: [{ field: 'ticket', message: TICKET_ERROR }] };
 const marginError = { ok: false, errors: [{ field: 'margin', message: MARGIN_ERROR }] };
 

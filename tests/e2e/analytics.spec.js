@@ -190,33 +190,57 @@ test('ANALYTICS-04 abrir duas perguntas do FAQ emite dois faq_open com o texto d
   expect(opens()).toHaveLength(2);
 });
 
-const LOCATIONS = ['menu', 'nav', 'hero', 'platform', 'goals', 'pricing', 'faq', 'closing', 'footer', 'sticky', 'floating', 'dialog', 'case'];
-const TRACKED = 'a[href^="https://admin.korza.app/create-account"], a[href^="https://wa.me/"]';
+const SIGNUP_LINK = 'a[href^="https://admin.korza.app/create-account"]';
+const WA_LINK = 'a[href^="https://wa.me/"]';
+const TRACKED = `${SIGNUP_LINK}, ${WA_LINK}`;
+// Spec map (ANALYTICS-07): where each link lives, the location it must report and its destination.
+const PLACES = [
+  [`#navigation ${SIGNUP_LINK}`, 'menu', 'signup'],
+  ['.nav-bar > a.nav-signup', 'nav', 'signup'],
+  [`#inicio ${SIGNUP_LINK}`, 'hero', 'signup'],
+  [`#inicio ${WA_LINK}`, 'hero', 'whatsapp'],
+  [`#plataforma ${SIGNUP_LINK}`, 'platform', 'signup'],
+  [`#resultados ${SIGNUP_LINK}`, 'goals', 'signup'],
+  [`#precos ${SIGNUP_LINK}`, 'pricing', 'signup'],
+  [`#precos ${WA_LINK}`, 'pricing', 'whatsapp'],
+  [`#duvidas ${SIGNUP_LINK}`, 'faq', 'signup'],
+  [`#duvidas ${WA_LINK}`, 'faq', 'whatsapp'],
+  [`#contato ${SIGNUP_LINK}`, 'closing', 'signup'],
+  [`#contato ${WA_LINK}`, 'closing', 'whatsapp'],
+  [`footer ${SIGNUP_LINK}`, 'footer', 'signup'],
+  [`footer ${WA_LINK}`, 'footer', 'whatsapp'],
+  [`.sticky-cta ${SIGNUP_LINK}`, 'sticky', 'signup'],
+  [`.sticky-cta ${WA_LINK}`, 'sticky', 'whatsapp'],
+  ['a.whatsapp-float', 'floating', 'whatsapp'],
+  [`#feature-dialog ${SIGNUP_LINK}`, 'dialog', 'signup'],
+  [`#dialog-case ${WA_LINK}`, 'case', 'whatsapp']
+];
 
-test('ANALYTICS-07 todo CTA de cadastro e de WhatsApp tem data-track permitido e cada clique emite cta_click com a sua localização', async ({ page }) => {
+test('ANALYTICS-07 cada CTA de cadastro e de WhatsApp reporta a localização do lugar onde está e cada clique emite o cta_click exato', async ({ page }) => {
   await useKey(page, TEST_KEY);
   await stubDestinations(page.context());
   const { captured } = await fakePostHog(page);
   await gotoAt(page, 1440, 900);
-  // Opening a case dialog fills in the case WhatsApp link.
+  // Animations paused so the case carousel stays still; opening a case dialog fills in the case WhatsApp link.
+  await page.getByRole('button', { name: 'Pausar animações', exact: true }).click();
   const caseButton = page.locator('[data-case="loum"]');
   await caseButton.scrollIntoViewIfNeeded();
   await caseButton.click();
   await expect(page.locator('#feature-dialog')).toBeVisible();
 
-  const links = await page.evaluate(selector => [...document.querySelectorAll(selector)]
-    .map(link => ({ location: link.dataset.track ?? null, href: link.href })), TRACKED);
-  for (const link of links) expect(LOCATIONS, `data-track de ${link.href}`).toContain(link.location);
-  expect([...new Set(links.map(link => link.location))].sort()).toEqual([...LOCATIONS].sort());
+  // Every tracked link on the page belongs to exactly one place of the map.
+  await expect(page.locator(TRACKED)).toHaveCount(PLACES.length);
+  for (const [selector, location] of PLACES) {
+    const link = page.locator(selector);
+    await expect(link, selector).toHaveCount(1);
+    await expect(link, selector).toHaveAttribute('data-track', location);
+  }
 
-  // Every tracked link is clicked once; the visitor stays on the page.
-  await page.evaluate(selector => {
+  // Each place is clicked once, in map order; the visitor stays on the page.
+  await page.evaluate(selectors => {
     window.addEventListener('click', event => event.preventDefault(), true);
-    document.querySelectorAll(selector).forEach(link => link.click());
-  }, TRACKED);
-  const expected = links.map(link => ({
-    event: 'cta_click',
-    properties: { location: link.location, destination: link.href.startsWith('https://wa.me/') ? 'whatsapp' : 'signup' }
-  }));
+    for (const selector of selectors) document.querySelector(selector).click();
+  }, PLACES.map(([selector]) => selector));
+  const expected = PLACES.map(([, location, destination]) => ({ event: 'cta_click', properties: { location, destination } }));
   await expect.poll(() => captured.filter(item => item.event === 'cta_click')).toEqual(expected);
 });

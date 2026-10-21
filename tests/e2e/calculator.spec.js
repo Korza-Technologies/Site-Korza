@@ -89,3 +89,11 @@ test('Edge case: sem JavaScript a calculadora já mostra "8 pedidos"', async ({ 
   await expect(result).toHaveText(sentence(8));
   await context.close();
 });
+
+test('CALC-03 na página, ticket 121 e margem 30 mostram "11 pedidos" no plural', async ({ page }) => {
+  await gotoAt(page, 1440, 900);
+  const { ticket, result } = fields(page);
+  await ticket.scrollIntoViewIfNeeded();
+  await ticket.fill('121');
+  await expect(result).toHaveText('O plano se paga com 11 pedidos por mês pelo app.');
+});
