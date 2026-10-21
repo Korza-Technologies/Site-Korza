@@ -155,6 +155,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(mobile): mostra o app e reforça o CTA no hero mobile`
+**Status**: ✅ Done
 
 ### T10: Botões estranhos (selos, chips, seletor)
 **What**: Selos das lojas como legenda; chips como texto com as categorias reais; seletor com rótulo "Veja o app de:" e alvos de 44px.

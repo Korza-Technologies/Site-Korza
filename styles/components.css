@@ -23,3 +23,32 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
   body:has(.sticky-cta:not([hidden])) .motion-toggle{bottom:calc(12px + env(safe-area-inset-bottom));width:96px;min-height:48px;padding:0 10px;border-radius:14px;font-size:12px;line-height:1.2;white-space:normal;text-align:left;box-shadow:none}
 }
 @media(min-width:761px){.sticky-cta{display:none}}
+
+/* Mobile hero: the app mockup stays on screen, the main CTA spans the column and the ribbon sits behind the phone, below the title. */
+@media(max-width:760px){
+  .hero-layout{min-height:0;padding:36px 0 32px;gap:12px;justify-content:flex-start}
+  .hero .actions{gap:14px 18px}
+  .hero .actions .signup-cta{flex:1 1 100%;width:100%;min-height:52px;font-size:16px;padding-inline:20px}
+  .hero-scene{display:block;height:440px;width:100%;max-width:420px;margin-inline:auto}
+  .hero-device{width:240px;height:404px;left:calc(50% - 120px);top:12px}
+  .hero-os{top:auto;bottom:6px;left:8%}
+  .hero-ribbon{top:auto;bottom:-40px;right:calc(50% - 300px);width:600px;height:560px;opacity:.85;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 80%,transparent)}
+}
+@media(max-width:360px){
+  .hero-scene{height:410px}
+  .hero-device{width:220px;height:370px;left:calc(50% - 110px)}
+}
+
+/* Landscape phones: compact header and hero so the main CTA fits in the first screen. */
+@media(max-height:500px){
+  .nav-bar{height:60px}
+  .nav-bar nav{top:59px}
+}
+@media(max-height:500px) and (min-width:761px){
+  .hero-layout{min-height:0;align-items:start;padding-top:24px;padding-bottom:40px}
+  .announcement{margin-bottom:14px}
+  .hero h1{font-size:38px;letter-spacing:-1.6px}
+  .hero-copy>p{margin:12px 0 16px;line-height:1.6}
+}
+/* In landscape the pause control moves right so it never covers the hero CTA. */
+@media(max-height:500px) and (min-width:761px){.motion-toggle{left:auto;right:16px}}
