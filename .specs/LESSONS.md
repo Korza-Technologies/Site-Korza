@@ -42,6 +42,30 @@ Seen once or not yet corroborated. Tracked, not trusted.
 - evidence: validation.md M28 (edge case no JavaScript) (e2e-nojs)
 - last seen: 2026-10-21T18:31:02Z
 
+### L-006 — When each element must report its own label, find each element by its container and assert its exact label, not only that the label is in the allowed set
+- signal: `surviving_mutant` · recurrence: 1 feature(s) · scope: `e2e-analytics` · harmful: 0
+- features: lp-oferta-contato
+- evidence: validation.md M30, M31 (tests/e2e/analytics.spec.js:209-221) (e2e-analytics)
+- last seen: 2026-10-21T19:33:13Z
+
+### L-007 — When an AC lists allowed values for many elements, map each element to its value in the spec
+- signal: `spec_precision_gap` · recurrence: 1 feature(s) · scope: `spec` · harmful: 0
+- features: lp-oferta-contato
+- evidence: validation.md P4 (ANALYTICS-02/07) (spec)
+- last seen: 2026-10-21T19:33:14Z
+
+### L-008 — Assert singular and plural wording at several plural values such as 2, 11 and 21, not only next to the singular boundary
+- signal: `surviving_mutant` · recurrence: 1 feature(s) · scope: `unit` · harmful: 0
+- features: lp-oferta-contato
+- evidence: validation.md M33 (js/calculator.js:29, tests/unit/calculator.spec.js:25-26) (unit)
+- last seen: 2026-10-21T19:33:15Z
+
+### L-009 — When the spec requires a contrast ratio over a user-picked color, do not limit the design to a fixed pair of text colors; include black and white as fallbacks so every input can reach the ratio.
+- signal: `spec_deviation` · recurrence: 1 feature(s) · scope: `design` · harmful: 0
+- features: lp-magia-cases
+- evidence: js/preview.js:29 SPEC_DEVIATION readableTextColor (design)
+- last seen: 2026-10-21T19:39:41Z
+
 ## Quarantined (failed when applied — ignore)
 
 A confirmed lesson that recurred alongside failure. Kept for the maintainer to review.

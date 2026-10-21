@@ -3,7 +3,7 @@
   "promote_threshold": 2,
   "window_days": 45,
   "quarantine_threshold": 2,
-  "next_id": 6,
+  "next_id": 10,
   "lessons": [
     {
       "id": "L-001",
@@ -96,6 +96,78 @@
       ],
       "created": "2026-10-21T18:31:02Z",
       "last_seen": "2026-10-21T18:31:02Z"
+    },
+    {
+      "id": "L-006",
+      "key": "surviving_mutant::when each element must report its own label find each element by its container and assert its exact label not only that the label is in the allowed set",
+      "text": "When each element must report its own label, find each element by its container and assert its exact label, not only that the label is in the allowed set",
+      "signal": "surviving_mutant",
+      "scope": "e2e-analytics",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M30, M31 (tests/e2e/analytics.spec.js:209-221) (e2e-analytics)"
+      ],
+      "created": "2026-10-21T19:33:13Z",
+      "last_seen": "2026-10-21T19:33:13Z"
+    },
+    {
+      "id": "L-007",
+      "key": "spec_precision_gap::when an ac lists allowed values for many elements map each element to its value in the spec",
+      "text": "When an AC lists allowed values for many elements, map each element to its value in the spec",
+      "signal": "spec_precision_gap",
+      "scope": "spec",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md P4 (ANALYTICS-02/07) (spec)"
+      ],
+      "created": "2026-10-21T19:33:14Z",
+      "last_seen": "2026-10-21T19:33:14Z"
+    },
+    {
+      "id": "L-008",
+      "key": "surviving_mutant::assert singular and plural wording at several plural values such as 2 11 and 21 not only next to the singular boundary",
+      "text": "Assert singular and plural wording at several plural values such as 2, 11 and 21, not only next to the singular boundary",
+      "signal": "surviving_mutant",
+      "scope": "unit",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M33 (js/calculator.js:29, tests/unit/calculator.spec.js:25-26) (unit)"
+      ],
+      "created": "2026-10-21T19:33:15Z",
+      "last_seen": "2026-10-21T19:33:15Z"
+    },
+    {
+      "id": "L-009",
+      "key": "spec_deviation::when the spec requires a contrast ratio over a user picked color do not limit the design to a fixed pair of text colors include black and white as fallbacks so every input can reach the ratio",
+      "text": "When the spec requires a contrast ratio over a user-picked color, do not limit the design to a fixed pair of text colors; include black and white as fallbacks so every input can reach the ratio.",
+      "signal": "spec_deviation",
+      "scope": "design",
+      "status": "candidate",
+      "features": [
+        "lp-magia-cases"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "js/preview.js:29 SPEC_DEVIATION readableTextColor (design)"
+      ],
+      "created": "2026-10-21T19:39:41Z",
+      "last_seen": "2026-10-21T19:39:41Z"
     }
   ]
 }
