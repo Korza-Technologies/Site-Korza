@@ -127,3 +127,17 @@ for (const [width, height] of [[1440, 900], [390, 844]]) {
     await expect(email).toHaveAttribute('href', 'mailto:suporte@korza.com.br');
   });
 }
+
+test('Edge case: sem JavaScript todo link de WhatsApp do HTML já tem o href exato da sua localização', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await gotoAt(page, 1440, 900);
+  const links = await page.locator('a[href*="wa.me"]').evaluateAll(list => list.map(link => ({
+    href: link.getAttribute('href'), location: link.dataset.track
+  })));
+  expect(links.map(link => link.location).sort()).toEqual(['closing', 'faq', 'floating', 'footer', 'hero', 'pricing', 'sticky']);
+  for (const link of links) {
+    expect(link.href, link.location).toBe(WA_PREFIX + encodeURIComponent(SPEC_MESSAGES[messageFor[link.location]]));
+  }
+  await context.close();
+});

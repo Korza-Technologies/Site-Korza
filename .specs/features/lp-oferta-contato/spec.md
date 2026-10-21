@@ -64,7 +64,7 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 **Acceptance Criteria** (CONTACT):
 
 1. WHEN a página é renderizada THEN SHALL existir links "Falar com especialista" no hero, no card de preço e na seção de fechamento.
-2. WHEN qualquer link de WhatsApp é analisado THEN o `href` SHALL começar com `https://wa.me/555194553299?text=`, SHALL ter `target="_blank"` e `rel` contendo `noopener`, e o `text` decodificado SHALL ser exatamente a mensagem definida para aquela localização.
+2. WHEN qualquer link de WhatsApp é analisado THEN o `href` SHALL começar com `https://wa.me/555194553299?text=`, SHALL ter `target="_blank"` e `rel` contendo `noopener`, e o `text` decodificado SHALL ser exatamente a mensagem definida para aquela localização. As localizações `sticky`, `floating`, `faq` e `footer` usam a mensagem padrão (a do botão flutuante). *(Definido em 2026-10-21 após o Verifier, P2.)*
 3. WHEN a largura é ≤ 760px THEN a barra fixa inferior (F1 MOB-4) SHALL conter o CTA principal e um botão de WhatsApp com rótulo acessível "Falar com especialista no WhatsApp".
 4. WHEN a largura é > 760px e o hero saiu da tela THEN um botão flutuante de WhatsApp SHALL ficar visível no canto inferior direito; WHEN o hero está visível THEN SHALL ficar oculto.
 5. WHEN o rodapé é exibido THEN SHALL mostrar "(51) 9455-3299" com link de WhatsApp e "suporte@korza.com.br" com `mailto:`.
@@ -107,11 +107,12 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 **Acceptance Criteria** (ANALYTICS):
 
 1. WHEN a constante da chave PostHog está vazia THEN nenhuma requisição SHALL ser feita para `posthog`, `i.posthog.com` ou `burrito.korza.com.br`, e nenhum erro SHALL aparecer no console.
-2. WHEN a chave está preenchida THEN o script SHALL carregar com `api_host` da constante, e cliques em CTA SHALL emitir `cta_click` com `{location, destination: "signup" | "whatsapp"}`.
+2. WHEN a chave está preenchida THEN o script SHALL carregar com `api_host` da constante, e cliques em CTA SHALL emitir `cta_click` com `{location, destination: "signup" | "whatsapp"}`. Os valores permitidos de `location` são `menu`, `nav`, `hero`, `platform`, `goals`, `pricing`, `faq`, `closing`, `footer`, `sticky`, `floating`, `dialog`, `case`. *(Lista definida em 2026-10-21 após o Verifier, P1.)*
 3. WHEN a calculadora produz um N válido pela primeira vez após interação THEN SHALL emitir `calculator_used` uma única vez por carregamento.
 4. WHEN uma pergunta do FAQ é aberta THEN SHALL emitir `faq_open` com `{question}`.
 5. WHEN a URL da página contém parâmetros `utm_*` THEN todo link para `admin.korza.app/create-account` SHALL receber os mesmos parâmetros `utm_*`, sem duplicar.
 6. WHEN o script do PostHog falha ao carregar (bloqueador) THEN os CTAs SHALL continuar navegando normalmente e nenhum erro não tratado SHALL aparecer no console.
+7. WHEN a página é renderizada (e um diálogo de case é aberto) THEN todo link para `admin.korza.app/create-account` e todo link `wa.me` SHALL ter `data-track` com um valor permitido, todos os 13 valores SHALL estar presentes, e o clique em cada um SHALL emitir `cta_click` com exatamente aquele `location` e o `destination` correto. *(Adicionado em 2026-10-21 após os mutantes M26/M27 do Verifier.)*
 
 ---
 
@@ -130,7 +131,7 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 
 - WHEN o visitante está em um desktop sem WhatsApp instalado THEN `wa.me` SHALL abrir o WhatsApp Web (comportamento nativo do link; nenhum tratamento extra).
 - WHEN a URL tem `utm_source` repetido THEN só a primeira ocorrência SHALL ser repassada.
-- WHEN JavaScript está desligado THEN todos os links (cadastro e WhatsApp) SHALL funcionar e a calculadora SHALL mostrar o resultado padrão (8 pedidos) já escrito no HTML.
+- WHEN JavaScript está desligado THEN todos os links de cadastro SHALL apontar para o cadastro, todo link `wa.me` presente no HTML SHALL ter o `href` exato da sua localização (CONTACT-02) e a calculadora SHALL mostrar o resultado padrão (8 pedidos) já escrito no HTML.
 
 ## Implicit-Requirement Dimensions
 
@@ -154,10 +155,10 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 | CONTACT-01..06 | P1: Contato | Execute | Implemented, tests green (T1–T3, T5–T7); awaiting Verifier |
 | FAQ-01..03 | P1: FAQ | Execute | Implemented, tests green (T8); awaiting Verifier |
 | CALC-01..07 | P2: Calculadora | Execute | Implemented, tests green (T9–T10); awaiting Verifier |
-| ANALYTICS-01..06 | P2: Medição | Execute | Implemented, tests green (T11–T13); awaiting Verifier |
+| ANALYTICS-01..07 | P2: Medição | Execute | Implemented, tests green (T11–T13); awaiting Verifier |
 | COMP-01..02 | P3: Comparativo | Execute | Implemented, tests green (T14); awaiting Verifier |
 
-**Coverage:** 30 total, all mapped to tasks.
+**Coverage:** 31 total, all mapped to tasks.
 
 ## Success Criteria
 

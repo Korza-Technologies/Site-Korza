@@ -189,3 +189,34 @@ test('ANALYTICS-04 abrir duas perguntas do FAQ emite dois faq_open com o texto d
   await page.waitForTimeout(300);
   expect(opens()).toHaveLength(2);
 });
+
+const LOCATIONS = ['menu', 'nav', 'hero', 'platform', 'goals', 'pricing', 'faq', 'closing', 'footer', 'sticky', 'floating', 'dialog', 'case'];
+const TRACKED = 'a[href^="https://admin.korza.app/create-account"], a[href^="https://wa.me/"]';
+
+test('ANALYTICS-07 todo CTA de cadastro e de WhatsApp tem data-track permitido e cada clique emite cta_click com a sua localização', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  await stubDestinations(page.context());
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  // Opening a case dialog fills in the case WhatsApp link.
+  const caseButton = page.locator('[data-case="loum"]');
+  await caseButton.scrollIntoViewIfNeeded();
+  await caseButton.click();
+  await expect(page.locator('#feature-dialog')).toBeVisible();
+
+  const links = await page.evaluate(selector => [...document.querySelectorAll(selector)]
+    .map(link => ({ location: link.dataset.track ?? null, href: link.href })), TRACKED);
+  for (const link of links) expect(LOCATIONS, `data-track de ${link.href}`).toContain(link.location);
+  expect([...new Set(links.map(link => link.location))].sort()).toEqual([...LOCATIONS].sort());
+
+  // Every tracked link is clicked once; the visitor stays on the page.
+  await page.evaluate(selector => {
+    window.addEventListener('click', event => event.preventDefault(), true);
+    document.querySelectorAll(selector).forEach(link => link.click());
+  }, TRACKED);
+  const expected = links.map(link => ({
+    event: 'cta_click',
+    properties: { location: link.location, destination: link.href.startsWith('https://wa.me/') ? 'whatsapp' : 'signup' }
+  }));
+  await expect.poll(() => captured.filter(item => item.event === 'cta_click')).toEqual(expected);
+});
