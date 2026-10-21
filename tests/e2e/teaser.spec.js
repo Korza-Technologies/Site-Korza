@@ -204,3 +204,89 @@ test.describe('T4 formulário do teaser', () => {
     await context.close();
   });
 });
+
+const PNG_1X1 = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==', 'base64');
+const LOGO_ERROR = 'Envie PNG, JPG, WebP ou SVG de até 2MB.';
+const logoButton = page => page.locator('.brand-teaser').getByRole('button', { name: 'Enviar logo', exact: true });
+
+// Opens the file chooser from the "Enviar logo" button (keyboard, when asked) and picks the given file.
+async function sendLogo(page, file, { keyboard = false } = {}) {
+  const chooser = page.waitForEvent('filechooser');
+  if (keyboard) {
+    await logoButton(page).focus();
+    await page.keyboard.press('Enter');
+  } else {
+    await logoButton(page).click();
+  }
+  await (await chooser).setFiles(file);
+}
+
+// Background image URL of the header logo and of the push icon, and whether each URL decodes to an image.
+const logos = page => render(page).evaluate(async root => Promise.all(['.app-header .app-logo', '.app-push .app-logo'].map(async selector => {
+  const value = getComputedStyle(root.querySelector(selector)).backgroundImage;
+  const url = value.match(/^url\("(.*)"\)$/)?.[1] ?? null;
+  let width = 0;
+  if (url) {
+    const img = new Image();
+    img.src = url;
+    try { await img.decode(); width = img.naturalWidth; } catch { width = -1; }
+  }
+  return { url, width };
+})));
+
+test.describe('T5 envio de logo', () => {
+  test.beforeEach(async ({ page }) => {
+    // Records every object URL created and revoked by the page.
+    await page.addInitScript(() => {
+      window.__created = [];
+      window.__revoked = [];
+      const create = URL.createObjectURL.bind(URL);
+      const revoke = URL.revokeObjectURL.bind(URL);
+      URL.createObjectURL = object => { const url = create(object); window.__created.push(url); return url; };
+      URL.revokeObjectURL = url => { window.__revoked.push(url); return revoke(url); };
+    });
+    await gotoAt(page, 1440, 900);
+  });
+
+  test('PREVIEW-06 PNG válido aparece no cabeçalho e no ícone do push', async ({ page }) => {
+    await sendLogo(page, { name: 'logo.png', mimeType: 'image/png', buffer: PNG_1X1 }, { keyboard: true });
+    await expect(render(page)).toBeVisible();
+    const [header, push] = await logos(page);
+    expect(header.url).toMatch(/^blob:/);
+    expect(push.url).toBe(header.url);
+    expect(header.width).toBe(1);
+    expect(push.width).toBe(1);
+    await expect(page.locator('.teaser-error')).toHaveText('');
+  });
+
+  for (const [label, file] of [
+    ['GIF', { name: 'logo.gif', mimeType: 'image/gif', buffer: Buffer.from('GIF89a') }],
+    ['PNG de 2MB + 1 byte', { name: 'grande.png', mimeType: 'image/png', buffer: Buffer.concat([PNG_1X1, Buffer.alloc(2 * 1024 * 1024 + 1 - PNG_1X1.length)]) }]
+  ]) {
+    test(`PREVIEW-06 ${label} mostra a mensagem e mantém o logo anterior`, async ({ page }) => {
+      await sendLogo(page, { name: 'logo.png', mimeType: 'image/png', buffer: PNG_1X1 });
+      const [before] = await logos(page);
+      expect(before.url).toMatch(/^blob:/);
+      await sendLogo(page, file);
+      await expect(page.locator('.teaser-error')).toHaveText(LOGO_ERROR);
+      await expect(page.locator('.teaser-error')).toBeVisible();
+      const [header, push] = await logos(page);
+      expect(header).toEqual(before);
+      expect(push).toEqual(before);
+      expect(await page.evaluate(() => window.__revoked)).toEqual([]);
+    });
+  }
+
+  test('PREVIEW-10 um segundo logo revoga a URL de objeto do primeiro', async ({ page }) => {
+    await sendLogo(page, { name: 'um.png', mimeType: 'image/png', buffer: PNG_1X1 });
+    const [first] = await logos(page);
+    await sendLogo(page, { name: 'dois.png', mimeType: 'image/png', buffer: PNG_1X1 });
+    const [second, push] = await logos(page);
+    expect(second.url).toMatch(/^blob:/);
+    expect(second.url).not.toBe(first.url);
+    expect(push.url).toBe(second.url);
+    const { created, revoked } = await page.evaluate(() => ({ created: window.__created, revoked: window.__revoked }));
+    expect(created).toEqual([first.url, second.url]);
+    expect(revoked).toEqual([first.url]);
+  });
+});

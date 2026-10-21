@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/jakarta-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/jakarta-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css?v=20261021">
-  <link rel="stylesheet" href="styles/components.css?v=20261021j">
+  <link rel="stylesheet" href="styles/components.css?v=20261021k">
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
@@ -50,9 +50,10 @@
     <h1>Sua marca<br><span>no bolso do<br>seu cliente.</span></h1>
     <p>Sua loja Nuvemshop ou Shopify vira um app para iOS e Android, com notificações push e painel de vendas.</p>
     <div class="actions"><a class="button signup-cta" data-track="hero" href="https://admin.korza.app/create-account">Montar meu app grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a><a class="link" data-track="hero" href="https://wa.me/555194553299?text=Oi!%20Vim%20pelo%20site%20da%20Korza%20e%20quero%20entender%20como%20ter%20o%20app%20da%20minha%20loja." target="_blank" rel="noopener">Falar com especialista <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a><a class="link" href="#plataforma">Conheça a plataforma <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-    <form class="brand-teaser" hidden aria-labelledby="teaser-title"><div class="teaser-head"><strong class="teaser-title" id="teaser-title">Veja sua loja virar app</strong></div>
+    <form class="brand-teaser" hidden aria-labelledby="teaser-title"><div class="teaser-head"><strong class="teaser-title" id="teaser-title">Veja sua loja virar app</strong><button type="button" class="teaser-logo">Enviar logo</button><input type="file" id="teaser-logo" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden></div>
       <div class="teaser-field"><label for="teaser-name">Nome da sua loja</label><input id="teaser-name" type="text" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Ex.: Loja da Ana"></div>
       <fieldset class="teaser-colors"><legend>Cor da marca</legend><label class="swatch"><input type="radio" name="teaser-color" value="#155DFC" checked><span class="swatch-dot" style="--swatch:#155DFC"></span><span class="visually-hidden">Azul</span></label><label class="swatch"><input type="radio" name="teaser-color" value="#0F1A33"><span class="swatch-dot" style="--swatch:#0F1A33"></span><span class="visually-hidden">Azul-marinho</span></label><label class="swatch"><input type="radio" name="teaser-color" value="#E11D48"><span class="swatch-dot" style="--swatch:#E11D48"></span><span class="visually-hidden">Vermelho</span></label><label class="swatch"><input type="radio" name="teaser-color" value="#16A34A"><span class="swatch-dot" style="--swatch:#16A34A"></span><span class="visually-hidden">Verde</span></label><label class="swatch"><input type="radio" name="teaser-color" value="#F59E0B"><span class="swatch-dot" style="--swatch:#F59E0B"></span><span class="visually-hidden">Amarelo</span></label><label class="swatch"><input type="radio" name="teaser-color" value="#7C3AED"><span class="swatch-dot" style="--swatch:#7C3AED"></span><span class="visually-hidden">Roxo</span></label><label class="swatch swatch-custom"><input type="color" id="teaser-custom" value="#155dfc"><span class="swatch-dot"></span><span class="visually-hidden">Outra cor</span></label></fieldset>
+      <span class="teaser-error" role="alert"></span>
       <span class="visually-hidden teaser-live" aria-live="polite"></span>
     </form>
     <div class="hero-compatible"><span>Conectado à sua loja</span><div><span class="platform-word">Nuvemshop</span><span class="tiny-plus">+</span><span class="platform-word shopify-word">shopify</span></div></div>

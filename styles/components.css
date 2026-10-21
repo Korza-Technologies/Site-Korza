@@ -241,6 +241,10 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 .swatch input:focus-visible+.swatch-dot{outline:3px solid var(--blue);outline-offset:5px}
 .swatch-custom .swatch-dot{background:conic-gradient(#e11d48,#f59e0b,#16a34a,#155dfc,#7c3aed,#e11d48)}
 .teaser-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:24px}
+.teaser-logo{min-height:44px;padding:0 4px;border:0;background:none;color:#174db3;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.teaser-logo:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.teaser-error{grid-column:1/-1;font-size:13px;font-weight:600;color:#c0262d}
+.teaser-error:empty{display:none}
 /* Wide screens: name and colors side by side, so the hero keeps its height. */
 @media(min-width:1101px){
   .brand-teaser{grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;max-width:none;margin-top:20px}

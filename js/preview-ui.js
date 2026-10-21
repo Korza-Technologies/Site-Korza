@@ -1,4 +1,4 @@
-import { normalizeStoreName, readableTextColor } from './preview.js';
+import { normalizeStoreName, readableTextColor, validateLogo } from './preview.js';
 
 // "See your store become an app": the hero phone switches from the real Hiven photo to the drawn app
 // with the visitor's name and color. Everything stays in the browser.
@@ -35,6 +35,26 @@ export function initPreview() {
     color = custom.value;
     radios.forEach(radio => { radio.checked = false; });
     custom.closest('.swatch').classList.add('is-selected');
+    update();
+  });
+  // The logo is read only by this page, through an object URL; the previous URL is revoked when a new logo replaces it.
+  const logoInput = form.querySelector('#teaser-logo');
+  const error = form.querySelector('.teaser-error');
+  let logoUrl = null;
+  form.querySelector('.teaser-logo').addEventListener('click', () => logoInput.click());
+  logoInput.addEventListener('change', () => {
+    const file = logoInput.files[0];
+    logoInput.value = '';
+    if (!file) return;
+    const result = validateLogo(file);
+    error.textContent = result.ok ? '' : result.message;
+    if (!result.ok) return;
+    if (logoUrl) URL.revokeObjectURL(logoUrl);
+    logoUrl = URL.createObjectURL(file);
+    device.querySelectorAll('.app-logo').forEach(el => {
+      el.style.backgroundImage = `url("${logoUrl}")`;
+      el.classList.add('has-logo');
+    });
     update();
   });
   // Nothing is ever submitted: pressing Enter in the name field must not send the name anywhere.

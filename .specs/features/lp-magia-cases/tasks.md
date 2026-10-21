@@ -97,17 +97,18 @@ T7 → T8 → T9
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): visitante vê o nome e a cor da loja no app`
-**Status**: ✅ Done (o formulário fica logo abaixo dos CTAs do hero, para o CTA continuar inteiro na primeira tela em 844×390 (MOB-06); acima de 1100px nome e cores ficam lado a lado e o `padding-bottom` do hero cai para 40px, para a faixa de logos continuar visível na primeira tela em 1440×900 (A11Y-05 da F1); a atualização é síncrona a cada `input`, sem `requestAnimationFrame`, para garantir os 150ms sob carga; o `aria-label` do `.hero-scene` passa a "Prévia do app da NOME")
+**Status**: ✅ Done (5ecfec4; o formulário fica logo abaixo dos CTAs do hero, para o CTA continuar inteiro na primeira tela em 844×390 (MOB-06); acima de 1100px nome e cores ficam lado a lado e o `padding-bottom` do hero cai para 40px, para a faixa de logos continuar visível na primeira tela em 1440×900 (A11Y-05 da F1); a atualização é síncrona a cada `input`, sem `requestAnimationFrame`, para garantir os 150ms sob carga; o `aria-label` do `.hero-scene` passa a "Prévia do app da NOME")
 
 ### T5: Envio de logo
 **What**: Link "Enviar logo", validação, exibição no cabeçalho e no ícone do push, revogação da URL anterior.
 **Where**: `index.html`, `js/preview-ui.js`
 **Depends on**: T4 · **Requirement**: PREVIEW-06, PREVIEW-10
 **Done when**:
-- [ ] e2e: PNG válido aparece nos 2 lugares; GIF e PNG de 2MB+1 mostram a mensagem e mantêm o logo anterior; segundo logo revoga a URL do primeiro (espião em `URL.revokeObjectURL`)
-- [ ] `npm test` verde
+- [x] e2e: PNG válido aparece nos 2 lugares; GIF e PNG de 2MB+1 mostram a mensagem e mantêm o logo anterior; segundo logo revoga a URL do primeiro (espião em `URL.revokeObjectURL`)
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(teaser): permite enviar o logo da loja`
+**Status**: ✅ Done ("Enviar logo" é um `button` que abre o `input type=file` oculto, na linha do título do teaser; o logo vai como `background-image` do `.app-logo` no cabeçalho e no ícone do push; estilos do botão e da mensagem em `styles/components.css`, que vai para `?v=20261021k`)
 
 ### T6: CTA, evento e privacidade do teaser
 **What**: Na primeira interação, o CTA do hero vira "Continuar montando meu app" e `brand_preview_used` é emitido uma vez, sem o nome.
