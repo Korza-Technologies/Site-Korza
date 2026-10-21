@@ -144,7 +144,7 @@ T9 → T10 → T11 → T12 → T13 → T14
 - [ ] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(mobile): adiciona barra fixa de CTA`
-**Status**: ✅ Done
+**Status**: ✅ Done (e225291)
 
 ### T9: Hero mobile e celular deitado
 **What**: Mostrar a cena do hero no mobile, CTA largo de 16px/48px, fita fora do título, header compacto em altura ≤ 500px.
