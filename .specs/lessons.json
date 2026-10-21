@@ -3,7 +3,7 @@
   "promote_threshold": 2,
   "window_days": 45,
   "quarantine_threshold": 2,
-  "next_id": 4,
+  "next_id": 6,
   "lessons": [
     {
       "id": "L-001",
@@ -47,17 +47,55 @@
       "text": "When an AC depends on a known name, define the list of known names in the spec so the assertion is exact",
       "signal": "spec_precision_gap",
       "scope": "spec",
+      "status": "confirmed",
+      "features": [
+        "lp-fundacao",
+        "lp-oferta-contato"
+      ],
+      "recurrence": 2,
+      "harmful": 0,
+      "evidence": [
+        "A11Y-07 tests/e2e/text-a11y.spec.js:24 (spec)",
+        "validation.md P1 (ANALYTICS-02 location values) (spec)"
+      ],
+      "created": "2026-10-21T15:24:47Z",
+      "last_seen": "2026-10-21T18:31:10Z"
+    },
+    {
+      "id": "L-004",
+      "key": "surviving_mutant::when an ac applies to every element of a kind assert it on every matching element not on a sample",
+      "text": "When an AC applies to every element of a kind, assert it on every matching element, not on a sample",
+      "signal": "surviving_mutant",
+      "scope": "e2e-analytics",
       "status": "candidate",
       "features": [
-        "lp-fundacao"
+        "lp-oferta-contato"
       ],
       "recurrence": 1,
       "harmful": 0,
       "evidence": [
-        "A11Y-07 tests/e2e/text-a11y.spec.js:24 (spec)"
+        "validation.md M26, M27 (ANALYTICS-02) (e2e-analytics)"
       ],
-      "created": "2026-10-21T15:24:47Z",
-      "last_seen": "2026-10-21T15:24:47Z"
+      "created": "2026-10-21T18:31:01Z",
+      "last_seen": "2026-10-21T18:31:01Z"
+    },
+    {
+      "id": "L-005",
+      "key": "ac_gap::when an edge case says links work without javascript assert every link s exact href with javascript disabled",
+      "text": "When an edge case says links work without JavaScript, assert every link's exact href with JavaScript disabled",
+      "signal": "ac_gap",
+      "scope": "e2e-nojs",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M28 (edge case no JavaScript) (e2e-nojs)"
+      ],
+      "created": "2026-10-21T18:31:02Z",
+      "last_seen": "2026-10-21T18:31:02Z"
     }
   ]
 }

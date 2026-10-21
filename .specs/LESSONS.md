@@ -8,7 +8,11 @@
 
 Corroborated across multiple features. Safe to apply as guidance.
 
-_none_
+### L-003 — When an AC depends on a known name, define the list of known names in the spec so the assertion is exact
+- signal: `spec_precision_gap` · recurrence: 2 feature(s) · scope: `spec` · harmful: 0
+- features: lp-fundacao, lp-oferta-contato
+- evidence: A11Y-07 tests/e2e/text-a11y.spec.js:24 (spec) (+1 more)
+- last seen: 2026-10-21T18:31:10Z
 
 ## Candidates (under observation — do NOT load as guidance yet)
 
@@ -26,11 +30,17 @@ Seen once or not yet corroborated. Tracked, not trusted.
 - evidence: VIS-04 tests/e2e/visual.spec.js:61 (spec)
 - last seen: 2026-10-21T15:24:47Z
 
-### L-003 — When an AC depends on a known name, define the list of known names in the spec so the assertion is exact
-- signal: `spec_precision_gap` · recurrence: 1 feature(s) · scope: `spec` · harmful: 0
-- features: lp-fundacao
-- evidence: A11Y-07 tests/e2e/text-a11y.spec.js:24 (spec)
-- last seen: 2026-10-21T15:24:47Z
+### L-004 — When an AC applies to every element of a kind, assert it on every matching element, not on a sample
+- signal: `surviving_mutant` · recurrence: 1 feature(s) · scope: `e2e-analytics` · harmful: 0
+- features: lp-oferta-contato
+- evidence: validation.md M26, M27 (ANALYTICS-02) (e2e-analytics)
+- last seen: 2026-10-21T18:31:01Z
+
+### L-005 — When an edge case says links work without JavaScript, assert every link's exact href with JavaScript disabled
+- signal: `ac_gap` · recurrence: 1 feature(s) · scope: `e2e-nojs` · harmful: 0
+- features: lp-oferta-contato
+- evidence: validation.md M28 (edge case no JavaScript) (e2e-nojs)
+- last seen: 2026-10-21T18:31:02Z
 
 ## Quarantined (failed when applied — ignore)
 
