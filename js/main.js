@@ -9,8 +9,10 @@ import { initCasesCarousel } from './cases-carousel.js';
 import { initRevenueDemo } from './revenue-demo.js';
 import { initStickyCta } from './sticky-cta.js';
 import { initCalculator } from './calculator-ui.js';
+import { initUtm } from './utm.js';
 
 initAnalytics();
+initUtm();
 initPauseButton(document.querySelector('.motion-toggle'));
 initMenu();
 initBrandPicker();

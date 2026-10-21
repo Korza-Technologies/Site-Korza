@@ -178,18 +178,19 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(analytics): mede uso da calculadora e do FAQ`
-**Status**: ✅ Done (testes em `tests/e2e/analytics.spec.js`; `calculator_used` vai sem propriedades, a spec não define nenhuma)
+**Status**: ✅ Done (22c0d59; testes em `tests/e2e/analytics.spec.js`; `calculator_used` vai sem propriedades, a spec não define nenhuma)
 
 ### T13: Repasse de UTM
 **What**: `appendUtm` pura + `initUtm`.
 **Where**: `js/utm.js`, `tests/unit/utm.spec.js`, `tests/e2e/utm.spec.js`
 **Depends on**: T12 · **Requirement**: ANALYTICS-05
 **Done when**:
-- [ ] Unit: só `utm_*`; primeira ocorrência; não duplica; preserva query existente
-- [ ] e2e: abrir `/?utm_source=ig&utm_campaign=x&foo=1` → todo link de cadastro tem `utm_source=ig&utm_campaign=x` e não tem `foo`
-- [ ] `npm test` verde
+- [x] Unit: só `utm_*`; primeira ocorrência; não duplica; preserva query existente
+- [x] e2e: abrir `/?utm_source=ig&utm_campaign=x&foo=1` → todo link de cadastro tem `utm_source=ig&utm_campaign=x` e não tem `foo`
+- [x] `npm test` verde
 **Tests**: unit + e2e · **Gate**: full
 **Commit**: `feat(analytics): repassa UTM para o cadastro`
+**Status**: ✅ Done (se o link já tiver o mesmo `utm_*`, o valor da página substitui o do link, sem repetir a chave)
 
 ### T14: Comparativo site × app
 **What**: Seção com `table` semântica e 4 linhas.
