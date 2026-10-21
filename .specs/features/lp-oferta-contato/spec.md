@@ -150,7 +150,7 @@ O visitante vê "Criar conta grátis" em oito lugares e um único preço de R$ 3
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| OFFER-01..06 | P1: Oferta | Execute | In progress: OFFER-01 tests green (T2) |
+| OFFER-01..06 | P1: Oferta | Execute | In progress: OFFER-01 (T2), OFFER-02..03 (T3) tests green |
 | CONTACT-01..06 | P1: Contato | Execute | In progress: CONTACT-02 link format (T1), CONTACT-06 (T2) tests green |
 | FAQ-01..03 | P1: FAQ | Tasks | In Tasks |
 | CALC-01..07 | P2: Calculadora | Tasks | In Tasks |

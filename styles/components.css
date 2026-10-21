@@ -120,3 +120,10 @@ body.animations-paused .logo-track{animation-play-state:paused!important}
 /* Text contrast (A11Y-01): muted text uses #5b6b82, at least 4.5:1 on the page's white and ice backgrounds. */
 .hero-compatible>span,.card-number,.brand-picker button[aria-pressed=false],.metric-period,.push-sale small,.metric-source,
 .platform-cta p,.story-bottom>span,.fine-print,.footer .footer-main p,.footer-links a,.footer-contact>span,.footer-bottom span,.footer-bottom a{color:#5b6b82}
+
+/* Pricing card (OFFER-02/03): what is free, what is paid, commitment and deadline, then the two ways forward. */
+.plan-facts{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px;max-width:390px}
+.plan-facts li{position:relative;padding-left:24px;font-size:15px;line-height:1.5;color:#fff}
+.plan-facts li:before{content:'✓';position:absolute;left:0;top:0;font-weight:600}
+.plan-facts strong{font-weight:650}
+.plan-price .plan-whatsapp{margin-top:18px;font-size:15px;color:#fff;text-decoration:underline;text-underline-offset:4px}

@@ -68,17 +68,18 @@ T8 → T9 → T10 → T11 → T12 → T13 → T14
 - [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(oferta): unifica o CTA em "Montar meu app grátis"`
-**Status**: ✅ Done
+**Status**: ✅ Done (be87f73)
 
 ### T3: Card de preço reescrito
 **What**: Card com R$ 399/mês, os 6 fatos de OFFER-02 e o link de WhatsApp de preço.
 **Where**: `index.html`, `styles/components.css`
 **Depends on**: T2 · **Requirement**: OFFER-02, OFFER-03
 **Done when**:
-- [ ] e2e OFFER-02, OFFER-03 (href = `waLink('pricing')`)
-- [ ] `npm test` verde
+- [x] e2e OFFER-02, OFFER-03 (href = `waLink('pricing')`)
+- [x] `npm test` verde
 **Tests**: e2e · **Gate**: full
 **Commit**: `feat(oferta): deixa claro o que é grátis e o que é pago`
+**Status**: ✅ Done
 
 ### T4: Copy direta
 **What**: Reescrever headlines e subtítulos em tom direto; "próximo/próxima" ≤ 3; zero "pushs"; analytics com selo "Exemplo do painel" e sem "tempo real".
