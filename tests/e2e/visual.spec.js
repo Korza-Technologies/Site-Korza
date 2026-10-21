@@ -57,3 +57,46 @@ for (const [width, height] of [[1440, 900], [1280, 720], [820, 1180], [390, 844]
     expect(checked).toBeGreaterThan(0);
   });
 }
+
+for (const [width, height] of [[1440, 900], [390, 844], [844, 390]]) {
+  test(`VIS-04 botão de pausa com até 44x44px, nome acessível e sem cobrir links ou botões da primeira tela em ${width}x${height}`, async ({ page }) => {
+    await gotoAt(page, width, height);
+    const button = page.locator('.motion-toggle');
+    await expect(page.getByRole('button', { name: 'Pausar animações', exact: true })).toBeVisible();
+    const box = await rectOf(button);
+    expect(box.width).toBeLessThanOrEqual(44);
+    expect(box.height).toBeLessThanOrEqual(44);
+    // Nothing the button draws (e.g. its label) spreads beyond the 44x44 icon while idle.
+    const painted = await button.evaluate(el => [el, ...el.querySelectorAll('*')].map(node => node.getBoundingClientRect())
+      .filter(r => r.width > 1 && r.height > 1)
+      .map(r => ({ width: r.width, height: r.height })));
+    for (const r of painted) {
+      expect(r.width).toBeLessThanOrEqual(44);
+      expect(r.height).toBeLessThanOrEqual(44);
+    }
+
+    const controls = await page.evaluate(() => [...document.querySelectorAll('a[href], button')]
+      .filter(el => !el.classList.contains('motion-toggle') && !el.closest('[hidden], [inert]') && el.checkVisibility())
+      .map(el => ({ text: (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 30), rect: el.getBoundingClientRect().toJSON() }))
+      .filter(({ rect }) => rect.width && rect.height && rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth));
+    expect(controls.length).toBeGreaterThan(0);
+    const covered = controls.filter(({ rect }) => rectsIntersect(rect, box)).map(({ text }) => text);
+    expect(covered).toEqual([]);
+
+    await button.click();
+    await expect(page.getByRole('button', { name: 'Retomar animações', exact: true })).toBeVisible();
+    const pressed = await rectOf(button);
+    expect(pressed.width).toBeLessThanOrEqual(44);
+    expect(pressed.height).toBeLessThanOrEqual(44);
+  });
+}
+
+test('VIS-05 com a barra fixa visível, o CTA ocupa ao menos 70% da largura da barra em 390x844', async ({ page }) => {
+  await gotoAt(page, 390, 844);
+  await page.locator('.product-grid').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  const bar = page.locator('.sticky-cta');
+  await expect(bar).toBeVisible();
+  const barBox = await rectOf(bar);
+  const ctaBox = await rectOf(bar.locator('.signup-cta'));
+  expect(ctaBox.width).toBeGreaterThanOrEqual(0.7 * barBox.width);
+});

@@ -16,7 +16,7 @@ function update() {
   document.body.classList.toggle('animations-paused', isPaused());
   if (button) {
     button.setAttribute('aria-pressed', String(userPaused));
-    button.textContent = userPaused ? 'Retomar animações' : 'Pausar animações';
+    button.querySelector('.motion-label').textContent = userPaused ? 'Retomar animações' : 'Pausar animações';
   }
   listeners.forEach(callback => callback());
 }
