@@ -1,0 +1,47 @@
+import { cases } from './cases-data.js';
+
+export const brands = {
+  loum: {name:'Loum', x:-550, y:-220, alt: 'Aplicativo Loum com a identidade visual da marca'},
+  hiven: {name:'Hiven', x:-440, y:-110, alt: 'Aplicativo Hiven com a identidade visual da marca'},
+  belletonn: {name:'Belletonn', x:-110, y:-220, alt: 'Aplicativo Belletonn com a identidade visual da marca'}
+};
+
+export const details = {
+  push: {title:'Bons motivos para voltar.', description:'Escreva, escolha o destino e agende. Depois, acompanhe o resultado no painel.', note:'As notificações chegam aos clientes que autorizaram receber push no aplicativo.'},
+  integrations: {title:'Sua loja, agora em app.', description:'Conecte sua Nuvemshop ou Shopify. A gente organiza com você o caminho até o app.', note:'A publicação considera as etapas de análise das lojas de aplicativos.'},
+  analytics: {title:'Entenda o que acontece no seu app.', description:'O dashboard reúne vendas, recompras, desempenho das campanhas e evolução da base de clientes. Use essa visão para acompanhar o canal e orientar suas ações.', note:'Métricas ilustrativas para mostrar a experiência do painel.'},
+  // Case studies (loum, hiven, belletonn, pe) come from js/cases-data.js, the single source of the case numbers.
+  ...cases
+};
+
+export const pushExamples = [
+  {brand:'LOUM', x:-550, y:-220, title:'Seu novo favorito chegou 🤎', text:'A coleção nova já está no app.'},
+  {brand:'ONUH', x:-110, y:-440, title:'Seu pedido está a caminho', text:'A ansiedade é sua. O cuidado é nosso.'},
+  {brand:'GREEN IS GOOD', x:-220, y:0, title:'Uma pausa para se cuidar 🌿', text:'Seus favoritos estão por aqui.'},
+  {brand:'HIVEN', x:-440, y:-110, title:'Olha quem voltou ao estoque', text:'A peça que você queria. No seu tamanho.'},
+  {brand:'DONA RICA', x:-220, y:-330, title:'Tem novidade no seu estilo', text:'Escolha a sua no app.'},
+  {brand:'LOUM', x:-550, y:-220, title:'Seu carrinho sentiu saudade', text:'Seu look ficou te esperando.'}
+];
+
+export const demoOrders = [190, 250, 150, 320];
+
+// Human contact (AD-005). Every WhatsApp link on the page must match `waLink` (js/whatsapp.js).
+export const WHATSAPP_NUMBER = '555194553299';
+export const WHATSAPP_DISPLAY = '(51) 9455-3299';
+export const SUPPORT_EMAIL = 'suporte@korza.com.br';
+export const MESSAGES = {
+  hero: 'Oi! Vim pelo site da Korza e quero entender como ter o app da minha loja.',
+  pricing: 'Oi! Quero entender o plano de R$ 399 da Korza.',
+  closing: 'Oi! Quero colocar minha loja em um app com a Korza.',
+  floating: 'Oi! Vim pelo site da Korza e tenho uma dúvida.',
+  case: name => `Oi! Vi o case da ${name} no site e quero um resultado parecido.`
+};
+
+// Monthly plan price in reais (AD-006), used by the payback calculator.
+export const PLAN_PRICE = 399;
+
+// PostHog (AD-004): with an empty key no analytics script is loaded and nothing is sent.
+// Fill in only with the Korza project key provided by the owner. Confirm the region (ui_host) along with the key.
+export const POSTHOG_KEY = '';
+export const POSTHOG_API_HOST = 'https://burrito.korza.com.br';
+export const POSTHOG_UI_HOST = 'https://us.posthog.com';

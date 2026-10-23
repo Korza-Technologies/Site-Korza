@@ -1,0 +1,246 @@
+import { test, expect } from '@playwright/test';
+import { gotoAt, scrollToEnd } from '../helpers.js';
+import { POSTHOG_API_HOST } from '../../js/config.js';
+
+const TEST_KEY = 'phc_test_key';
+const ANALYTICS_HOSTS = /posthog|burrito\.korza\.com\.br/i;
+const SIGNUP = 'https://admin.korza.app/create-account';
+
+// Serves js/config.js with the given PostHog key, so the test never depends on the key shipped in the repository.
+async function useKey(page, key) {
+  await page.route('**/js/config.js', async route => {
+    const response = await route.fetch();
+    const source = await response.text();
+    const pattern = /export const POSTHOG_KEY = '[^']*';/;
+    if (!pattern.test(source)) throw new Error('POSTHOG_KEY constant not found in js/config.js');
+    await route.fulfill({ response, body: source.replace(pattern, `export const POSTHOG_KEY = '${key}';`) });
+  });
+}
+
+// Stand-in for the PostHog library: takes over the official stub and reports every capture to the test.
+const FAKE_POSTHOG = `(function () {
+  var stub = window.posthog;
+  window.__phInit = stub._i;
+  var lib = { __loaded: true, init: function () {}, capture: function (event, properties) { window.__phCapture({ event: event, properties: properties }); } };
+  window.posthog = lib;
+  stub.forEach(function (call) { if (call[0] === 'capture') lib.capture(call[1], call[2]); });
+})();`;
+
+async function fakePostHog(page) {
+  const captured = [];
+  const scripts = [];
+  await page.exposeFunction('__phCapture', data => { captured.push(data); });
+  await page.context().route(url => url.hostname === new URL(POSTHOG_API_HOST).hostname, route => {
+    scripts.push(route.request().url());
+    return route.fulfill({ contentType: 'text/javascript', body: FAKE_POSTHOG });
+  });
+  return { captured, scripts };
+}
+
+// Destinations answered locally: the tests never leave the machine.
+async function stubDestinations(context) {
+  await context.route('https://admin.korza.app/**', route => route.fulfill({ contentType: 'text/html', body: '<title>cadastro</title>' }));
+  await context.route('https://wa.me/**', route => route.fulfill({ contentType: 'text/html', body: '<title>whatsapp</title>' }));
+}
+
+function watchConsole(page) {
+  const errors = [];
+  page.on('console', message => { if (message.type() === 'error') errors.push({ text: message.text(), url: message.location().url }); });
+  page.on('pageerror', error => errors.push({ text: `pageerror: ${error.message}`, url: '' }));
+  return errors;
+}
+
+test('ANALYTICS-01 com a chave vazia nenhuma requisição vai para o PostHog e o console fica limpo', async ({ page }) => {
+  await useKey(page, '');
+  await stubDestinations(page.context());
+  const requests = [];
+  page.context().on('request', request => requests.push(request.url()));
+  // Recorded above, never sent to the network.
+  await page.context().route(url => ANALYTICS_HOSTS.test(url.href), route => route.abort());
+  const errors = watchConsole(page);
+  await gotoAt(page, 1440, 900);
+  await scrollToEnd(page);
+  // Interactions that would emit events when analytics is on.
+  await page.locator('#duvidas summary').first().click();
+  await page.locator('#precos').getByLabel('Ticket médio (R$)', { exact: true }).fill('250');
+  const popup = page.waitForEvent('popup');
+  await page.locator('.plan-price a[href^="https://wa.me/"]').click();
+  await (await popup).waitForLoadState();
+  await page.locator('.hero a[href^="https://admin.korza.app/create-account"]').click();
+  await page.waitForURL(`${SIGNUP}**`);
+
+  expect(requests.length).toBeGreaterThan(0);
+  expect(requests.filter(url => ANALYTICS_HOSTS.test(url))).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test('ANALYTICS-02 com a chave preenchida o script vem do api_host e o clique no cadastro emite cta_click', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  await stubDestinations(page.context());
+  const { captured, scripts } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+
+  await expect.poll(() => scripts.length).toBe(1);
+  expect(scripts[0].startsWith(`${POSTHOG_API_HOST}/`)).toBe(true);
+  expect(POSTHOG_API_HOST).toBe('https://burrito.korza.com.br');
+  const [key, options] = await page.evaluate(() => window.__phInit[0]);
+  expect(key).toBe(TEST_KEY);
+  expect(options.api_host).toBe(POSTHOG_API_HOST);
+
+  await page.locator('.hero a[href^="https://admin.korza.app/create-account"]').click();
+  await expect.poll(() => captured.filter(item => item.event === 'cta_click')).toEqual([
+    { event: 'cta_click', properties: { location: 'hero', destination: 'signup' } }
+  ]);
+  // The click still takes the visitor to the signup.
+  await page.waitForURL(`${SIGNUP}**`);
+});
+
+test('ANALYTICS-02 clique no WhatsApp emite cta_click com a localização do link', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  await stubDestinations(page.context());
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+
+  for (const [selector, location] of [['.plan-price a[href^="https://wa.me/"]', 'pricing'], ['.closing-section a[href^="https://wa.me/"]', 'closing']]) {
+    const link = page.locator(selector);
+    await link.scrollIntoViewIfNeeded();
+    const popup = page.waitForEvent('popup');
+    await link.click();
+    await (await popup).close();
+    await expect.poll(() => captured.filter(item => item.event === 'cta_click').at(-1), location).toEqual({
+      event: 'cta_click', properties: { location, destination: 'whatsapp' }
+    });
+  }
+  expect(captured.filter(item => item.event === 'cta_click')).toHaveLength(2);
+});
+
+test('ANALYTICS-06 com o script do PostHog bloqueado os CTAs navegam e o console não mostra erro não tratado', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  await stubDestinations(page.context());
+  const blocked = [];
+  await page.context().route(url => url.hostname === new URL(POSTHOG_API_HOST).hostname, route => {
+    blocked.push(route.request().url());
+    return route.abort('blockedbyclient');
+  });
+  const errors = watchConsole(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => blocked.length).toBe(1);
+
+  const popup = page.waitForEvent('popup');
+  await page.locator('.plan-price a[href^="https://wa.me/"]').click();
+  const whatsapp = await popup;
+  await whatsapp.waitForLoadState();
+  expect(whatsapp.url().startsWith('https://wa.me/555194553299?text=')).toBe(true);
+
+  await page.locator('.hero a[href^="https://admin.korza.app/create-account"]').click();
+  await page.waitForURL(`${SIGNUP}**`);
+  await expect(page).toHaveTitle('cadastro');
+
+  // The only console entry allowed is the browser's own note about the blocked request.
+  const unexpected = errors.filter(error => !(error.text.startsWith('Failed to load resource') && error.url.startsWith(POSTHOG_API_HOST)));
+  expect(unexpected).toEqual([]);
+});
+
+test('ANALYTICS-03 calculator_used sai uma única vez, no primeiro N válido depois de mexer na calculadora', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+  const uses = () => captured.filter(item => item.event === 'calculator_used').length;
+  const ticket = page.locator('#precos').getByLabel('Ticket médio (R$)', { exact: true });
+  const margin = page.locator('#precos').getByLabel('Margem (%)', { exact: true });
+  const result = page.locator('#precos [aria-live="polite"]');
+
+  // The default result on load is not a use; an invalid value is not a valid N.
+  await ticket.fill('');
+  await expect(result).toHaveText('Informe um ticket médio entre R$ 1 e R$ 100.000.');
+  await page.waitForTimeout(300);
+  expect(uses()).toBe(0);
+
+  await ticket.fill('250');
+  await expect(result).toHaveText('O plano se paga com 6 pedidos por mês pelo app.');
+  await expect.poll(uses).toBe(1);
+
+  await margin.fill('10');
+  await expect(result).toHaveText('O plano se paga com 16 pedidos por mês pelo app.');
+  await page.waitForTimeout(300);
+  expect(uses()).toBe(1);
+});
+
+test('ANALYTICS-04 abrir duas perguntas do FAQ emite dois faq_open com o texto de cada pergunta', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  await expect.poll(() => page.evaluate(() => Boolean(window.posthog && window.posthog.__loaded))).toBe(true);
+  const opens = () => captured.filter(item => item.event === 'faq_open');
+
+  const first = page.locator('#duvidas summary', { hasText: 'O que é grátis e o que é pago?' });
+  const last = page.locator('#duvidas summary', { hasText: 'Consigo acompanhar os resultados?' });
+  await first.click();
+  await last.click();
+  await expect.poll(opens).toEqual([
+    { event: 'faq_open', properties: { question: 'O que é grátis e o que é pago?' } },
+    { event: 'faq_open', properties: { question: 'Consigo acompanhar os resultados?' } }
+  ]);
+  // Closing a question is not an opening.
+  await first.click();
+  await expect(first.locator('..')).not.toHaveAttribute('open', '');
+  await page.waitForTimeout(300);
+  expect(opens()).toHaveLength(2);
+});
+
+const SIGNUP_LINK = 'a[href^="https://admin.korza.app/create-account"]';
+const WA_LINK = 'a[href^="https://wa.me/"]';
+const TRACKED = `${SIGNUP_LINK}, ${WA_LINK}`;
+// Spec map (ANALYTICS-07): where each link lives, the location it must report and its destination.
+const PLACES = [
+  [`#navigation ${SIGNUP_LINK}`, 'menu', 'signup'],
+  ['.nav-bar > a.nav-signup', 'nav', 'signup'],
+  [`#inicio ${SIGNUP_LINK}`, 'hero', 'signup'],
+  [`#inicio ${WA_LINK}`, 'hero', 'whatsapp'],
+  [`#plataforma ${SIGNUP_LINK}`, 'platform', 'signup'],
+  [`#resultados ${SIGNUP_LINK}`, 'goals', 'signup'],
+  [`#precos ${SIGNUP_LINK}`, 'pricing', 'signup'],
+  [`#precos ${WA_LINK}`, 'pricing', 'whatsapp'],
+  [`#duvidas ${SIGNUP_LINK}`, 'faq', 'signup'],
+  [`#duvidas ${WA_LINK}`, 'faq', 'whatsapp'],
+  [`#contato ${SIGNUP_LINK}`, 'closing', 'signup'],
+  [`#contato ${WA_LINK}`, 'closing', 'whatsapp'],
+  [`footer ${SIGNUP_LINK}`, 'footer', 'signup'],
+  [`footer ${WA_LINK}`, 'footer', 'whatsapp'],
+  [`.sticky-cta ${SIGNUP_LINK}`, 'sticky', 'signup'],
+  [`.sticky-cta ${WA_LINK}`, 'sticky', 'whatsapp'],
+  ['a.whatsapp-float', 'floating', 'whatsapp'],
+  [`#feature-dialog ${SIGNUP_LINK}`, 'dialog', 'signup'],
+  [`#dialog-case ${WA_LINK}`, 'case', 'whatsapp']
+];
+
+test('ANALYTICS-07 cada CTA de cadastro e de WhatsApp reporta a localização do lugar onde está e cada clique emite o cta_click exato', async ({ page }) => {
+  await useKey(page, TEST_KEY);
+  await stubDestinations(page.context());
+  const { captured } = await fakePostHog(page);
+  await gotoAt(page, 1440, 900);
+  // Animations paused so the case carousel stays still; opening a case dialog fills in the case WhatsApp link.
+  await page.getByRole('button', { name: 'Pausar animações', exact: true }).click();
+  const caseButton = page.locator('[data-case="loum"]');
+  await caseButton.scrollIntoViewIfNeeded();
+  await caseButton.click();
+  await expect(page.locator('#feature-dialog')).toBeVisible();
+
+  // Every tracked link on the page belongs to exactly one place of the map.
+  await expect(page.locator(TRACKED)).toHaveCount(PLACES.length);
+  for (const [selector, location] of PLACES) {
+    const link = page.locator(selector);
+    await expect(link, selector).toHaveCount(1);
+    await expect(link, selector).toHaveAttribute('data-track', location);
+  }
+
+  // Each place is clicked once, in map order; the visitor stays on the page.
+  await page.evaluate(selectors => {
+    window.addEventListener('click', event => event.preventDefault(), true);
+    for (const selector of selectors) document.querySelector(selector).click();
+  }, PLACES.map(([selector]) => selector));
+  const expected = PLACES.map(([, location, destination]) => ({ event: 'cta_click', properties: { location, destination } }));
+  await expect.poll(() => captured.filter(item => item.event === 'cta_click')).toEqual(expected);
+});

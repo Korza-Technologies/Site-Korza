@@ -1,0 +1,266 @@
+/* Components added on top of styles.css. */
+
+/* Responsive images: <picture> does not create a box, so the <img> keeps the layout it had before. */
+picture{display:contents}
+
+/* Pause control for looping animations (WCAG 2.2.2). */
+/* A 44x44 round icon; the label stays in the accessible name and shows as a tooltip on hover or keyboard focus. */
+.motion-toggle{position:fixed;left:16px;bottom:16px;z-index:60;display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #c9d3e2;border-radius:50%;background:#fffffff0;color:var(--navy);box-shadow:0 4px 12px #1729411a;cursor:pointer}
+.motion-toggle[hidden]{display:none}
+.motion-toggle:before{content:'';width:10px;height:12px;border-inline:3px solid currentColor;box-sizing:border-box}
+.motion-toggle[aria-pressed="true"]:before{width:0;height:0;margin-left:3px;border-block:6px solid transparent;border-inline:0;border-left:10px solid currentColor}
+.motion-toggle:hover{border-color:var(--blue);color:var(--blue)}
+.motion-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.motion-label{position:absolute;left:calc(100% + 8px);top:50%;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;transform:translateY(-50%);font:600 12px/1 Jakarta,Arial,sans-serif;pointer-events:none}
+.motion-toggle:is(:hover,:focus-visible) .motion-label{width:auto;height:auto;overflow:visible;clip-path:none;padding:7px 10px;border-radius:6px;background:var(--navy);color:#fff}
+/* Reduced motion removes the animations with `animation:none`; keep the paused state explicit too. */
+body.animations-paused .logo-track{animation-play-state:paused!important}
+
+/* Mobile sticky call to action. */
+.sticky-cta{position:fixed;inset:auto 0 0;z-index:55;display:flex;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fffffff2;border-top:1px solid var(--line);box-shadow:0 -8px 24px #17294114;backdrop-filter:blur(10px)}
+.sticky-cta[hidden]{display:none}
+.sticky-cta .button{width:100%;min-height:48px;justify-content:center;font-size:16px}
+/* While the bar is up, the pause icon sits inside it on the left, the WhatsApp icon on the right and the CTA takes the rest
+   of the width (at least 70% of the bar at 390px: 390 - 57 - 5 - 44 - 8 = 276px). */
+@media(max-width:760px){
+  .sticky-cta{gap:5px;padding-left:57px;padding-right:8px}
+  body:has(.sticky-cta:not([hidden])) .motion-toggle{left:8px;bottom:calc(14px + env(safe-area-inset-bottom));box-shadow:none}
+}
+/* Narrow phones: tighter spacing keeps the CTA at 70% of the bar (360 - 52 - 4 - 44 - 4 = 256px). */
+@media(max-width:380px){
+  .sticky-cta{gap:4px;padding-left:52px;padding-right:4px}
+  body:has(.sticky-cta:not([hidden])) .motion-toggle{left:4px}
+}
+@media(min-width:761px){.sticky-cta{display:none}}
+
+/* Mobile hero: the app mockup stays on screen, the main CTA spans the column and the ribbon sits behind the phone, below the title. */
+@media(max-width:760px){
+  .hero-layout{min-height:0;padding:36px 0 32px;gap:12px;justify-content:flex-start}
+  .hero .actions{gap:14px 18px}
+  .hero .actions .signup-cta{flex:1 1 100%;width:100%;min-height:52px;font-size:16px;padding-inline:20px}
+  .hero-scene{display:block;height:440px;width:100%;max-width:420px;margin-inline:auto}
+  .hero-device{width:240px;height:404px;left:calc(50% - 120px);top:12px}
+  .hero-os{top:auto;bottom:6px;left:8%}
+  .hero-ribbon{top:auto;bottom:-40px;right:calc(50% - 300px);width:600px;height:560px;opacity:.85;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 80%,transparent)}
+}
+@media(max-width:360px){
+  .hero-scene{height:410px}
+  .hero-device{width:220px;height:370px;left:calc(50% - 110px)}
+}
+
+/* Illustration captions sit below the phones, never over them (VIS-03).
+   Between 761px and 1200px the hero scene is shorter than on desktop, so the phone shrinks to fit above the caption. */
+@media(min-width:761px) and (max-width:1200px){.hero-device{width:274px;height:460px;left:calc(50% - 137px)}}
+@media(min-width:761px) and (max-width:1000px){.hero-device{width:250px;height:420px;left:calc(50% - 125px)}}
+@media(max-width:760px){
+  .scene-caption{bottom:-12px}
+  .push-card .push-art{height:568px;min-height:568px}
+}
+@media(max-width:360px){.push-card .push-art{height:550px;min-height:550px}}
+
+/* Landscape phones: compact header and hero so the main CTA fits in the first screen. */
+@media(max-height:500px){
+  .nav-bar{height:60px}
+  .nav-bar nav{top:59px}
+}
+@media(max-height:500px) and (min-width:761px){
+  .hero-layout{min-height:0;align-items:start;padding-top:24px;padding-bottom:40px}
+  .announcement{margin-bottom:14px}
+  .hero h1{font-size:38px;letter-spacing:-1.6px}
+  .hero-copy>p{margin:12px 0 16px;line-height:1.6}
+}
+/* In landscape the pause control moves right so it never covers the hero CTA. */
+@media(max-height:500px) and (min-width:761px){.motion-toggle{left:auto;right:16px}}
+
+/* Store marks are a caption (the app is published there), not download buttons. */
+.app-card .store-marks{display:flex;align-items:center;gap:8px;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;margin:0;padding:0;font-size:12px;font-weight:600;line-height:1.3;color:var(--navy)}
+.app-card .store-marks svg{width:18px;height:18px;fill:currentColor;stroke:none;flex:none}
+.app-card .store-marks>span{margin-left:2px;padding:0;border:0;border-radius:0;background:transparent;color:inherit;font-size:12px;letter-spacing:0}
+
+/* Case categories: plain text, mirroring the categories of the case cards. */
+.story-benefits{list-style:none;padding:0;gap:6px 0}
+.story-benefits li{display:inline-flex;align-items:center;color:#174db3;font-size:16px;font-weight:650;line-height:1.2}
+.story-benefits li:not(:last-child):after{content:'·';margin:0 10px;color:#7b8ba3}
+@media(max-width:760px){.story-benefits li{font-size:14px}.story-benefits li:not(:last-child):after{margin:0 7px}}
+
+/* Brand picker: visible label and 44px touch targets. */
+.brand-picker-label{display:block;margin-top:17px;font-size:14px;font-weight:600;color:var(--navy)}
+.brand-picker{margin-top:8px;gap:8px}
+.brand-picker button,.brand-picker button[aria-pressed]{min-height:44px;padding:8px 16px;font-size:14px;cursor:pointer}
+
+/* Carousel controls: 44x44 touch targets; the dot stays an 8px mark drawn inside the target. */
+.story-controls button,.story-controls button:is(.story-prev,.story-next){position:relative;width:44px;height:44px}
+/* Round buttons hit-test as circles; a square layer keeps the whole 44x44 box clickable. */
+.story-controls button:before{content:'';position:absolute;inset:-1px}
+.story-dots{gap:0}
+.story-dots button,.story-dots button[aria-current=true]{display:grid;place-items:center;width:44px;height:44px;border-radius:0;background:transparent;transform:none}
+.story-dots button:before{content:'';width:8px;height:8px;border-radius:50%;background:#c8d6e9;transition:background .25s,transform .25s}
+.story-dots button[aria-current=true]:before{background:var(--blue);transform:scale(1.25)}
+
+/* Goals CTA: the question leads into the button. */
+.goals-cta{flex-direction:column;align-items:flex-start;gap:14px}
+.goals-cta>span{font-size:15px}
+
+/* Minimum readable text (A11Y-02): no text below 12px outside phone-UI illustrations ([data-illustration]).
+   styles.css repeats these sizes across many media blocks, so the floor is enforced here with !important. */
+.nav-bar .nav-signup,.announcement,.announcement>span,.hero-compatible>span,.hero-compatible .platform-word,.hero-compatible .tiny-plus,
+.client-showcase .eyebrow,.marquee-caption,.product-label,.card-number,.art-caption,
+.metric-label span,.metric-period,.ring-metric div>span,.metric-source,.fine-print,.story-bottom>span,
+.plan-label,.plan-price small,.plan-contact>span,.footer-links strong,.footer-links a,.footer-contact strong,.footer-contact a,
+.footer-contact span,.footer-bottom span,.footer-bottom a{font-size:12px!important}
+.product-card .card-body .link,.story-content .link,.footer-main p{font-size:13px!important}
+.goal-card>p:not(.goal-tagline){font-size:13px!important}
+@media(max-width:1000px){
+  .nav-bar nav a,.nav-login,.hero .actions>.link,.closing-inner .actions>.link,.hero-compatible .shopify-word{font-size:12px!important}
+  .product-card .card-body p,.story-description,.plan-description li,.faq-list summary{font-size:13px!important}
+}
+@media(max-width:760px){
+  .eyebrow{font-size:12px!important}
+  .nav-bar nav a{font-size:15px!important}
+  .showcase-heading p,.showcase-heading p strong,.platform-cta p,.faq-list p,.section-intro>p{font-size:13px!important}
+  .closing-inner .signup-cta{font-size:14px!important}
+}
+/* Room below the footer so the fixed pause control never covers the last line of text. */
+.footer{padding-bottom:72px}
+
+/* Text contrast (A11Y-01): muted text uses #5b6b82, at least 4.5:1 on the page's white and ice backgrounds. */
+.hero-compatible>span,.marquee-caption,.card-number,.brand-picker button[aria-pressed=false],.metric-period,.push-sale small,.metric-source,
+.platform-cta p,.story-bottom>span,.fine-print,.footer .footer-main p,.footer-links a,.footer-contact>span,.footer-bottom span,.footer-bottom a{color:#5b6b82}
+
+/* Pricing card (OFFER-02/03): what is free, what is paid, commitment and deadline, then the two ways forward. */
+.plan-facts{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px;max-width:390px}
+.plan-facts li{position:relative;padding-left:24px;font-size:15px;line-height:1.5;color:#fff}
+.plan-facts li:before{content:'✓';position:absolute;left:0;top:0;font-weight:600}
+.plan-facts strong{font-weight:650}
+.plan-price .plan-whatsapp{margin-top:18px;font-size:15px;color:#fff;text-decoration:underline;text-underline-offset:4px}
+
+/* Analytics sample badge (OFFER-05): the metric cards below are an example of the dashboard, not live data. */
+.panel-sample{display:table;margin:34px 0 16px;padding:6px 14px;border:1px solid #c9d8f0;border-radius:999px;background:#f4f8ff;color:#174db3;font-size:13px;font-weight:600;line-height:1.3}
+
+/* WhatsApp: icon button in the mobile bar (CONTACT-03) and floating button on desktop once the hero is gone (CONTACT-04). */
+.sticky-cta .signup-cta{flex:1 1 auto;width:auto;min-width:0}
+.sticky-whatsapp,.whatsapp-float{display:grid;place-items:center;flex:none;background:#128c7e;color:#fff}
+.sticky-whatsapp{width:44px;min-height:48px;border-radius:5px}
+.sticky-whatsapp .icon{width:24px;height:24px}
+.whatsapp-float{position:fixed;right:24px;bottom:24px;z-index:55;width:56px;height:56px;border-radius:50%;box-shadow:0 8px 20px #0b3d3633}
+.whatsapp-float[hidden]{display:none}
+.whatsapp-float .icon{width:28px;height:28px}
+.sticky-whatsapp:hover,.whatsapp-float:hover{background:#0e7268}
+.sticky-whatsapp:focus-visible,.whatsapp-float:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+@media(max-width:760px){.whatsapp-float{display:none}}
+/* Landscape: the pause control takes the bottom-right corner, so the WhatsApp button sits right above it. */
+@media(max-height:500px) and (min-width:761px){.whatsapp-float{right:16px;bottom:72px}}
+
+/* FAQ (FAQ-03): the list ends with the WhatsApp link. */
+.faq-list .faq-whatsapp{margin-top:22px;font-size:13px}
+
+/* Payback calculator (CALC-01/04): how many orders pay the plan, updated while typing. */
+.payback{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px 40px;margin-top:24px;padding:32px 40px;background:#fff;border:1px solid #e2e9f3;border-radius:8px}
+.payback h3{font-size:22px;letter-spacing:-.5px;line-height:1.3;margin-bottom:6px}
+.payback-copy p{font-size:14px;line-height:1.6;color:var(--text)}
+.payback-fields{display:flex;gap:16px}
+.payback-fields label{display:block;margin-bottom:6px;font-size:14px;font-weight:600;color:var(--navy)}
+.payback-fields input{width:160px;min-height:44px;padding:8px 12px;border:1px solid #7b8ba3;border-radius:6px;background:#fff;color:var(--navy);font:inherit;font-size:16px}
+.payback-fields input:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.payback-fields input[aria-invalid="true"]{border-color:#c0262d}
+.payback-result{grid-column:1/-1;margin:0;font-size:18px;font-weight:600;line-height:1.4;color:#174db3}
+@media(max-width:760px){
+  .payback{grid-template-columns:1fr;padding:24px}
+  .payback-fields>div{flex:1;min-width:0}
+  .payback-fields input{width:100%}
+  .payback-result{font-size:16px}
+}
+
+/* Site × app comparison (COMP-01/02): a plain table that fits phone widths without horizontal scroll. */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #e2e9f3;border-radius:8px;overflow:hidden}
+.compare-table :is(th,td){padding:18px 24px;border-bottom:1px solid var(--line);text-align:left;font-size:15px;line-height:1.45}
+.compare-table tbody tr:last-child :is(th,td){border-bottom:0}
+.compare-table thead th{background:var(--ice);color:var(--navy);font-size:14px;font-weight:600}
+.compare-table tbody th{color:var(--navy);font-weight:600}
+.compare-table td{width:20%;color:var(--text)}
+.compare-table .compare-yes{color:#174db3;font-weight:600}
+.compare-yes .icon{width:16px;height:16px;margin-right:4px;vertical-align:-3px;stroke-width:2.4}
+@media(max-width:760px){
+  .compare-table :is(th,td){padding:12px 10px;font-size:13px}
+  .compare-table td{width:auto;white-space:nowrap}
+}
+
+/* Drawn app in the hero phone (F3 PREVIEW): hidden until the teaser is used (.hero-device.is-custom), then it
+   replaces the real Hiven photo. Accent areas use --brand; text over them uses --on-brand. */
+.hero-device{--brand:#155dfc;--on-brand:#ffffff}
+.app-render{display:none;position:absolute;top:2%;bottom:2%;left:50%;aspect-ratio:9/18.6;transform:translateX(-50%);border:7px solid #17191e;border-radius:34px;background:#fff;outline:1px solid #8b929b;box-shadow:0 0 0 3px #d0d1d4,0 22px 40px #15243d2e;overflow:hidden;container-type:size}
+.hero-device.is-custom .app-render{display:block}
+.hero-device.is-custom img{visibility:hidden}
+.app-screen{position:absolute;inset:0;display:flex;flex-direction:column;gap:3cqh;padding:0 5cqw 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#17202e;background:#f6f7f9}
+.app-status{display:flex;align-items:center;justify-content:space-between;height:7cqh;flex:none;font-size:5.5cqw;font-weight:600;padding-inline:4cqw}
+.app-status>i{width:30cqw;height:4.4cqh;border-radius:99px;background:#17191e}
+.app-signal{display:flex;align-items:flex-end;gap:1cqw;height:3cqh}
+.app-signal b{width:1.6cqw;background:#17202e;border-radius:1px}
+.app-signal b:nth-child(1){height:40%}.app-signal b:nth-child(2){height:70%}.app-signal b:nth-child(3){height:100%}
+.app-header{display:flex;align-items:center;gap:3cqw;flex:none;height:7cqh;margin-inline:-5cqw;padding-inline:5cqw;background:#fff;border-bottom:1px solid #e6e9ee}
+.app-logo{display:grid;place-items:center;flex:none;width:9cqw;height:9cqw;border-radius:2.5cqw;background:var(--brand) center/contain no-repeat;color:var(--on-brand);font-size:5cqw;font-weight:700;overflow:hidden}
+.app-logo.has-logo{background-color:#fff;box-shadow:inset 0 0 0 1px #e6e9ee}
+.app-logo.has-logo .app-initial{display:none}
+.app-name{flex:1;min-width:0;font-size:6cqw;font-weight:700;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-header .icon{width:6cqw;height:6cqw;transform:none;stroke-width:2}
+.app-banner{display:flex;flex-direction:column;justify-content:flex-end;flex:none;height:21cqh;padding:5cqw;border-radius:4cqw;background:var(--brand);color:var(--on-brand)}
+.app-banner span{font-size:4.6cqw;font-weight:600;opacity:.9}
+.app-banner strong{font-size:8cqw;line-height:1.15;font-weight:700;letter-spacing:-.02em}
+.app-row{display:flex;align-items:center;justify-content:space-between;flex:none;font-size:5.4cqw;font-weight:700}
+.app-button{padding:1.4cqw 3.6cqw;border-radius:99px;background:var(--brand);color:var(--on-brand);font-size:4.4cqw;font-weight:600}
+.app-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3cqw;flex:1;min-height:0}
+.app-grid>span{display:flex;flex-direction:column;gap:1.4cqw;min-height:0;padding:2cqw;border-radius:3cqw;background:#fff}
+.app-grid i{flex:1;min-height:0;border-radius:2cqw;background:linear-gradient(135deg,#e9ecf1,#dde2ea)}
+.app-grid b{height:2.2cqw;width:80%;border-radius:2px;background:#dfe3e9}
+.app-grid b+b{width:45%;background:#c9cfd8}
+.app-tabs{display:grid;grid-template-columns:repeat(4,1fr);flex:none;height:12cqh;margin-inline:-5cqw;padding:1.5cqh 2cqw 0;background:#fff;border-top:1px solid #e6e9ee}
+.app-tab{position:relative;display:flex;flex-direction:column;align-items:center;gap:1cqh;font-size:3.8cqw;font-weight:600;color:#8a93a1}
+.app-tab .icon{width:6.4cqw;height:6.4cqw;transform:none;stroke-width:2}
+.app-tab.is-active{color:var(--brand)}
+.app-tab.is-active:before{content:'';position:absolute;top:-1.5cqh;width:40%;height:3px;border-radius:0 0 3px 3px;background:var(--brand)}
+.app-push{position:absolute;bottom:15cqh;left:3.5cqw;right:3.5cqw;display:flex;align-items:center;gap:3cqw;padding:3cqw;border:1px solid #e1e9f6;border-radius:4cqw;background:#fffffff2;box-shadow:0 8px 25px #2048772e;backdrop-filter:blur(8px)}
+.app-push-icon{width:10cqw;height:10cqw}
+.app-push-body{display:flex;flex-direction:column;min-width:0}
+.app-push-meta{font-size:3.8cqw;color:#7a8799;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-push-name{text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.app-push-text{font-size:5cqw;font-weight:600;color:#17202e}
+
+/* Teaser form (F3 PREVIEW-01/09): store name and brand color, revealed by JavaScript; 44px targets. */
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.brand-teaser{display:grid;gap:10px;margin-top:26px;max-width:430px}
+.brand-teaser[hidden]{display:none}
+.teaser-title{font-size:15px;font-weight:650;color:var(--navy)}
+.teaser-field label,.teaser-colors legend{display:block;margin-bottom:4px;padding:0;font-size:13px;font-weight:600;color:var(--text)}
+.teaser-field input{width:100%;min-height:44px;padding:8px 12px;border:1px solid #7b8ba3;border-radius:6px;background:#fff;color:var(--navy);font:inherit;font-size:16px}
+.teaser-field input:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+.teaser-colors{display:flex;flex-wrap:wrap;align-items:center;min-width:0;margin:0;padding:0;border:0}
+.swatch{position:relative;display:grid;place-items:center;width:44px;height:44px;cursor:pointer}
+.swatch input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer}
+.swatch-dot{width:28px;height:28px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px #0000001f;pointer-events:none}
+.swatch input:checked+.swatch-dot,.swatch-custom.is-selected .swatch-dot{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--navy)}
+.swatch input:focus-visible+.swatch-dot{outline:3px solid var(--blue);outline-offset:5px}
+.swatch-custom .swatch-dot{background:conic-gradient(#e11d48,#f59e0b,#16a34a,#155dfc,#7c3aed,#e11d48)}
+.teaser-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:24px}
+.teaser-logo{min-height:44px;padding:0 4px;border:0;background:none;color:#174db3;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.teaser-logo:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.teaser-error{grid-column:1/-1;font-size:13px;font-weight:600;color:#c0262d}
+.teaser-error:empty{display:none}
+/* Wide screens: name and colors side by side, so the hero keeps its height; the text column fits the longer
+   "Continuar montando meu app" CTA and both links on one line, so the form does not jump after the first interaction. */
+@media(min-width:1101px){
+  .brand-teaser{grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;max-width:none;margin-top:20px}
+  .teaser-head{grid-column:1/-1}
+  .hero-layout{padding-bottom:40px;grid-template-columns:minmax(0,640px) minmax(0,1fr)}
+}
+@media(max-width:760px){.brand-teaser{margin-top:22px;max-width:none}}
+
+/* Case period (F3 CASES-02): every card says when its number was measured. */
+.story-content>.case-period{margin-top:8px;font-size:12px;font-weight:600;color:#5b6b82}
+
+/* Case dialog (F3 CASES-03): a number that is not on the card, its period and a WhatsApp link with the case message. */
+.dialog-case{display:grid;justify-items:start;gap:6px;margin-top:20px;padding:18px 20px;border:1px solid #dfe8f6;border-radius:8px;background:#f6f9ff}
+.dialog-case[hidden]{display:none}
+.dialog-extra{font-size:18px;font-weight:650;line-height:1.35;color:#174db3}
+.dialog-period{font-size:13px;font-weight:600;color:#5b6b82}
+.dialog-case .dialog-whatsapp{margin-top:8px;min-height:44px;background:#128c7e;font-size:14px}
+.dialog-case .dialog-whatsapp:hover{background:#0e7268}

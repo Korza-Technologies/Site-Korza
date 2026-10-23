@@ -1,0 +1,173 @@
+{
+  "schema": 1,
+  "promote_threshold": 2,
+  "window_days": 45,
+  "quarantine_threshold": 2,
+  "next_id": 10,
+  "lessons": [
+    {
+      "id": "L-001",
+      "key": "surviving_mutant::when two fixed elements share a screen corner assert they do not overlap in every state where both are visible not only on the first screen",
+      "text": "When two fixed elements share a screen corner, assert they do not overlap in every state where both are visible, not only on the first screen",
+      "signal": "surviving_mutant",
+      "scope": "e2e-visual",
+      "status": "candidate",
+      "features": [
+        "lp-fundacao"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M8 (styles/components.css .sticky-cta padding-left) (e2e-visual)"
+      ],
+      "created": "2026-10-21T15:24:47Z",
+      "last_seen": "2026-10-21T15:24:47Z"
+    },
+    {
+      "id": "L-002",
+      "key": "spec_precision_gap::when an ac says any width enumerate the viewport matrix the test must cover in the spec",
+      "text": "When an AC says any width, enumerate the viewport matrix the test must cover in the spec",
+      "signal": "spec_precision_gap",
+      "scope": "spec",
+      "status": "candidate",
+      "features": [
+        "lp-fundacao"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "VIS-04 tests/e2e/visual.spec.js:61 (spec)"
+      ],
+      "created": "2026-10-21T15:24:47Z",
+      "last_seen": "2026-10-21T15:24:47Z"
+    },
+    {
+      "id": "L-003",
+      "key": "spec_precision_gap::when an ac depends on a known name define the list of known names in the spec so the assertion is exact",
+      "text": "When an AC depends on a known name, define the list of known names in the spec so the assertion is exact",
+      "signal": "spec_precision_gap",
+      "scope": "spec",
+      "status": "confirmed",
+      "features": [
+        "lp-fundacao",
+        "lp-oferta-contato"
+      ],
+      "recurrence": 2,
+      "harmful": 0,
+      "evidence": [
+        "A11Y-07 tests/e2e/text-a11y.spec.js:24 (spec)",
+        "validation.md P1 (ANALYTICS-02 location values) (spec)"
+      ],
+      "created": "2026-10-21T15:24:47Z",
+      "last_seen": "2026-10-21T18:31:10Z"
+    },
+    {
+      "id": "L-004",
+      "key": "surviving_mutant::when an ac applies to every element of a kind assert it on every matching element not on a sample",
+      "text": "When an AC applies to every element of a kind, assert it on every matching element, not on a sample",
+      "signal": "surviving_mutant",
+      "scope": "e2e-analytics",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M26, M27 (ANALYTICS-02) (e2e-analytics)"
+      ],
+      "created": "2026-10-21T18:31:01Z",
+      "last_seen": "2026-10-21T18:31:01Z"
+    },
+    {
+      "id": "L-005",
+      "key": "ac_gap::when an edge case says links work without javascript assert every link s exact href with javascript disabled",
+      "text": "When an edge case says links work without JavaScript, assert every link's exact href with JavaScript disabled",
+      "signal": "ac_gap",
+      "scope": "e2e-nojs",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M28 (edge case no JavaScript) (e2e-nojs)"
+      ],
+      "created": "2026-10-21T18:31:02Z",
+      "last_seen": "2026-10-21T18:31:02Z"
+    },
+    {
+      "id": "L-006",
+      "key": "surviving_mutant::when each element must report its own label find each element by its container and assert its exact label not only that the label is in the allowed set",
+      "text": "When each element must report its own label, find each element by its container and assert its exact label, not only that the label is in the allowed set",
+      "signal": "surviving_mutant",
+      "scope": "e2e-analytics",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M30, M31 (tests/e2e/analytics.spec.js:209-221) (e2e-analytics)"
+      ],
+      "created": "2026-10-21T19:33:13Z",
+      "last_seen": "2026-10-21T19:33:13Z"
+    },
+    {
+      "id": "L-007",
+      "key": "spec_precision_gap::when an ac lists allowed values for many elements map each element to its value in the spec",
+      "text": "When an AC lists allowed values for many elements, map each element to its value in the spec",
+      "signal": "spec_precision_gap",
+      "scope": "spec",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md P4 (ANALYTICS-02/07) (spec)"
+      ],
+      "created": "2026-10-21T19:33:14Z",
+      "last_seen": "2026-10-21T19:33:14Z"
+    },
+    {
+      "id": "L-008",
+      "key": "surviving_mutant::assert singular and plural wording at several plural values such as 2 11 and 21 not only next to the singular boundary",
+      "text": "Assert singular and plural wording at several plural values such as 2, 11 and 21, not only next to the singular boundary",
+      "signal": "surviving_mutant",
+      "scope": "unit",
+      "status": "candidate",
+      "features": [
+        "lp-oferta-contato"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "validation.md M33 (js/calculator.js:29, tests/unit/calculator.spec.js:25-26) (unit)"
+      ],
+      "created": "2026-10-21T19:33:15Z",
+      "last_seen": "2026-10-21T19:33:15Z"
+    },
+    {
+      "id": "L-009",
+      "key": "spec_deviation::when the spec requires a contrast ratio over a user picked color do not limit the design to a fixed pair of text colors include black and white as fallbacks so every input can reach the ratio",
+      "text": "When the spec requires a contrast ratio over a user-picked color, do not limit the design to a fixed pair of text colors; include black and white as fallbacks so every input can reach the ratio.",
+      "signal": "spec_deviation",
+      "scope": "design",
+      "status": "candidate",
+      "features": [
+        "lp-magia-cases"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "js/preview.js:29 SPEC_DEVIATION readableTextColor (design)"
+      ],
+      "created": "2026-10-21T19:39:41Z",
+      "last_seen": "2026-10-21T19:39:41Z"
+    }
+  ]
+}
