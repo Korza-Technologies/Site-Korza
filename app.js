@@ -228,3 +228,10 @@ if ('IntersectionObserver' in window) {
 }
 reducedMotion.addEventListener('change', syncRevenue);
 document.addEventListener('visibilitychange', syncRevenue);
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="https://admin.korza.app/create-account"]');
+  if (!link || typeof gtag !== 'function') return;
+  const place = link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : link.closest('section[id], dialog[id]')?.id || 'outro';
+  gtag('event', 'cta_click', {cta_text: link.textContent.trim(), cta_location: place});
+});
