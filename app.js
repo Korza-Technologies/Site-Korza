@@ -229,9 +229,26 @@ if ('IntersectionObserver' in window) {
 reducedMotion.addEventListener('change', syncRevenue);
 document.addEventListener('visibilitychange', syncRevenue);
 
+const signupLinks = 'a[href^="https://admin.korza.app/create-account"]';
 document.addEventListener('click', event => {
-  const link = event.target.closest('a[href^="https://admin.korza.app/create-account"]');
+  const link = event.target.closest(signupLinks);
   if (!link || typeof gtag !== 'function') return;
   const place = link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : link.closest('section[id], dialog[id]')?.id || 'outro';
   gtag('event', 'cta_click', {cta_text: link.textContent.trim(), cta_location: place});
+});
+
+// O cookie _fbc do Pixel não atravessa para admin.korza.app; repassa o clique do anúncio pela URL.
+function adClickId() {
+  const fromUrl = new URLSearchParams(location.search).get('fbclid');
+  if (fromUrl) return fromUrl;
+  const fbc = document.cookie.match(/(?:^|; )_fbc=fb\.\d+\.\d+\.([^;]+)/);
+  return fbc ? decodeURIComponent(fbc[1]) : null;
+}
+document.addEventListener('click', event => {
+  const link = event.target.closest(signupLinks);
+  const id = link && adClickId();
+  if (!id) return;
+  const url = new URL(link.href);
+  url.searchParams.set('fbclid', id);
+  link.href = url;
 });
