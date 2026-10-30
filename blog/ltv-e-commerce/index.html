@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="LTV é quanto um cliente deixa na sua loja ao longo do tempo. Veja como calcular no e-commerce, a relação com o custo de aquisição e como aumentar.">
+  <title>LTV no e-commerce: o que é e como calcular | Korza</title>
+  <link rel="canonical" href="https://korza.app/blog/ltv-e-commerce/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Korza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="LTV no e-commerce: o que é e como calcular | Korza">
+  <meta property="og:description" content="LTV é quanto um cliente deixa na sua loja ao longo do tempo. Veja como calcular no e-commerce, a relação com o custo de aquisição e como aumentar.">
+  <meta property="og:url" content="https://korza.app/blog/ltv-e-commerce/">
+  <meta property="og:image" content="https://korza.app/assets/korza-logo.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HR907RLPTS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'});
+    gtag('js', new Date());
+    gtag('config', 'G-HR907RLPTS');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1174311258139587');
+    fbq('track', 'PageView');
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/jakarta-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/jakarta-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/paginas.css">
+  <script defer src="/paginas.js"></script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://korza.app/#organization",
+   "name": "Korza",
+   "url": "https://korza.app/",
+   "logo": "https://korza.app/assets/korza-logo.png",
+   "sameAs": [
+    "https://www.instagram.com/korza.br/"
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "LTV no e-commerce: quanto vale um cliente, de verdade",
+   "description": "LTV é quanto um cliente deixa na sua loja ao longo do tempo. Veja como calcular no e-commerce, a relação com o custo de aquisição e como aumentar.",
+   "mainEntityOfPage": "https://korza.app/blog/ltv-e-commerce/",
+   "url": "https://korza.app/blog/ltv-e-commerce/",
+   "inLanguage": "pt-BR",
+   "image": "https://korza.app/assets/korza-logo.png",
+   "datePublished": "2026-10-30",
+   "dateModified": "2026-10-30",
+   "author": {
+    "@type": "Person",
+    "name": "Pedro Turik Firmino",
+    "jobTitle": "Cofundador e CTO",
+    "worksFor": {
+     "@id": "https://korza.app/#organization"
+    }
+   },
+   "publisher": {
+    "@id": "https://korza.app/#organization"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "O que significa LTV?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "LTV é a sigla de lifetime value: o valor que um cliente deixa na loja ao longo da relação com a marca."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Como calcular o LTV no e-commerce?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Multiplique o ticket médio pelas compras por cliente no período e pela margem."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Qual a diferença entre LTV e CAC?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O LTV é quanto o cliente deixa na loja. O CAC é quanto custou conquistá-lo. O primeiro precisa ser maior que o segundo."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Devo calcular LTV com faturamento ou margem?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Com margem. O faturamento inclui custos que não ficam com você e pode fazer a loja gastar demais para conquistar clientes."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol></defs></svg>
+<header class="header"><div class="container nav-bar">
+  <a class="logo" href="/" aria-label="Korza, início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158"></a>
+  <nav id="navigation" aria-label="Navegação principal"><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a class="mobile-login" href="https://admin.korza.app/login">Entrar</a><a class="mobile-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+  <a class="nav-login" href="https://admin.korza.app/login">Entrar</a><a class="button signup-cta nav-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+  <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button>
+</div></header>
+<main id="conteudo">
+<section class="pg-hero pg-hero-texto" id="inicio"><div class="container pg-coluna">
+  <span class="eyebrow">Recompra</span>
+  <h1>LTV no e-commerce: quanto vale um cliente, de verdade</h1>
+  <p class="pg-lead">LTV é a sigla em inglês para valor do cliente ao longo do tempo: quanto uma pessoa deixa na sua loja durante toda a relação com a marca. Ele responde a uma pergunta que o faturamento do mês não responde: quanto você pode pagar para conquistar alguém.</p>
+  <p class="pg-meta">Por Pedro Turik Firmino · 30 de outubro de 2026</p>
+</div></section>
+<div class="container pg-coluna pg-texto">
+<h2>O que é LTV</h2>
+<p>Olhar só para a primeira venda engana. Um cliente que gasta R$ 200 uma vez não vale o mesmo que outro que gasta R$ 200 quatro vezes por ano. O LTV (lifetime value) soma as compras de uma pessoa e mostra o valor real de cada conquista.</p>
+
+<h2>Como calcular</h2>
+<p>A versão simples tem três entradas:</p>
+<p class="pg-formula">LTV = ticket médio × compras por cliente × margem</p>
+<ul>
+  <li><strong>Ticket médio:</strong> faturamento ÷ número de pedidos.</li>
+  <li><strong>Compras por cliente:</strong> pedidos ÷ clientes, no período que você escolheu.</li>
+  <li><strong>Margem:</strong> o que sobra de cada venda depois de custo do produto, frete e taxas.</li>
+</ul>
+<p>Exemplo com números redondos, só para ilustrar: ticket de R$ 200, 2,5 compras por cliente em 24 meses e margem de 40%. O LTV é de R$ 200 × 2,5 × 0,4 = R$ 200 de margem por cliente.</p>
+<p>Calcule com margem, não com faturamento. Se usar faturamento, o número fica bonito e leva a gastar mais do que a loja pode.</p>
+<h3>Escolha uma janela</h3>
+<p>“Toda a vida do cliente” é difícil de medir, e dinheiro de daqui a cinco anos vale menos. Em e-commerce, usar 12 ou 24 meses costuma ser mais prático. O importante é manter a mesma janela nas comparações.</p>
+
+<h2>LTV e custo de aquisição</h2>
+<p>O número ganha sentido ao lado do CAC, o custo de aquisição: quanto você gasta, em média, para conquistar um cliente.</p>
+<p class="pg-formula">CAC = investimento em mídia e vendas ÷ clientes novos</p>
+<p>Se o LTV é de R$ 200 e o CAC é de R$ 80, cada cliente deixa R$ 120 depois de pagar a própria conquista. Se o CAC for de R$ 220, cada cliente novo dá prejuízo, mesmo com a loja faturando bem.</p>
+<p>Fique atento também ao tempo de retorno: quanto demora para a margem pagar o CAC. Duas lojas com o mesmo LTV têm fôlegos diferentes se uma recupera o investimento na primeira compra e a outra só no segundo ano.</p>
+
+<h2>Três alavancas para aumentar</h2>
+<p>A fórmula mostra onde mexer:</p>
+<ul>
+  <li><strong>Mais compras por cliente.</strong> É a alavanca mais forte, porque a segunda venda não paga a conquista de novo. Tudo começa na <a href="/blog/taxa-de-recompra/">taxa de recompra</a>.</li>
+  <li><strong>Ticket maior.</strong> Combinações, kits e frete grátis a partir de um valor, em vez de desconto geral.</li>
+  <li><strong>Margem melhor.</strong> Menos desconto automático, menos troca e frete mais bem negociado.</li>
+</ul>
+
+<h2>Cuidados na leitura</h2>
+<ul>
+  <li><strong>A média esconde grupos.</strong> Poucos clientes podem responder por boa parte do valor. Compare LTV por canal de origem e por produto da primeira compra.</li>
+  <li><strong>Loja nova tem pouca história.</strong> Se a loja tem seis meses, não dá para afirmar o LTV de 24 meses: trate como estimativa.</li>
+  <li><strong>Promoção muda a turma.</strong> Quem vem de grande desconto tende a se comportar de outro jeito, e vale olhar essa turma separada.</li>
+</ul>
+
+<h2>O erro de olhar só o ROAS</h2>
+<p>ROAS é quanto a mídia devolveu em faturamento para cada real investido. Ele olha a primeira venda. Por isso, pode condenar uma campanha que traz clientes bons e premiar outra que só traz caçadores de desconto.</p>
+<p>Exemplo com números redondos, só para ilustrar: a campanha A traz clientes de ticket alto que nunca voltam. A campanha B tem primeira venda menor, mas clientes que compram três vezes. No painel de anúncios, a A parece melhor. No LTV, a B pode ganhar com folga. Sempre que puder, leve a origem do cliente para a conta.</p>
+
+<h2>LTV por turma: a versão mais confiável</h2>
+<p>Em vez de uma média da loja inteira, some o que cada turma de clientes deixou com o tempo:</p>
+<div class="pg-tabela"><table>
+  <thead><tr><th>Turma da primeira compra</th><th>Margem até 30 dias</th><th>Até 90 dias</th><th>Até 180 dias</th><th>Até 12 meses</th></tr></thead>
+  <tbody>
+    <tr><td>Janeiro</td><td>Preencha</td><td>Preencha</td><td>Preencha</td><td>Preencha</td></tr>
+    <tr><td>Fevereiro</td><td>Preencha</td><td>Preencha</td><td>Preencha</td><td>Preencha</td></tr>
+  </tbody>
+</table></div>
+<p>Essa tabela mostra se os clientes novos estão melhores que os antigos, e quanto tempo levam para pagar o CAC. É mais trabalhosa que a fórmula simples, mas é difícil de enganar.</p>
+
+<h2>Como começar hoje</h2>
+<ol>
+  <li>Exporte os pedidos dos últimos 24 meses.</li>
+  <li>Calcule ticket, compras por cliente e margem.</li>
+  <li>Calcule o CAC do mesmo período.</li>
+  <li>Escolha uma alavanca e meça a próxima turma.</li>
+</ol>
+<p>Se quiser organizar isso numa rotina, o artigo sobre <a href="/blog/crm-para-e-commerce/">CRM para e-commerce</a> mostra como.</p>
+
+<h2>Onde o app entra</h2>
+<p>O app atua nas compras por cliente: mantém a marca na tela do celular e permite falar com quem já comprou, por push, sem pagar de novo por isso. Não é fórmula de resultado, e sim um canal próprio para a alavanca mais forte da conta.</p>
+<p>A Korza faz esse app para lojas em Nuvemshop e Shopify, por R$ 399/mês. Veja como ficaria em <a href="/aplicativo-para-loja-virtual/">aplicativo para loja virtual</a>.</p>
+<section class="pg-faq" id="duvidas"><h2>Perguntas frequentes</h2><details><summary>O que significa LTV?</summary><p>LTV é a sigla de lifetime value: o valor que um cliente deixa na loja ao longo da relação com a marca.</p></details><details><summary>Como calcular o LTV no e-commerce?</summary><p>Multiplique o ticket médio pelas compras por cliente no período e pela margem.</p></details><details><summary>Qual a diferença entre LTV e CAC?</summary><p>O LTV é quanto o cliente deixa na loja. O CAC é quanto custou conquistá-lo. O primeiro precisa ser maior que o segundo.</p></details><details><summary>Devo calcular LTV com faturamento ou margem?</summary><p>Com margem. O faturamento inclui custos que não ficam com você e pode fazer a loja gastar demais para conquistar clientes.</p></details></section>
+
+<aside class="pg-autor" aria-label="Sobre o autor"><strong>Pedro Turik Firmino</strong><p>Cofundador e CTO da Korza, que transforma lojas Nuvemshop e Shopify em apps iOS e Android.</p></aside>
+<nav class="pg-relacionados" aria-label="Leia também"><h2>Leia também</h2><div><a class="pg-card" href="/blog/taxa-de-recompra/"><strong>Taxa de recompra</strong><span>A alavanca mais forte da conta.</span></a><a class="pg-card" href="/aplicativo-para-loja-virtual/"><strong>Aplicativo para loja virtual</strong><span>Um canal próprio para quem já comprou.</span></a></div></nav>
+</div>
+<section class="pg-cta" id="comecar"><div class="container"><h2>Seu cliente vale mais na segunda compra.</h2><p>Crie a conta grátis e veja como ficaria o app da sua marca.</p>
+<div class="actions"><a class="button button-white" href="https://admin.korza.app/create-account">Veja seu app grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div></div></section>
+</main>
+<footer class="footer frame"><div class="container footer-main"><div><a class="logo" href="/" aria-label="Korza, voltar ao início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158" loading="lazy"></a><p>Sua marca, mais perto.</p></div><div class="footer-links"><strong>Explore</strong><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/aplicativo-para-nuvemshop/">App para Nuvemshop</a><a href="/aplicativo-para-shopify/">App para Shopify</a><a href="/aplicativo-para-loja-virtual/">App para loja virtual</a></div><div class="footer-links"><strong>Próximo passo</strong><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a href="https://admin.korza.app/create-account">Criar app grátis</a></div><div class="footer-contact"><strong>Sua área</strong><a href="https://admin.korza.app/login">Entrar na Korza <span aria-hidden="true">↗</span></a><span>Seu e-commerce. Novas possibilidades.</span></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Korza. Todos os direitos reservados. <a href="/privacy-policy/">Política de privacidade</a></span><a href="#inicio">Voltar ao topo ↑</a></div></footer>
+</body>
+</html>
