@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="O que significa push notification, a diferença entre push e mensagem in-app, como funciona a permissão e como usar notificações na sua loja.">
+  <title>Push notification: o que é, como funciona e como usar | Korza</title>
+  <link rel="canonical" href="https://korza.app/guias/push-notification/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Korza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Push notification: o que é, como funciona e como usar | Korza">
+  <meta property="og:description" content="O que significa push notification, a diferença entre push e mensagem in-app, como funciona a permissão e como usar notificações na sua loja.">
+  <meta property="og:url" content="https://korza.app/guias/push-notification/">
+  <meta property="og:image" content="https://korza.app/assets/korza-logo.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HR907RLPTS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'});
+    gtag('js', new Date());
+    gtag('config', 'G-HR907RLPTS');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1174311258139587');
+    fbq('track', 'PageView');
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/jakarta-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/jakarta-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/paginas.css">
+  <script defer src="/paginas.js"></script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://korza.app/#organization",
+   "name": "Korza",
+   "url": "https://korza.app/",
+   "logo": "https://korza.app/assets/korza-logo.png",
+   "sameAs": [
+    "https://www.instagram.com/korza.br/"
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Push notification: o que é e como usar na sua loja",
+   "description": "O que significa push notification, a diferença entre push e mensagem in-app, como funciona a permissão e como usar notificações na sua loja.",
+   "mainEntityOfPage": "https://korza.app/guias/push-notification/",
+   "url": "https://korza.app/guias/push-notification/",
+   "inLanguage": "pt-BR",
+   "image": "https://korza.app/assets/korza-logo.png",
+   "datePublished": "2026-10-30",
+   "dateModified": "2026-10-30",
+   "author": {
+    "@type": "Person",
+    "name": "Pedro Turik Firmino",
+    "jobTitle": "Cofundador e CTO",
+    "worksFor": {
+     "@id": "https://korza.app/#organization"
+    }
+   },
+   "publisher": {
+    "@id": "https://korza.app/#organization"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "O que é push notification?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "É uma mensagem enviada por um aplicativo que aparece na tela do celular, mesmo com o app fechado."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Qual a diferença entre push e SMS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O SMS vai para o número de telefone. O push vai para quem instalou o app e autorizou as notificações, e abre direto uma página do app."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "O que é push in-app?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "É a mensagem exibida dentro do aplicativo, enquanto a pessoa está usando. Serve para orientar quem já está no app, não para trazer alguém de volta."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Push notification é pago?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Depende da ferramenta. Com a Korza, o push é ilimitado no plano, sem custo por envio."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Preciso de aplicativo para enviar push?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Para notificações no celular, sim. Sem app, existe o web push, mas no iPhone ele exige que o site seja adicionado à Tela de Início."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol></defs></svg>
+<header class="header"><div class="container nav-bar">
+  <a class="logo" href="/" aria-label="Korza, início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158"></a>
+  <nav id="navigation" aria-label="Navegação principal"><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a class="mobile-login" href="https://admin.korza.app/login">Entrar</a><a class="mobile-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+  <a class="nav-login" href="https://admin.korza.app/login">Entrar</a><a class="button signup-cta nav-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+  <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button>
+</div></header>
+<main id="conteudo">
+<section class="pg-hero pg-hero-texto" id="inicio"><div class="container pg-coluna">
+  <span class="eyebrow">Guia de push</span>
+  <h1>Push notification: o que é e como usar na sua loja</h1>
+  <p class="pg-lead">Push notification é a mensagem que um aplicativo envia para a tela do celular, mesmo com o app fechado. Parece simples, e é. O que separa uma boa campanha de um app desinstalado é o que você manda, para onde leva e com que frequência.</p>
+  <p class="pg-meta">Por Pedro Turik Firmino · 30 de outubro de 2026</p>
+</div></section>
+<div class="container pg-coluna pg-texto">
+<h2>O que significa push notification</h2>
+<p>“Push” quer dizer empurrar. Na notificação push, a mensagem é empurrada até a pessoa: ela não precisa abrir o app, o e-mail ou o navegador para ver. O aviso aparece na tela de bloqueio ou na central de notificações, com o ícone da marca, um título e um texto curto.</p>
+<h3>Como funciona, em quatro passos</h3>
+<ol>
+  <li>A pessoa instala o app e autoriza as notificações.</li>
+  <li>O app registra o aparelho no serviço do sistema: da Apple no iPhone, do Google no Android.</li>
+  <li>Você cria a mensagem e define o envio.</li>
+  <li>O sistema entrega no celular, e o toque abre a página que você escolheu.</li>
+</ol>
+
+<h2>Permissão: o push só chega a quem autorizou</h2>
+<p>O celular protege o usuário. No Android, a documentação do Google diz que, em aparelhos com Android 13 ou superior, as notificações de um app recém-instalado ficam desligadas por padrão e o app precisa pedir permissão. No iPhone, o app também pede autorização antes de notificar, conforme a documentação da Apple.</p>
+<p>Isso tem uma consequência prática: <strong>o momento do pedido importa</strong>. Explique o que a pessoa ganha, como novidades e ofertas exclusivas, para que ela diga sim.</p>
+
+<h2>Push, push in-app e web push</h2>
+<div class="pg-tabela"><table>
+  <thead><tr><th>Tipo</th><th>Onde aparece</th><th>Quando usar</th></tr></thead>
+  <tbody>
+    <tr><td>Push notification</td><td>Na tela do celular, com o app fechado</td><td>Trazer a pessoa de volta</td></tr>
+    <tr><td>Push in-app</td><td>Dentro do app, com ele aberto</td><td>Orientar quem já está lá: banner, cupom, aviso</td></tr>
+    <tr><td>Web push</td><td>No navegador. No iPhone, só com o site adicionado à Tela de Início</td><td>Falar com quem não tem o app</td></tr>
+  </tbody>
+</table></div>
+<p>O WebKit, motor do Safari, informou em 16/02/2023 que o web push chegou ao iOS e iPadOS 16.4 para web apps adicionados à Tela de Início. Na prática, poucas pessoas fazem isso. O guia <a href="/guias/app-pwa-ou-site-mobile/">app, PWA ou site mobile</a> explica melhor.</p>
+
+<h2>Como escrever um push que funciona</h2>
+<ul>
+  <li><strong>Uma ideia só.</strong> O espaço é curto. Se precisar de duas frases longas, a mensagem está errada.</li>
+  <li><strong>Comece pelo motivo.</strong> “Voltou ao estoque”, “Chegou a coleção”, “Seu cupom vence hoje”.</li>
+  <li><strong>Leve à página certa.</strong> Push de produto abre o produto, nunca a página inicial. É o que garante 1 clique até o produto.</li>
+  <li><strong>Seja verdadeiro.</strong> Falsa urgência funciona uma vez e custa a confiança nas seguintes.</li>
+</ul>
+<h3>Exemplos para adaptar</h3>
+<ul>
+  <li><strong>Lançamento:</strong> “A nova coleção chegou. Você vê antes de todo mundo.”</li>
+  <li><strong>Reposição:</strong> “Hora de repor? Seu favorito está a um toque.”</li>
+  <li><strong>Volta ao estoque:</strong> “Aquele tênis voltou. Numeração limitada.”</li>
+  <li><strong>Data:</strong> “Entrega garantida até o Natal só até hoje.”</li>
+</ul>
+
+<h2>Com que frequência enviar</h2>
+<p>Não há número certo, e desconfie de quem promete um. A regra prática é enviar quando existe uma razão real, começar devagar e observar. Se aumentar a frequência e os toques caírem, ou as desativações subirem, recue.</p>
+<p>Acompanhe os toques, as vendas e as desativações por campanha. Faça um calendário com lançamentos e datas, em vez de decidir na hora. Push ilimitado não é convite para mandar tudo.</p>
+
+<h2>Quanto da sua base vai receber</h2>
+<p>O alcance do push é uma conta em três etapas: quantos clientes baixam o app, quantos autorizam as notificações e quantos seguem com elas ativas. Cada etapa tem a sua alavanca.</p>
+<ul>
+  <li><strong>Para baixar:</strong> dê um motivo, como um cupom de primeira compra no app, e divulgue no site, nas redes e no pacote.</li>
+  <li><strong>Para autorizar:</strong> mostre o benefício antes do pedido de permissão.</li>
+  <li><strong>Para manter ativas:</strong> mande pouco e mande bem. Quem se cansa desliga, e o caminho de volta é difícil.</li>
+</ul>
+
+<h2>O que acompanhar em cada campanha</h2>
+<div class="pg-tabela"><table>
+  <thead><tr><th>Métrica</th><th>O que responde</th></tr></thead>
+  <tbody>
+    <tr><td>Entregas</td><td>Quantas pessoas a campanha alcançou</td></tr>
+    <tr><td>Toques</td><td>O título e o momento chamaram a atenção?</td></tr>
+    <tr><td>Conversão</td><td>O destino e a oferta convenceram?</td></tr>
+    <tr><td>Vendas atribuídas</td><td>Quanto a campanha trouxe de volta</td></tr>
+  </tbody>
+</table></div>
+<p>Muda um elemento por vez. Se trocar título, horário e oferta juntos, você não sabe o que funcionou.</p>
+
+<h2>Três erros que afastam o cliente</h2>
+<ul>
+  <li><strong>Só mandar desconto.</strong> Lançamentos, novidades e avisos úteis também são bons motivos.</li>
+  <li><strong>Levar à página inicial.</strong> Quem tocou em um produto quer ver esse produto.</li>
+  <li><strong>Ignorar o horário.</strong> Evite madrugadas e teste os horários em que a sua base costuma comprar.</li>
+</ul>
+
+<h2>Como isso funciona numa loja</h2>
+<div class="pg-case">
+  <img src="/assets/belletonn-mockup.png" alt="Aplicativo da Belletonn" width="930" height="1691" loading="lazy">
+  <div><span>Case Belletonn · cosméticos</span><strong>26,6% de conversão entre clientes que abriram os pushs não segmentados.</strong><p>Resultado da Belletonn, sem garantia de que se repita em outra loja.</p></div>
+</div>
+<p>Somados, os apps da Korza já enviaram mais de 9,5 milhões de notificações, e mais de 70 mil clientes estão com notificações ativas.</p>
+<p>No painel da Korza, você escreve a mensagem, escolhe o destino e agenda, com push ilimitado no plano. Para quem tem loja em Nuvemshop ou Shopify, o caminho começa em <a href="/aplicativo-para-loja-virtual/">aplicativo para loja virtual</a>.</p>
+<section class="pg-faq" id="duvidas"><h2>Perguntas frequentes</h2><details><summary>O que é push notification?</summary><p>É uma mensagem enviada por um aplicativo que aparece na tela do celular, mesmo com o app fechado.</p></details><details><summary>Qual a diferença entre push e SMS?</summary><p>O SMS vai para o número de telefone. O push vai para quem instalou o app e autorizou as notificações, e abre direto uma página do app.</p></details><details><summary>O que é push in-app?</summary><p>É a mensagem exibida dentro do aplicativo, enquanto a pessoa está usando. Serve para orientar quem já está no app, não para trazer alguém de volta.</p></details><details><summary>Push notification é pago?</summary><p>Depende da ferramenta. Com a Korza, o push é ilimitado no plano, sem custo por envio.</p></details><details><summary>Preciso de aplicativo para enviar push?</summary><p>Para notificações no celular, sim. Sem app, existe o web push, mas no iPhone ele exige que o site seja adicionado à Tela de Início.</p></details></section>
+<section class="pg-fontes"><h2>Fontes</h2><ul><li><a href="https://developer.android.com/develop/ui/compose/notifications/notification-permission" rel="noopener">Google, Android Developers, Notification runtime permission</a>. Consultado em 30/10/2026.</li><li><a href="https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications" rel="noopener">Apple, Asking permission to use notifications</a>. Consultado em 30/10/2026.</li><li><a href="https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/" rel="noopener">WebKit, Web Push for Web Apps on iOS and iPadOS</a>. Publicado em 16/02/2023.</li></ul></section>
+<aside class="pg-autor" aria-label="Sobre o autor"><strong>Pedro Turik Firmino</strong><p>Cofundador e CTO da Korza, que transforma lojas Nuvemshop e Shopify em apps iOS e Android.</p></aside>
+<nav class="pg-relacionados" aria-label="Leia também"><h2>Leia também</h2><div><a class="pg-card" href="/aplicativo-para-nuvemshop/"><strong>Aplicativo para Nuvemshop</strong><span>Push na sua loja, com zero trabalho.</span></a><a class="pg-card" href="/guias/whatsapp-push-ou-email-custos/"><strong>WhatsApp, push ou e-mail</strong><span>Quanto custa cada canal.</span></a></div></nav>
+</div>
+<section class="pg-cta" id="comecar"><div class="container"><h2>Mande o próximo push com a sua marca.</h2><p>Crie a conta grátis e veja como ficaria o app da sua loja.</p>
+<div class="actions"><a class="button button-white" href="https://admin.korza.app/create-account">Veja seu app grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div></div></section>
+</main>
+<footer class="footer frame"><div class="container footer-main"><div><a class="logo" href="/" aria-label="Korza, voltar ao início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158" loading="lazy"></a><p>Sua marca, mais perto.</p></div><div class="footer-links"><strong>Explore</strong><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/aplicativo-para-nuvemshop/">App para Nuvemshop</a><a href="/aplicativo-para-shopify/">App para Shopify</a><a href="/aplicativo-para-loja-virtual/">App para loja virtual</a></div><div class="footer-links"><strong>Próximo passo</strong><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a href="https://admin.korza.app/create-account">Criar app grátis</a></div><div class="footer-contact"><strong>Sua área</strong><a href="https://admin.korza.app/login">Entrar na Korza <span aria-hidden="true">↗</span></a><span>Seu e-commerce. Novas possibilidades.</span></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Korza. Todos os direitos reservados. <a href="/privacy-policy/">Política de privacidade</a></span><a href="#inicio">Voltar ao topo ↑</a></div></footer>
+</body>
+</html>
