@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Compare app nativo, PWA e site mobile para e-commerce: instalação, lojas de apps, push no iPhone e quando cada formato faz sentido.">
+  <title>App, PWA ou site mobile: o que escolher no e-commerce | Korza</title>
+  <link rel="canonical" href="https://korza.app/guias/app-pwa-ou-site-mobile/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Korza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="App, PWA ou site mobile: o que escolher no e-commerce | Korza">
+  <meta property="og:description" content="Compare app nativo, PWA e site mobile para e-commerce: instalação, lojas de apps, push no iPhone e quando cada formato faz sentido.">
+  <meta property="og:url" content="https://korza.app/guias/app-pwa-ou-site-mobile/">
+  <meta property="og:image" content="https://korza.app/assets/korza-logo.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HR907RLPTS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'});
+    gtag('js', new Date());
+    gtag('config', 'G-HR907RLPTS');
+  </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1174311258139587');
+    fbq('track', 'PageView');
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/jakarta-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/jakarta-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/paginas.css">
+  <script defer src="/paginas.js"></script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://korza.app/#organization",
+   "name": "Korza",
+   "url": "https://korza.app/",
+   "logo": "https://korza.app/assets/korza-logo.png",
+   "sameAs": [
+    "https://www.instagram.com/korza.br/"
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "App, PWA ou site mobile: o que faz sentido para o seu e-commerce",
+   "description": "Compare app nativo, PWA e site mobile para e-commerce: instalação, lojas de apps, push no iPhone e quando cada formato faz sentido.",
+   "mainEntityOfPage": "https://korza.app/guias/app-pwa-ou-site-mobile/",
+   "url": "https://korza.app/guias/app-pwa-ou-site-mobile/",
+   "inLanguage": "pt-BR",
+   "image": "https://korza.app/assets/korza-logo.png",
+   "datePublished": "2026-10-30",
+   "dateModified": "2026-10-30",
+   "author": {
+    "@type": "Person",
+    "name": "Pedro Turik Firmino",
+    "jobTitle": "Cofundador e CTO",
+    "worksFor": {
+     "@id": "https://korza.app/#organization"
+    }
+   },
+   "publisher": {
+    "@id": "https://korza.app/#organization"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "PWA é a mesma coisa que aplicativo?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Não. O PWA é um site que pode ser instalado e ganhar recursos de aplicativo. O app nativo é baixado da App Store ou do Google Play."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "PWA funciona no iPhone?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Funciona, com limites. O web push, por exemplo, exige que a pessoa adicione o site à Tela de Início, segundo o WebKit (2023)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ter app prejudica o SEO do meu site?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Não. O app e o site são canais separados, e o site continua sendo encontrado no Google normalmente."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Preciso escolher só um?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Não. O mais comum é manter o site para conquistar clientes novos e ter o app para quem já comprou."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol></defs></svg>
+<header class="header"><div class="container nav-bar">
+  <a class="logo" href="/" aria-label="Korza, início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158"></a>
+  <nav id="navigation" aria-label="Navegação principal"><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a class="mobile-login" href="https://admin.korza.app/login">Entrar</a><a class="mobile-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+  <a class="nav-login" href="https://admin.korza.app/login">Entrar</a><a class="button signup-cta nav-signup" href="https://admin.korza.app/create-account">Criar conta grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+  <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navigation"><span></span><span></span></button>
+</div></header>
+<main id="conteudo">
+<section class="pg-hero pg-hero-texto" id="inicio"><div class="container pg-coluna">
+  <span class="eyebrow">Guia comparativo</span>
+  <h1>App, PWA ou site mobile: o que faz sentido para o seu e-commerce</h1>
+  <p class="pg-lead">Os três aparecem no celular, mas não fazem o mesmo trabalho. O site mobile recebe quem chega. O PWA tenta ser um meio-termo. O app fica com quem já é cliente. A escolha depende de qual problema você quer resolver.</p>
+  <p class="pg-meta">Por Pedro Turik Firmino · 30 de outubro de 2026</p>
+</div></section>
+<div class="container pg-coluna pg-texto">
+<h2>O que é cada um</h2>
+<p><strong>Site mobile.</strong> É o seu site adaptado à tela do celular. Toda loja em Nuvemshop ou Shopify já tem. Abre pelo navegador, vindo do Google, de um anúncio ou de um link.</p>
+<p><strong>PWA.</strong> Sigla de Progressive Web App. O web.dev, site do Google para desenvolvedores, define PWAs como web apps construídos com APIs modernas para ampliar recursos, alcançando qualquer usuário com uma única base de código (2020). Em outras palavras, é um site que pode ser instalado na tela e ganhar comportamento de aplicativo.</p>
+<p><strong>App nativo.</strong> É o aplicativo baixado da App Store ou do Google Play, com o ícone da marca na tela do celular.</p>
+
+<h2>A comparação</h2>
+<div class="pg-tabela"><table>
+  <thead><tr><th></th><th>Site mobile</th><th>PWA</th><th>App nativo</th></tr></thead>
+  <tbody>
+    <tr><td>Onde a pessoa encontra</td><td>Google, anúncios, links</td><td>No site, com instalação pelo navegador</td><td>App Store e Google Play</td></tr>
+    <tr><td>Ícone na tela</td><td>Não</td><td>Se a pessoa instalar</td><td>Sim</td></tr>
+    <tr><td>Notificações</td><td>Limitadas</td><td>No iPhone, só depois de adicionar à Tela de Início</td><td>Sim, com autorização</td></tr>
+    <tr><td>Presença nas lojas de apps</td><td>Não</td><td>Em geral, não</td><td>Sim</td></tr>
+    <tr><td>Melhor papel</td><td>Conquistar cliente novo</td><td>Melhorar a experiência no navegador</td><td>Trazer o cliente de volta</td></tr>
+  </tbody>
+</table></div>
+
+<h2>O ponto que costuma decidir: o iPhone</h2>
+<p>Em 16/02/2023, o WebKit anunciou web push no iOS e iPadOS 16.4 para web apps adicionados à Tela de Início. Ou seja, antes de receber a notificação, a pessoa precisa abrir o site no navegador, usar a opção de compartilhar, adicionar à Tela de Início e só então autorizar.</p>
+<p>Quantos clientes da sua loja vão seguir esse caminho? No app, o gesto é outro, e conhecido por todo mundo: baixar na loja de aplicativos e aceitar as notificações.</p>
+
+<h2>Quando cada um faz sentido</h2>
+<h3>Só o site mobile</h3>
+<p>Se a loja ainda está buscando os primeiros clientes constantes, invista aqui: velocidade, checkout e fotos. Sem base para trazer de volta, um canal de volta não tem o que fazer.</p>
+<h3>PWA</h3>
+<p>Faz sentido quando a prioridade é deixar o site mais rápido e com melhor navegação, e existe equipe técnica para cuidar disso. Pense nele como uma melhoria do site.</p>
+<h3>App</h3>
+<p>Faz sentido quando a loja já tem base de clientes e o desafio é a <a href="/blog/taxa-de-recompra/">recompra</a>. O app é o canal de quem já conhece a marca, e o site segue trazendo gente nova. A Korza recomenda esse caminho para lojas a partir de R$ 30 mil por mês.</p>
+
+<h2>Quatro perguntas para decidir</h2>
+<ol>
+  <li><strong>Qual problema você quer resolver?</strong> Se é trazer gente nova, olhe para o site. Se é fazer quem comprou voltar, olhe para o canal de volta.</li>
+  <li><strong>Sua base justifica?</strong> Um canal de volta precisa de clientes para trazer de volta.</li>
+  <li><strong>Como é o seu público?</strong> Veja no Analytics quanto do tráfego vem de iPhone. Quanto maior essa parte, mais pesa o limite do web push.</li>
+  <li><strong>Quem cuida disso?</strong> Todo formato exige manutenção. A diferença é de quem é esse trabalho.</li>
+</ol>
+
+<h2>Confiança e descoberta</h2>
+<p>Há um argumento fora da técnica: onde a sua marca aparece. Quem procura o nome dela na App Store ou no Google Play encontra um app com ícone, descrição e avaliações, no mesmo lugar em que estão as grandes marcas. O PWA, em geral, vive só no navegador, e quem não visitar o site não fica sabendo dele.</p>
+<p>O contrário também vale: o app não é encontrado por quem busca um produto no Google. Por isso, ele não substitui o site. O site mobile continua sendo a porta de entrada, e precisa ser bom.</p>
+
+<h2>O que dá para melhorar no site mobile</h2>
+<p>Se a decisão for ficar no site por enquanto, comece por aqui:</p>
+<ul>
+  <li><strong>Velocidade:</strong> imagens leves e menos aplicativos carregando em cada página.</li>
+  <li><strong>Busca e menu:</strong> o cliente precisa achar o produto com o polegar.</li>
+  <li><strong>Checkout:</strong> menos campos e meios de pagamento fáceis de usar no celular.</li>
+</ul>
+
+<h2>Cuidado com o site “empacotado”</h2>
+<p>Publicar nas lojas não é só colocar o site dentro de uma casca. A diretriz 4.2 da Apple pede que o app tenha recursos, conteúdo e interface que o elevem além de “a repackaged website”. Antes de contratar, pergunte como é o app, e quem responde se ele for rejeitado.</p>
+
+<h2>E o que a Korza faz</h2>
+<p>A Korza constrói apps iOS e Android, não web push nem PWA. A publicação na App Store e no Google Play fica por nossa conta, em até 14 dias úteis, nas contas da Korza. Veja em <a href="/aplicativo-para-loja-virtual/">aplicativo para loja virtual</a> ou nas páginas de <a href="/aplicativo-para-nuvemshop/">Nuvemshop</a> e <a href="/aplicativo-para-shopify/">Shopify</a>.</p>
+<section class="pg-faq" id="duvidas"><h2>Perguntas frequentes</h2><details><summary>PWA é a mesma coisa que aplicativo?</summary><p>Não. O PWA é um site que pode ser instalado e ganhar recursos de aplicativo. O app nativo é baixado da App Store ou do Google Play.</p></details><details><summary>PWA funciona no iPhone?</summary><p>Funciona, com limites. O web push, por exemplo, exige que a pessoa adicione o site à Tela de Início, segundo o WebKit (2023).</p></details><details><summary>Ter app prejudica o SEO do meu site?</summary><p>Não. O app e o site são canais separados, e o site continua sendo encontrado no Google normalmente.</p></details><details><summary>Preciso escolher só um?</summary><p>Não. O mais comum é manter o site para conquistar clientes novos e ter o app para quem já comprou.</p></details></section>
+<section class="pg-fontes"><h2>Fontes</h2><ul><li><a href="https://web.dev/articles/what-are-pwas" rel="noopener">web.dev, What are Progressive Web Apps?</a>. Publicado em 06/01/2020.</li><li><a href="https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/" rel="noopener">WebKit, Web Push for Web Apps on iOS and iPadOS</a>. Publicado em 16/02/2023.</li><li><a href="https://developer.apple.com/app-store/review/guidelines/" rel="noopener">Apple, App Review Guidelines, item 4.2</a>. Consultado em 30/10/2026.</li></ul></section>
+<aside class="pg-autor" aria-label="Sobre o autor"><strong>Pedro Turik Firmino</strong><p>Cofundador e CTO da Korza, que transforma lojas Nuvemshop e Shopify em apps iOS e Android.</p></aside>
+<nav class="pg-relacionados" aria-label="Leia também"><h2>Leia também</h2><div><a class="pg-card" href="/aplicativo-para-loja-virtual/"><strong>Aplicativo para loja virtual</strong><span>Como transformar a sua loja em app.</span></a><a class="pg-card" href="/guias/quanto-custa-aplicativo-loja-virtual/"><strong>Quanto custa um aplicativo de loja</strong><span>Os tipos de solução e o custo de cada um.</span></a></div></nav>
+</div>
+<section class="pg-cta" id="comecar"><div class="container"><h2>Veja como fica o app da sua marca.</h2><p>Crie a conta grátis e veja o resultado antes de decidir.</p>
+<div class="actions"><a class="button button-white" href="https://admin.korza.app/create-account">Veja seu app grátis <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div></div></section>
+</main>
+<footer class="footer frame"><div class="container footer-main"><div><a class="logo" href="/" aria-label="Korza, voltar ao início"><img src="/assets/korza-logo.png" alt="Korza" width="941" height="158" loading="lazy"></a><p>Sua marca, mais perto.</p></div><div class="footer-links"><strong>Explore</strong><a href="/#plataforma">Plataforma</a><a href="/#resultados">Resultados</a><a href="/#cases">Clientes</a><a href="/aplicativo-para-nuvemshop/">App para Nuvemshop</a><a href="/aplicativo-para-shopify/">App para Shopify</a><a href="/aplicativo-para-loja-virtual/">App para loja virtual</a></div><div class="footer-links"><strong>Próximo passo</strong><a href="/#precos">Preço</a><a href="/#duvidas">Dúvidas</a><a href="https://admin.korza.app/create-account">Criar app grátis</a></div><div class="footer-contact"><strong>Sua área</strong><a href="https://admin.korza.app/login">Entrar na Korza <span aria-hidden="true">↗</span></a><span>Seu e-commerce. Novas possibilidades.</span></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Korza. Todos os direitos reservados. <a href="/privacy-policy/">Política de privacidade</a></span><a href="#inicio">Voltar ao topo ↑</a></div></footer>
+</body>
+</html>
