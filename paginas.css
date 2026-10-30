@@ -1,0 +1,76 @@
+/* Páginas de SEO: soluções, guias e artigos. Complementa styles.css. */
+.pg-coluna{max-width:760px}
+.pg-hero{border-bottom:1px solid var(--line);overflow:hidden}
+.pg-hero-grid{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:56px;padding-block:72px}
+.pg-hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:600;line-height:1.1;letter-spacing:-.04em}
+.pg-hero h1 span{color:var(--blue)}
+.pg-lead{color:var(--text);font-size:17px;line-height:1.75;margin:22px 0 28px}
+.pg-micro{color:var(--muted);font-size:12px;margin-top:16px}
+.pg-hero-img{width:min(100%,290px);height:auto;margin-inline:auto}
+.pg-hero-texto{padding-block:64px 44px}
+.pg-hero-texto .pg-lead{margin-bottom:18px}
+.pg-meta{color:var(--muted);font-size:13px}
+.pg-hero .button{font-size:13px}
+.pg-hero .link{font-size:13px}
+
+.pg-texto{color:var(--text);font-size:16px;line-height:1.8;padding-block:56px 72px}
+.pg-texto>*+*{margin-top:18px}
+.pg-texto h2{color:var(--navy);font-size:clamp(24px,2.6vw,31px);line-height:1.25;letter-spacing:-.03em;margin-top:52px}
+.pg-texto>h2:first-child{margin-top:0}
+.pg-texto h3{color:var(--navy);font-size:19px;letter-spacing:-.02em;margin-top:32px}
+.pg-texto strong{color:var(--navy);font-weight:600}
+.pg-texto a:not(.button):not(.link):not(.pg-card){color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.pg-texto ul,.pg-texto ol{padding-left:22px;margin-bottom:0}
+.pg-texto li+li{margin-top:8px}
+.pg-formula{background:var(--ice);border-left:3px solid var(--blue);border-radius:4px;color:var(--navy);font-weight:600;padding:16px 20px}
+.pg-nota{color:var(--muted);font-size:13px;line-height:1.7}
+
+.pg-tabela{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.pg-tabela table{border-collapse:collapse;font-size:14px;line-height:1.55;width:100%}
+.pg-tabela table:has(th:nth-child(4)){min-width:600px}
+.pg-tabela th,.pg-tabela td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+.pg-tabela th{background:var(--ice);color:var(--navy);font-weight:600}
+.pg-tabela tr:last-child td{border-bottom:0}
+
+.pg-texto .pg-passos{counter-reset:passo;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;padding:0}
+.pg-texto .pg-passos li{border:1px solid var(--line);border-radius:8px;counter-increment:passo;font-size:14px;line-height:1.65;margin:0;padding:18px}
+.pg-passos li:before{color:var(--blue);content:counter(passo);display:block;font-size:20px;font-weight:600;margin-bottom:6px}
+
+.pg-case{align-items:center;background:var(--ice);border-radius:10px;display:grid;gap:28px;grid-template-columns:150px 1fr;padding:24px 28px}
+.pg-case img{height:auto;width:100%}
+.pg-case>div>*+*{margin-top:8px}
+.pg-case span{color:var(--blue);display:block;font-size:12px;font-weight:600}
+.pg-case strong{display:block;font-size:20px;letter-spacing:-.02em;line-height:1.35}
+.pg-case p{font-size:13px}
+
+.pg-faq details{border-bottom:1px solid var(--line);padding-block:14px}
+.pg-faq summary{color:var(--navy);cursor:pointer;font-weight:600}
+.pg-faq details p{margin-top:10px}
+.pg-fontes ul{font-size:13px;line-height:1.65}
+.pg-fontes h2{font-size:20px}
+.pg-autor{border:1px solid var(--line);border-radius:8px;font-size:14px;margin-top:44px!important;padding:18px 20px}
+.pg-relacionados h2{font-size:20px}
+.pg-relacionados div{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);margin-top:16px}
+.pg-card{border:1px solid var(--line);border-radius:8px;color:var(--text);display:block;font-size:13px;line-height:1.55;padding:16px 18px;text-decoration:none;transition:border-color .2s}
+.pg-card:hover{border-color:var(--blue)}
+.pg-relacionados strong,.pg-relacionados span{display:block}
+.pg-relacionados strong{font-size:14px;margin-bottom:4px}
+
+.pg-cta{background:linear-gradient(145deg,#236cfb 0%,#155dfc 40%,#0739b0 100%);color:#fff;padding-block:72px}
+.pg-cta h2{max-width:720px}
+.pg-cta p{font-size:16px;margin:16px 0 26px;max-width:620px}
+.pg-cta .button{font-size:13px}
+.pg-link-claro{align-items:center;color:#fff;display:inline-flex;font-size:13px;font-weight:600;gap:10px}
+.pg-link-claro .icon{height:16px;stroke-width:2;width:16px}
+
+@media(max-width:760px){
+  .pg-hero-grid{grid-template-columns:1fr;gap:36px;padding-block:44px}
+  .pg-hero-img{width:210px}
+  .pg-hero-texto{padding-block:44px 32px}
+  .pg-lead{font-size:16px}
+  .pg-texto{font-size:15px;padding-block:40px 56px}
+  .pg-texto .pg-passos,.pg-relacionados div{grid-template-columns:1fr}
+  .pg-case{grid-template-columns:90px 1fr;gap:18px;padding:18px}
+  .pg-case strong{font-size:17px}
+  .pg-cta{padding-block:56px}
+}
