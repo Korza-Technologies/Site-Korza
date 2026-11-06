@@ -237,18 +237,35 @@ document.addEventListener('click', event => {
   gtag('event', 'cta_click', {cta_text: link.textContent.trim(), cta_location: place});
 });
 
-// O cookie _fbc do Pixel não atravessa para admin.korza.app; repassa o clique do anúncio pela URL.
-function adClickId() {
-  const fromUrl = new URLSearchParams(location.search).get('fbclid');
-  if (fromUrl) return fromUrl;
+// Repassa a origem da visita (UTMs e cliques de anúncio) para o cadastro em admin.korza.app, que a guarda na conta.
+// Guarda na primeira página da visita, porque a pessoa pode navegar antes de clicar no CTA. A URL atual tem prioridade.
+const originParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'];
+const originKey = 'korza_origin';
+function readOrigin() {
+  let stored = {};
+  try { stored = JSON.parse(sessionStorage.getItem(originKey) || '{}'); } catch {}
+  const current = new URLSearchParams(location.search);
+  const fromUrl = {};
+  originParams.forEach(key => { const value = current.get(key); if (value) fromUrl[key] = value; });
+  return Object.keys(fromUrl).length ? fromUrl : stored;
+}
+try {
+  const origin = readOrigin();
+  if (Object.keys(origin).length) sessionStorage.setItem(originKey, JSON.stringify(origin));
+} catch {}
+
+// O cookie _fbc do Pixel não atravessa para admin.korza.app; sem fbclid na origem, usa o clique guardado nele.
+function cookieClickId() {
   const fbc = document.cookie.match(/(?:^|; )_fbc=fb\.\d+\.\d+\.([^;]+)/);
   return fbc ? decodeURIComponent(fbc[1]) : null;
 }
 document.addEventListener('click', event => {
   const link = event.target.closest(signupLinks);
-  const id = link && adClickId();
-  if (!id) return;
+  if (!link) return;
+  const origin = readOrigin();
+  if (!origin.fbclid) { const id = cookieClickId(); if (id) origin.fbclid = id; }
+  if (!Object.keys(origin).length) return;
   const url = new URL(link.href);
-  url.searchParams.set('fbclid', id);
+  Object.entries(origin).forEach(([key, value]) => url.searchParams.set(key, value));
   link.href = url;
 });
