@@ -111,7 +111,12 @@
 
 function kTorusBoot(root) {
   var cv = root.querySelector('canvas.k-torus'); if (!cv) return;
-  if (window.matchMedia && window.matchMedia('(max-width:760px)').matches) return;
+  var mq = window.matchMedia && window.matchMedia('(max-width:760px)');
+  if (mq && mq.matches) {
+    // abriu estreito: monta o toro quando a janela passar da largura de desktop
+    var later = function (e) { if (!e.matches) { mq.removeEventListener('change', later); go(); } };
+    if (mq.addEventListener) mq.addEventListener('change', later);
+  }
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function go() {
     if (!window.KorzaTorus) return;
@@ -124,7 +129,7 @@ function kTorusBoot(root) {
       h.setPointer(((e.clientX - r.left) / r.width - 0.5) * 2, ((e.clientY - r.top) / r.height - 0.5) * 2);
     }, { passive: true });
   }
-  go();
+  if (!(mq && mq.matches)) go();
 }
 
 function kCasesBoot(root) {
