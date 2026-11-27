@@ -152,6 +152,7 @@ a{color:#155DFC}a:hover{color:#0B4AE0}
 .k-rfoot .k-btn{width:100%;justify-content:center;box-sizing:border-box}
 }
 .k-mint{display:none}
+.k-bento .k-appcard{order:-1}
 .k-csc .k-csphone{width:350px !important;margin-left:-175px !important;bottom:-222px !important}
 .k-csc .k-cspush{left:16px !important;margin-left:0 !important;width:282px !important;bottom:92px !important}
 @media (max-width:760px){
